@@ -23,9 +23,15 @@
               "src/assets"
             ],
             "styles": [
+              "../Insumar/node_modules/bootswatch/dist/yeti/bootstrap.css",
+              "../Insumar/node_modules/font-awesome/css/font-awesome.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../Insumar/node_modules/jquery/dist/jquery.js",
+              "../Insumar/node_modules/popper.js/dist/umd/popper.js",
+              "../Insumar/node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
