@@ -1,3 +1,94 @@
-<p>
-  start works!
-</p>
+<<<<<<< HEAD
+<br>
+<br>
+<legend>Producto Nuevo</legend>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Identificador</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Proveedor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active">
+      <th scope="row"> 
+          <div class="form-group">
+                <select class="form-control" id="Cantidad">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                 </select>
+          </div>
+      </th>
+      <td>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Descripcion del Producto" id="inputDefault">
+          </div> 
+        </form>
+      </td>
+      <td>
+          <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="ID" id="inputDefault">
+              </div> 
+            </form>
+      </td>
+      <td>
+          <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="inputDefault">
+              </div> 
+            </form>
+      </td>
+      <td>
+          <form>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Proveedor" id="inputDefault">
+              </div> 
+            </form>
+      </td>
+    </tr>
+  </tbody>
+</table> 
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Registrar</a>
+  </p>
+
+
+
+
+
+=======
+<div class="listado-productos">
+  <table class="table-fill">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Codigo</th>
+        <th>Nombre</th> 
+        <th>Cantidad Minima</th>
+        <th>Cantidad Actual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of listadoProductos | async">
+        <td [ngClass]="{'faltante': esMayor(producto.payload.val().cantidadMinima, sumatorias[producto.payload.val().codigo]) }"></td>
+        <td>{{producto.payload.val().codigo}}</td>
+        <td>{{producto.payload.val().nombre}}</td> 
+        <td>{{producto.payload.val().cantidadMinima}}</td>
+        <td>
+          {{sumatorias[producto.payload.val().codigo]}}
+        </td>
+      </tr>
+    </tbody>    
+  </table>
+</div>
+>>>>>>> fe1a8f300307af819733f19158a177db2b8300ed
