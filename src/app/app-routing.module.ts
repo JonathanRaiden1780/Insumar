@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'Proveedores', component: ProveedoresComponent},
   {path: '**', component: Page404Component},
 ];
-
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
