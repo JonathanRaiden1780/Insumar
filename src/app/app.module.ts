@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { StartComponent } from './components/start/start.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProveedoresComponent } from './components/Proveedores/Proveedores.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProveedoresComponent } from './components/Proveedores/Proveedores.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { faDolly } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,5 +11,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
+  faDolly = faDolly;
 
 }
