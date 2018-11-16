@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+     background-size: 1500px; width: inherit; background-repeat: no-repeat;
+    background-image: url('https://image.ibb.co/mLiVFL/fondo-espacio-trabajo-diseno-grafico-estilo-hecho-mano-23-2147791711.jpg');
+    background-position: 50% 5%;
+}

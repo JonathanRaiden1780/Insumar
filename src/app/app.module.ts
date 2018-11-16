@@ -20,6 +20,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import { environment} from '../environments/environment'
 import { AuthGuard } from './guards/auth.guard';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -36,6 +37,7 @@ import { AuthGuard } from './guards/auth.guard';
     ProveedoresComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
