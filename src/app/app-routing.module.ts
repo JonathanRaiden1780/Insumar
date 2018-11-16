@@ -7,15 +7,16 @@ import { StartComponent } from './components/start/start.component';
 import { RegisterComponent } from './components/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProveedoresComponent } from './components/Proveedores/Proveedores.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'start', component: StartComponent},  
-  {path: 'register', component: RegisterComponent},
-  {path: 'Proveedores', component: ProveedoresComponent},
+  {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: 'Proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  
