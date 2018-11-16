@@ -2,14 +2,14 @@
   <div class="card text-white mb-3 col-md-3 mx-auto mt-5" style="background-color: #2a206f ;">
    <div class="card-body">
      <legend class="text-center text-warning"><strong>Inicia Sesion</strong></legend>
-    <form>
+    <form (submit)="onSubmitLogin()">
      <div class="form-group"> 
-       <label for="NumEmpleado">Numero de Empleado</label>
+       <label for="email">Numero de Empleado</label>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text"><fa-icon [icon]="faUser"></fa-icon></span>
             </div>
-            <input type="numeroempleado" class="form-control" id="numeroempleado" aria-describedby="numeroempleado" placeholder="12345">
+            <input [(ngModel)]="email" [ngModelOptions]="{standalone:true}" type="email" class="form-control" id="email" aria-describedby="email"  placeholder="correo@casanovarentacar.mx">
           </div>
      </div>
      <div class="form-group">
@@ -18,11 +18,14 @@
           <div class="input-group-prepend">
             <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
           </div>
-          <input type="password" class="form-control" aria-label="password" placeholder="*************">
+          <input [(ngModel)]="password" [ngModelOptions]="{standalone:true}" type="password" class="form-control" aria-label="password"  placeholder="*************">
         </div>
    </div>
-     <button type="text" class="btn btn-primary btn-block btn-lg"><fa-icon [icon]="faDolly"></fa-icon> Ingresar</button>
+     <button type="submit" class="btn btn-warning btn-block btn-lg"><fa-icon [icon]="faDolly"></fa-icon> Ingresar</button>
     </form>
+    <div>
+      
+    </div>
    </div>
   </div>
  </div>
