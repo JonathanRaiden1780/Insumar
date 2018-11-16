@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {FormsModule} from '@angular/forms';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -12,6 +12,15 @@ import { StartComponent } from './components/start/start.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProveedoresComponent } from './components/Proveedores/Proveedores.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { AuthService } from './servicios/auth.service';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+
+import { environment} from '../environments/environment'
+
+
+
 
 @NgModule({
   declarations: [
@@ -27,9 +36,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
