@@ -3,6 +3,8 @@ import { faKey, faUser, faDolly } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth.service';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {FlashMessagesService} from 'angular2-flash-messages'
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    public flashMensaje: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -29,9 +32,13 @@ export class LoginComponent implements OnInit {
   onSubmitLogin(){
     this.authService.loginEmail(this.email,this.password)
     .then( (res) =>{
+      this.flashMensaje.show('Bienvenido',{
+        cssClass: 'alert-success', timeout: 4000});
       this.router.navigate(['/register']);
     }).catch((err)=>{
-      console.log(err);
+      this.flashMensaje.show(err.messages,{
+        cssClass: 'alert-danger', timeout: 4000});
+        this.router.navigate(['/login']);
     });
  }
 }

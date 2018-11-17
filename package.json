@@ -23,6 +23,8 @@
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "angular2-flash-message": "^1.0.2",
+    "angular2-flash-messages": "^3.0.1",
     "angularfire2": "^5.1.0",
     "bootstrap": "^4.0.0",
     "bootswatch": "^4.1.3",

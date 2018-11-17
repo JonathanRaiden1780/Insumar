@@ -22,7 +22,9 @@ import { environment} from '../environments/environment'
 import { AuthGuard } from './guards/auth.guard';
 import { CommonModule } from '@angular/common';
 
-
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {FlashMessagesService} from 'angular2-flash-messages';
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -43,9 +45,10 @@ import { CommonModule } from '@angular/common';
     FontAwesomeModule,
     FormsModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
