@@ -34,7 +34,13 @@ export class LoginComponent implements OnInit {
     .then( (res) =>{
       this.flashMensaje.show('Bienvenido',{
         cssClass: 'alert-success', timeout: 4000});
-      this.router.navigate(['/register']);
+        if(this.email=='mejahv_hs@hotmail.com'){
+          this.router.navigate(['/Proveedores'])
+        }
+        else{
+          this.router.navigate(['/register']);
+        }
+      
     }).catch((err)=>{
       this.flashMensaje.show(err.messages,{
         cssClass: 'alert-danger', timeout: 4000});

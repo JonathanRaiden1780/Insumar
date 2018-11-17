@@ -26,6 +26,10 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import { from } from 'rxjs';
 
+import { SucursalComponent } from './components/sucursal/sucursal.component';
+import { ControlComponent } from './components/control/control.component';
+import { AutorizacionComponent } from './components/autorizacion/autorizacion.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { from } from 'rxjs';
     LoginComponent,
     StartComponent,
     Page404Component,
-    ProveedoresComponent
+    ProveedoresComponent,
+    SucursalComponent,
+    ControlComponent,
+    AutorizacionComponent
   ],
   imports: [
     CommonModule,
