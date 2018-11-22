@@ -17,20 +17,29 @@ Producto: Observable<ProductosInterface>;
       this.ProductosCollection = this.afs.collection('Productos', ref => ref);
      }
 
-    deleteProducto(){}
-    ActProducto(Producto: ProductosInterface){
+    deleteProducto(Producto: ProductosInterface){
+      this.ProductosDoc = this.afs.doc('Productos/${Producto.id}');
+      this.ProductosDoc.delete();
+    }
+     updateProducto(Producto: ProductosInterface){
+        this.ProductosDoc=this.afs.doc('Productos/${Producto.id}');
+        this.ProductosDoc.update(Producto);
+      }
+
+    addProducto(Producto: ProductosInterface){
       this.ProductosCollection.add(Producto);
     }
     getOneProducto(idprodu: string){
-      this.ProductosDoc = this.afs.doc<ProductosInterface>('productos/${idprodu}');
+      this.ProductosDoc = this.afs.doc<ProductosInterface>('Productos/${idprodu}');
       this.Producto = this.ProductosDoc.snapshotChanges().pipe(map(action =>{
         if(action.payload.exists === false){
           return null;
         }else{
           const data = action.payload.data() as ProductosInterface;
           data.idprod = action.payload.id;
-          
-        }))
+
+        }
+      }));
     }
     getAllProducto():Observable<ProductosInterface[]>{
       this.Productos = this.ProductosCollection.snapshotChanges()

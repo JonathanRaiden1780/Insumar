@@ -1,5 +1,6 @@
 <br>
 <br>
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarProducto(formGuardar)">
 <legend>Producto Nuevo</legend>
 <div style="overflow-x:auto;">
 <table class="table table-light">
@@ -16,7 +17,7 @@
     <tr class="table-active">
       <th scope="row"> 
           <div class="form-group">
-                <select class="form-control" id="Cantidad">
+                <select class="form-control" id="Cantidad" name="Cantidad" [(ngModel)]="Producto.cantidad">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -28,42 +29,42 @@
           </div>
       </th>
       <td>
-        <form>
+        
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Descripcion del Producto" id="inputDefault">
+            <input type="text" class="form-control" placeholder="Descripcion del Producto" id="Descripcion" name="Descripcion" [(ngModel)]="Producto.descripcion">
           </div> 
-        </form>
+        
       </td>
       <td>
-          <form>
+          
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="ID" id="inputDefault">
+                <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Producto.idprod">
               </div> 
-            </form>
+            
       </td>
       <td>
-          <form>
+          
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="inputDefault">
+                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="Producto.categoria">
               </div> 
-            </form>
+            
       </td>
       <td>
-          <form>
+          
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Proveedor" id="inputDefault">
+                <input type="text" class="form-control" placeholder="Proveedor" id="Proveedor" name="Proveedor" [(ngModel)]="Producto.proveedor">
               </div> 
-            </form>
+            
       </td>
     </tr>
   </tbody>
 </table> 
 </div>
   <p class="lead">
-    <a class="btn btn-warning btn-lg" href="#" role="button">Registrar</a>
-  </p>
+    <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
+  </p> 
 
-
+</form>
 
 
 

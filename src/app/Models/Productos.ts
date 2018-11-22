@@ -1,4 +1,5 @@
 export interface ProductosInterface{
+    
     cantidad?:string;
     descripcion?:string;
     idprod?:string;

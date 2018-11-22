@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { from } from 'rxjs';
 import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { ControlComponent } from './components/control/control.component';
 import { AutorizacionComponent } from './components/autorizacion/autorizacion.component';
+import { ProductoService } from './servicios/producto.service';
 
 
 @NgModule({
@@ -51,11 +54,12 @@ import { AutorizacionComponent } from './components/autorizacion/autorizacion.co
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    HttpClientModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FlashMessagesModule
   ],
-  providers: [AuthService, AuthGuard, FlashMessagesService],
+  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
