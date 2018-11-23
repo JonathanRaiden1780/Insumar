@@ -1,3 +1,140 @@
-<p>
-  control works!
-</p>
+<br>
+<br>
+
+<ul class="nav nav-tabs" >
+  <li class="nav-item ">
+    <a class="nav-link active" data-toggle="tab" href="#home"[ngClass]="{'active':seleccionadoEntrada }" (click)="seleccionarEntrada()"><legend>Entradas</legend></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#profile"[ngClass]="{'active':seleccionadoSalida }" (click)="seleccionarSalida()"><legend>Salidas</legend></a>
+  </li>
+</ul>
+<div style="overflow-x:auto;">
+  <table class="table table-light">
+    <thead>
+      <tr>
+        <th scope="col">Cantidad</th>
+        <th scope="col" >Producto</th>
+        <th scope="col" >Fecha</th>
+        <th scope="col" *ngIf="seleccionadoEntrada">Precio</th>
+        <th scope="col"*ngIf="seleccionadoEntrada">Proveedor</th>
+        <th scope="col" *ngIf="seleccionadoSalida">Sucursal</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row"> 
+            <div class="form-group">
+                  <select class="form-control" id="cantidad"
+                   name="cantidad" [(ngModel)]="Producto.cantidad" #cantidad="ngModel">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                   </select>
+            </div>
+        </th>
+        <td>
+          <div class="form-group">
+              <select name="producto" id="producto" name="producto" [(ngModel)]="Producto.producto" #productos="ngModel">
+                  <option [ngValue]="producto" *ngFor="let producto of listadoProductos | async">{{producto.payload.val().codigo}} - {{producto.payload.val().nombre}}</option>
+              </select>
+          </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <input type="date" placeholder="Fecha" id="fecha" name="fecha" [(ngModel)]="Producto.fecha" #fecha="ngModel">        
+            </div>     
+          </td>
+      </tr>
+    </tbody>
+  </table> 
+
+  <div class="box">
+  <div class="form-group" *ngIf="seleccionadoEntrada">
+      <select name="proveedor" id="Proveedor" [(ngModel)]="Producto.proveedor" #proveedor="ngModel" >
+          <option [ngValue]="proveedor" *ngFor="let proveedor of listadoProveedores | async">{{proveedor.payload.val().codigo}} - {{proveedor.payload.val().nombre}}</option>
+      </select>
+  </div>       
+  <div class="form-group" *ngIf="seleccionadoSalida">
+      <select name="sucursal" id="sucursal" [(ngModel)]="Producto.sucursal" #proveedor="ngModel" >
+          <option [ngValue]="sucursal" *ngFor="let sucursal of listadosucursal | async">{{sucursal.payload.val().codigo}} - {{sucursal.payload.val().nombre}}</option>
+      </select>
+  </div>       
+  <div class="form-group" *ngIf="seleccionadoEntrada">
+      <label for="producto">Precio</label><br>
+      <input type="text" placeholder="Precio" name="precio" [(ngModel)]="model.precio" #precio="ngModel" >        
+  </div> 
+</div>
+
+</div>
+<div class="boton" (click)="agregarEntrada()">
+  <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
+</div>   
+
+<div class="tablas-dobles">
+  <div>
+      <h1 class="titulo-tabla">Entradas</h1>
+      <table class="table-fill">
+          <thead>
+          <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Fecha</th> 
+              <th>Proveedor</th>
+              <th>Precio</th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody>
+              <ng-container *ngFor="let control of listadocontrol | async">
+                  <tr *ngIf="control.payload.val().tipo == 'entrada'">
+                      <td>{{control.payload.val().producto.nombre}}</td>
+                      <td>{{control.payload.val().cantidad | number}}</td>
+                      <td>{{control.payload.val().fecha}}</td> 
+                      <td>{{control.payload.val().proveedor.nombre}}</td>
+                      <td>{{control.payload.val().precio | number}} CLP</td>
+                      <td>
+                          <img class="clickable" (click)="eliminarEntrada(control.key)" src="../../../assets/img/eraser.svg" /> 
+                      </td>                
+                  </tr>
+              </ng-container>            
+          </tbody>    
+      </table>
+  </div>
+  <div>
+      <h1 class="titulo-tabla">Salidas</h1>
+      <table class="table-fill">
+          <thead>
+          <tr>
+              <th>Producto</th>
+              <th>Cantidad</th> 
+              <th>Fecha</th>
+              <th>Persona</th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody>
+              <ng-container *ngFor="let control of listadocontrol | async">
+                  <tr *ngIf="control.payload.val().tipo == 'salida'">
+                      <td>{{control.payload.val().producto.nombre}}</td>
+                      <td>{{control.payload.val().cantidad | number}}</td>
+                      <td>{{control.payload.val().fecha}}</td> 
+                      <td>{{control.payload.val().persona.nombre}}</td>
+                      <td>
+                          <img class="clickable" (click)="eliminarEntrada(control.key)" src="../../../assets/img/eraser.svg" /> 
+                      </td>
+                  </tr>
+              </ng-container>            
+          </tbody>    
+      </table>
+  </div>
+</div>
+
+
+
+

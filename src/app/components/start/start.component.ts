@@ -3,6 +3,7 @@ import {ProductosInterface} from '../../Models/Productos';
 import {AuthService} from '../../servicios/auth.service';
 import {ProductoService} from '../../servicios/producto.service';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-start',
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
-
+  
   Producto: ProductosInterface = {
     cantidad: '',
     descripcion: '',
@@ -31,5 +32,29 @@ export class StartComponent implements OnInit {
     this.productoService.addProducto(value);
     this.router.navigate(['/']);
   }
-
 }
+/*
+  listadoProductos: Observable<any[]>;
+  model: any = {};
+
+  constructor(public productos: ProductoService) {
+    this.listadoProductos = this.productos.mostrar();
+  }
+
+  ngOnInit() {
+  }
+
+  agregarProducto() {
+    this.productos.agregar(this.model);
+    this.model = {};
+  }
+
+  eliminarProducto(id) {
+    this.productos.eliminar(id);
+  }
+
+  editarCantidadMinima(cantidad, id) {
+    console.log(cantidad);
+    console.log(id);
+  }
+  */

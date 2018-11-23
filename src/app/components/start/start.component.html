@@ -17,7 +17,8 @@
     <tr class="table-active">
       <th scope="row"> 
           <div class="form-group">
-                <select class="form-control" id="Cantidad" name="Cantidad" [(ngModel)]="Producto.cantidad">
+                <select class="form-control" id="Cantidad"
+                 name="Cantidad" [(ngModel)]="Producto.cantidad" #cantidad="ngModel">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -31,28 +32,31 @@
       <td>
         
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Descripcion del Producto" id="Descripcion" name="Descripcion" [(ngModel)]="Producto.descripcion">
+            <input type="text" class="form-control" placeholder="Descripcion del Producto" 
+            id="Descripcion" name="Descripcion" [(ngModel)]="Producto.descripcion" #descripcion="ngModel">
           </div> 
         
       </td>
       <td>
           
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Producto.idprod">
+                <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Producto.idprod" #id="ngModel">
               </div> 
             
       </td>
       <td>
           
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="Producto.categoria">
+                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.."
+                 id="Categoria" name="Categoria" [(ngModel)]="Producto.categoria" #categoria="ngModel">
               </div> 
             
       </td>
       <td>
           
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Proveedor" id="Proveedor" name="Proveedor" [(ngModel)]="Producto.proveedor">
+                <input type="text" class="form-control" placeholder="Proveedor" 
+                id="Proveedor" name="Proveedor" [(ngModel)]="Producto.proveedor" #proveedor="ngModel">
               </div> 
             
       </td>
@@ -65,6 +69,4 @@
   </p> 
 
 </form>
-
-
 

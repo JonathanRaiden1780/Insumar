@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProveedoresComponent } from './components/Proveedores/Proveedores.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ControlComponent } from './components/control/control.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'Proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
+  {path: 'Control', component: ControlComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  

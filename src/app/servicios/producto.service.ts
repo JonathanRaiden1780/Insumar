@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ProductosInterface} from '../Models/Productos';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -8,10 +9,12 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductoService {
+  
 ProductosCollection: AngularFirestoreCollection<ProductosInterface>;
 ProductosDoc: AngularFirestoreDocument<ProductosInterface>;
 Productos: Observable<ProductosInterface[]>;
 Producto: Observable<ProductosInterface>;
+
   constructor(
     private afs: AngularFirestore) {
       this.ProductosCollection = this.afs.collection('Productos', ref => ref);
@@ -52,4 +55,24 @@ Producto: Observable<ProductosInterface>;
       }));
       return this.Productos;
     }
+  }
+/*
+  productos: any;
+
+  constructor(public firebase: AngularFireDatabase) {
+    this.productos = this.firebase.list('productos');
+  }
+
+  agregar(producto) {
+    this.productos.push(producto);
+  }
+
+  mostrar() {
+    return this.productos.snapshotChanges();
+  }
+
+  eliminar(id) {
+    this.productos.remove(id);
+  }
 }
+*/

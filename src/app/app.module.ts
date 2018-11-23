@@ -32,6 +32,8 @@ import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { ControlComponent } from './components/control/control.component';
 import { AutorizacionComponent } from './components/autorizacion/autorizacion.component';
 import { ProductoService } from './servicios/producto.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import { ProductoService } from './servicios/producto.service';
     HttpClientModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    FlashMessagesModule
+    FlashMessagesModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService],
   bootstrap: [AppComponent]
