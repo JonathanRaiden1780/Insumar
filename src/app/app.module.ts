@@ -34,6 +34,8 @@ import { AutorizacionComponent } from './components/autorizacion/autorizacion.co
 import { ProductoService } from './servicios/producto.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ProveedorService } from './servicios/proveedor.service';
+import { SucursalService } from './servicios/sucursal.service';
 
 
 @NgModule({
@@ -63,7 +65,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AngularFireDatabaseModule,
     AngularFirestoreModule
   ],
-  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService],
+  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, ProveedorService, SucursalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

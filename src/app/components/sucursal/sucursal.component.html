@@ -1,3 +1,35 @@
-<p>
-  sucursal works!
-</p>
+<br>
+<br>
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarSucursal(formGuardar)">
+<legend>Sucursal Nuevo</legend>
+<div style="overflow-x:auto;">
+<table class="table table-light">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Sucursal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active">
+      <td>        
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Sucursal.idsucu" #id="ngModel">
+        </div> 
+      </td>
+      <td>
+          <div class="form-group">
+              <input type="text" class="form-control" placeholder="Sucursal" 
+              id="Sucursal" name="Sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
+            </div> 
+      </td>
+    </tr>
+  </tbody>
+</table> 
+</div>
+  <p class="lead">
+    <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
+  </p> 
+
+</form>
+

@@ -1,56 +1,35 @@
 <br>
 <br>
-<legend>Proveedor Nuevo</legend>
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarProveedor(formGuardar)">
+<legend>Producto Nuevo</legend>
 <div style="overflow-x:auto;">
-<table class="table table-hover">
+<table class="table table-light">
   <thead>
     <tr>
-      <th scope="col">Identificador</th>
+      <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Categoria</th>
-      <th scope="col">Proveedor</th>
     </tr>
   </thead>
   <tbody>
     <tr class="table-active">
-      
+      <td>        
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Proveedor.idprod" #id="ngModel">
+        </div> 
+      </td>
       <td>
-        <form>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="ID" id="IDproveedor">
-          </div> 
-        </form>
-      </td>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nombre" id="Nombre">
-              </div> 
-            </form>
-      </td>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="inputDefault">
-              </div> 
-            </form>
-      </td>
-      <td>
-          <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Proveedor" id="inputDefault">
-              </div> 
-            </form>
+              <input type="text" class="form-control" placeholder="Nombre" 
+              id="Nombre" name="Nombre" [(ngModel)]="Proveedor.Nombre" #descripcion="ngModel">
+            </div> 
       </td>
     </tr>
   </tbody>
 </table> 
 </div>
   <p class="lead">
-    <a class="btn btn-warning btn-lg" href="#" role="button">Registrar</a>
-  </p>
+    <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
+  </p> 
 
-
-
-
+</form>
 
