@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faDolly } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faSignInAlt, faSignOutAlt, faPeopleCarry, faHome, faBox, faBoxOpen, faChartArea } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages'
 
@@ -35,6 +35,14 @@ export class NavbarComponent implements OnInit {
     this.flashMensaje.show('Hasta luego',{
       cssClass: 'alert-success', timeout: 4000});
   }
+
   faDolly = faDolly;
+  faSignInAlt = faSignInAlt;
+  faSignOutAlt = faSignOutAlt;
+  faPeopleCarry = faPeopleCarry;
+  faHome = faHome;
+  faBox = faBox;
+  faBoxOpen= faBoxOpen;
+  faChartArea = faChartArea;
 
 }

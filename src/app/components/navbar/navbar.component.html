@@ -1,22 +1,55 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #2a206f ;">
-  <a class="navbar-brand" href="#" routerLink="/"><img src="https://image.ibb.co/cSwFvL/Insumarlogo.png" style="width: 27%;"></a>  
-   <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+ <img src="https://image.ibb.co/cSwFvL/Insumarlogo.png" style="width: 15%;"> 
 
-  <div class="collapse navbar-collapse" id="navbarColor01">
+  <div class="collapse navbar-collapse">
     
-    <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="#"routerLink="/login"><h5>Login</h5></a>
-      </li>
-      <li class="nav-item" >
-        <a class="nav-link" href="#" (click)="onClickLogout()"><h5>Salir</h5></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/register"><h5>Acerca de</h5></a>
-      </li>
+    <ul class="navbar-nav mr-auto">
+        <li class="navbar-nav nav-item" *ngIf="isLogin">
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/home">
+            <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
+            <strong> Pagina Principal</strong>
+          </a>
+          </li>
+          <li class="navbar-nav nav-item" *ngIf="isLogin">
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/ingresos">
+              <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
+              <strong> Ingresos</strong>
+            </a>
+          </li>
+          <li class="navbar-nav nav-item" *ngIf="isLogin">
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/salidas">
+              <fa-icon [icon]="faBoxOpen" class="fa-2x"></fa-icon>
+              <strong> Salidas</strong>
+            </a>
+          </li>
+          <li class="navbar-nav nav-item" *ngIf="isLogin">
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/reports">
+              <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
+              <strong> Reportes</strong>
+            </a>
+          </li>
+    </ul>
+
+    <ul class="navbar-bar">
+        <li class="navbar-nav nav-item" *ngIf="!isLogin">
+          <a class="nav-link" routerLinkActive="active-link" routerLink="/login">
+          <fa-icon [icon]="faSignInAlt" class="fa-2x"></fa-icon>
+          <strong> Login</strong>
+        </a>
+        </li>
+        <li class="navbar-nav nav-item" *ngIf="isLogin">
+          <a class="nav-link" href="#" (click)="onClickLogout()">
+            <fa-icon [icon]="faSignOutAlt" class="fa-2x"></fa-icon>
+            <strong> Salir</strong>
+          </a>
+        </li>
+        <li class="navbar-nav nav-item">
+          <a class="nav-link" routerLink="/register">
+            <fa-icon [icon]="faPeopleCarry" class="fa-2x"></fa-icon>
+            <strong> Acerca de</strong>
+          </a>
+        </li>
     </ul>
   </div>
 </nav>
