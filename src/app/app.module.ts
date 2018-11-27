@@ -36,6 +36,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ProveedorService } from './servicios/proveedor.service';
 import { SucursalService } from './servicios/sucursal.service';
+import { ControlService } from './servicios/control.service';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { SucursalService } from './servicios/sucursal.service';
     AngularFireDatabaseModule,
     AngularFirestoreModule
   ],
-  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, ProveedorService, SucursalService],
+  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, 
+    ProveedorService, SucursalService, ControlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
