@@ -1,6 +1,6 @@
 <br>
 <br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
 <h1 class="titulo-tabla">Entradas</h1>
   <div style="overflow-x:auto;"> 
      <table class="table table-light">
@@ -23,13 +23,13 @@
                 <td>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Cantidad del Producto" 
-                            id="cantidad" name="cantidad" [(ngModel)]="controlentradas.cantidad" #cantidad="ngModel">
+                            id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
                     </div> 
                 </td>
                 <td>
                     <div class="form-group" >   
                         <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
-                        [(ngModel)]="controlentradas.producto" #producto="ngModel" >
+                        [(ngModel)]="selecprod" #producto="ngModel" >
                             <option [ngValue]="productos.Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}}</option>
                             
                         </select>

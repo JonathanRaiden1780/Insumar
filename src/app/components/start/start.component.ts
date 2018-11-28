@@ -15,10 +15,9 @@ export class StartComponent implements OnInit {
   listadoProveedores: any;
   Producto: ProductosInterface = {
     
-    idprov: '',
     Nombre: '',
-    categoria: ''
-    
+    categoria: '',
+    cantidad:0    
   }
 
   constructor(
@@ -34,6 +33,9 @@ export class StartComponent implements OnInit {
     this.model.tipo = 'entrada'; 
   }
   onGuardarProducto({value}: {value: ProductosInterface}){
+    value.cantidad=0;
+    value.idprov = value.Nombre;
+    
     this.productoService.addProducto(value);
     
   }

@@ -17,7 +17,8 @@ Producto: Observable<ProductosInterface>;
 
   constructor(
     private afs: AngularFirestore) {
-      this.ProductosCollection = this.afs.collection('Productos', ref => ref);
+      this.ProductosCollection = this.afs.collection('Productos', ref => ref );
+      
      }
 
     deleteProducto(Producto: ProductosInterface){
@@ -25,13 +26,15 @@ Producto: Observable<ProductosInterface>;
       this.ProductosDoc.delete();
     }
      updateProducto(Producto: ProductosInterface){
-        this.ProductosDoc=this.afs.doc('Productos/${Producto.id}');
+        this.ProductosDoc=this.afs.doc('Productos/${Producto.idprov}');
         this.ProductosDoc.update(Producto);
       }
 
     addProducto(Producto: ProductosInterface){
-      this.ProductosCollection.add(Producto);
+      this.ProductosCollection.doc(Producto.Nombre).set(Producto);
+      //this.ProductosCollection.add(Producto);
     }
+   
     getOneProducto(idprov: string){
       this.ProductosDoc = this.afs.doc<ProductosInterface>('Productos/${idprov}');
       this.Producto = this.ProductosDoc.snapshotChanges().pipe(map(action =>{

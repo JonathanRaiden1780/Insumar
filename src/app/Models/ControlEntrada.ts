@@ -1,7 +1,7 @@
 export interface ControlEntradaInterface{
     
     id?:string;
-    cantidad?:string;
+    cantidad?:number;
     producto?:string;
     fecha?:string;
     precio?:string;

@@ -1,8 +1,9 @@
 export interface ControlSalidaInterface{
     
-    cantidad?:string;
+    id?:string;
+    cantidad?:number;
     producto?:string;
     fecha?:string;
     sucursal?:string;
-    
+     
 }
