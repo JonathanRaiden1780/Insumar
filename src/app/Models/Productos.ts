@@ -1,8 +1,6 @@
 export interface ProductosInterface{
     
-    cantidad?:string;
-    descripcion?:string;
-    idprod?:string;
+    idprov?:string;
+    Nombre?:string;
     categoria?:string;
-    proveedor?:string;
 }

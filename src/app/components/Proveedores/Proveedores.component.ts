@@ -29,7 +29,8 @@ export class ProveedoresComponent implements OnInit {
   }
   onGuardarProveedor({value}: {value: ProveedoresInterface}){
     this.proveedorService.addProveedor(value);
-    this.router.navigate(['/']);
+    
+
   }
 }
 /*

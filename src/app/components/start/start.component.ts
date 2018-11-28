@@ -4,33 +4,38 @@ import {AuthService} from '../../servicios/auth.service';
 import {ProductoService} from '../../servicios/producto.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-
+import{ProveedorService} from '../../servicios/proveedor.service'
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
-  
+  model: any = {};
+  listadoProveedores: any;
   Producto: ProductosInterface = {
-    cantidad: '',
-    descripcion: '',
-    idprod: '',
-    categoria: '',
-    proveedor: ''
+    
+    idprov: '',
+    Nombre: '',
+    categoria: ''
+    
   }
 
   constructor(
     private authService: AuthService,
     private productoService: ProductoService,
+    public proveedores: ProveedorService,
     private router: Router
-  ) { }
+  ) { 
+    this.listadoProveedores = this.proveedores.getAllProveedor();
+  }
 
   ngOnInit() {
+    this.model.tipo = 'entrada'; 
   }
   onGuardarProducto({value}: {value: ProductosInterface}){
     this.productoService.addProducto(value);
-    this.router.navigate(['/']);
+    
   }
 }
 /*

@@ -1,7 +1,7 @@
 <br>
 <br>
 <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
-  <legend>Entradas</legend>
+<h1 class="titulo-tabla">Entradas</h1>
   <div style="overflow-x:auto;"> 
      <table class="table table-light">
         <thead>
@@ -27,10 +27,13 @@
                     </div> 
                 </td>
                 <td>
-                    <div  class="form-group">
-                        <input type="text" class="form-control" placeholder="Descripcion del Producto" 
-                            id="Producto" name="Producto" [(ngModel)]="controlentradas.producto" #producto="ngModel">
-                    </div> 
+                    <div class="form-group" >   
+                        <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
+                        [(ngModel)]="controlentradas.producto" #proveedor="ngModel" >
+                            <option [ngValue]="Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}}</option>
+                           
+                        </select>
+                    </div>  
                 </td>
                 
                 <td>
@@ -39,55 +42,50 @@
                         id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
                     </div> 
                 </td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Proveedor" 
-                        id="Proveedor" name="Proveedor" [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel">
-                    </div>    
+                <td >
+                    <div class="form-group" >
+                        <select name="proveedor" class="form-control" placeholder="Proveedor"
+                        [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
+                        
+                            <option [ngValue]="Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
+                        </select>
+                    </div>  
                 </td>
+                
             </tr>
         </tbody>
       </table> 
-
+      
 </div>
+
+<input type="text" name="producto" [(ngModel)]="controlentradas.producto" #producto="ngModel" >
+
 <p class="lead">
         <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
       </p> 
 </form>
-
-
-
-
-<div class="tablas-dobles">
-  <div>
-      <h1 class="titulo-tabla">Entradas</h1>
-      <table class="table-fill">
-          <thead>
-          <tr>
-              <th>Fecha</th> 
-              <th>Cantidad</th>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Proveedor</th>
-              <th></th>
-          </tr>
-          </thead>
-          <tbody>
-              <ng-container *ngFor="let control of listadocontrol ">
-                  <tr >
-                      <td>{{control.fecha}}</td>
-                      <td>{{control.payload.val().cantidad | number}}</td>
-                      <td>{{control.payload.val().fecha}}</td> 
-                      <td>{{control.payload.val().proveedor.nombre}}</td>
-                      <td>{{control.payload.val().precio | number}} CLP</td>
-                      <td>
-                          <img class="clickable" (click)="eliminarEntrada(control.key)" src="../../../assets/img/eraser.svg" /> 
-                      </td>                
-                  </tr>
-              </ng-container>            
+<form  *ngFor="let controlService of listadoControl | async" >
+<div style="overflow-x:auto;"> 
+    <table class="table table-light">  
+        <thead>
+            <tr>
+                <th scope="col" >Fecha</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col" >Producto</th>
+                <th scope="col" >Precio</th>
+                <th scope="col">Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-active ">   
+                <tr >
+                    <td><div>{{controlService.fecha}}</div></td>
+                    <td><div>{{controlService.cantidad | number}}</div></td>
+                    <td><div>{{controlService.Producto}}</div></td>
+                    <td><div>$ {{controlService.Precio | number}}</div> </td>
+                    <td><div>{{controlService.Proveedor}}</div></td>
+                </tr>
           </tbody>    
       </table>
   </div>
- 
-</div>
-
+</form>

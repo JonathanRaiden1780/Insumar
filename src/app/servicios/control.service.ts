@@ -31,14 +31,14 @@ Coentrada: Observable<ControlEntradaInterface>;
     addCoentrada(Coentrada: ControlEntradaInterface){
       this.CoentradasCollection.add(Coentrada);
     }
-    getOneCoentrada(producto: string){
-      this.CoentradasDoc = this.afs.doc<ControlEntradaInterface>('Coentradas/${producto}');
+    getOneCoentrada(id: string){
+      this.CoentradasDoc = this.afs.doc<ControlEntradaInterface>('Coentradas/${id}');
       this.Coentrada = this.CoentradasDoc.snapshotChanges().pipe(map(action =>{
         if(action.payload.exists === false){
           return null;
         }else{
           const data = action.payload.data() as ControlEntradaInterface;
-          data.producto = action.payload.id;
+          data.id = action.payload.id;
 
         }
       }));
@@ -48,7 +48,7 @@ Coentrada: Observable<ControlEntradaInterface>;
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as ControlEntradaInterface;
-          data.producto = action.payload.doc.id;
+          data.id = action.payload.doc.id;
           return data;
         });
       }));

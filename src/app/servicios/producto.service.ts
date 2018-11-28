@@ -32,24 +32,25 @@ Producto: Observable<ProductosInterface>;
     addProducto(Producto: ProductosInterface){
       this.ProductosCollection.add(Producto);
     }
-    getOneProducto(idprodu: string){
-      this.ProductosDoc = this.afs.doc<ProductosInterface>('Productos/${idprodu}');
+    getOneProducto(idprov: string){
+      this.ProductosDoc = this.afs.doc<ProductosInterface>('Productos/${idprov}');
       this.Producto = this.ProductosDoc.snapshotChanges().pipe(map(action =>{
         if(action.payload.exists === false){
           return null;
         }else{
           const data = action.payload.data() as ProductosInterface;
-          data.idprod = action.payload.id;
+          data.idprov = action.payload.id;
 
         }
       }));
     }
+    
     getAllProducto():Observable<ProductosInterface[]>{
       this.Productos = this.ProductosCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as ProductosInterface;
-          data.idprod = action.payload.doc.id;
+          data.idprov = action.payload.doc.id;
           return data;
         });
       }));
