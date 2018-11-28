@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../servicios/auth.service';
 import { ControlService } from 'src/app/servicios/control.service';
@@ -6,7 +6,7 @@ import { ControlEntradaInterface } from 'src/app/Models/ControlEntrada';
 import{ProductoService} from '../../servicios/producto.service'
 import{ProveedorService} from '../../servicios/proveedor.service'
 import {Router} from '@angular/router';
-import { NgSelectOption } from '@angular/forms';
+import { NgSelectOption, SelectControlValueAccessor } from '@angular/forms';
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -18,6 +18,8 @@ export class ControlComponent implements OnInit {
   listadoProductos: any;
   listadoProveedores: any;
   listadoControl: any;
+  selectprod:string;
+  selectprov:string;
 
 controlentradas: ControlEntradaInterface = {
     
@@ -43,7 +45,8 @@ controlentradas: ControlEntradaInterface = {
     this.listadoControl = this.controlService.getAllCoentrada();
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-    this.model.producto = NgSelectOption.toString;
+    
+    
   }
 
 
@@ -56,6 +59,7 @@ controlentradas: ControlEntradaInterface = {
   onGuardarEntrada({value}: {value: ControlEntradaInterface}){
     this.controlService.addCoentrada(value);
     
-    this.router.navigate(['/']);
+    
   }
+ 
 }

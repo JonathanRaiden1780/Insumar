@@ -29,10 +29,11 @@
                 <td>
                     <div class="form-group" >   
                         <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
-                        [(ngModel)]="controlentradas.producto" #proveedor="ngModel" >
-                            <option [ngValue]="Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}}</option>
-                           
+                        [(ngModel)]="controlentradas.producto" #producto="ngModel" >
+                            <option [ngValue]="productos.Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}}</option>
+                            
                         </select>
+                        
                     </div>  
                 </td>
                 
@@ -47,7 +48,7 @@
                         <select name="proveedor" class="form-control" placeholder="Proveedor"
                         [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
                         
-                            <option [ngValue]="Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
+                            <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
                         </select>
                     </div>  
                 </td>
@@ -57,8 +58,6 @@
       </table> 
       
 </div>
-
-<input type="text" name="producto" [(ngModel)]="controlentradas.producto" #producto="ngModel" >
 
 <p class="lead">
         <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
@@ -81,9 +80,9 @@
                 <tr >
                     <td><div>{{controlService.fecha}}</div></td>
                     <td><div>{{controlService.cantidad | number}}</div></td>
-                    <td><div>{{controlService.Producto}}</div></td>
+                    <td><div>{{controlService.producto}}</div></td>
                     <td><div>$ {{controlService.Precio | number}}</div> </td>
-                    <td><div>{{controlService.Proveedor}}</div></td>
+                    <td><div>{{controlService.proveedor}}</div></td>
                 </tr>
           </tbody>    
       </table>
