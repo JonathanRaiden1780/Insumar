@@ -6,5 +6,5 @@ export interface ControlEntradaInterface{
     fecha?:string;
     precio?:string;
     proveedor?:string;
-    
+    inventario?:number;
 }

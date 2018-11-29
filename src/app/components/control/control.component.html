@@ -30,7 +30,7 @@
                     <div class="form-group" >   
                         <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
                         [(ngModel)]="selecprod" #producto="ngModel" >
-                            <option [ngValue]="productos.Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}}</option>
+                            <option [ngValue]="productos.Nombre" *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} - {{productos.inventario}}</option>
                             
                         </select>
                         
@@ -58,7 +58,7 @@
       </table> 
       
 </div>
-
+<p>stock: {{cantprod + invent}}</p>
 <p class="lead">
         <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
       </p> 
