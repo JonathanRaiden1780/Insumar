@@ -7,7 +7,8 @@ import{ProductoService} from '../../servicios/producto.service'
 import{ProveedorService} from '../../servicios/proveedor.service'
 import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
+import { inventarioInterface } from 'src/app/Models/inventario';
 
 @Component({
   selector: 'app-control',
@@ -25,8 +26,11 @@ export class ControlComponent implements OnInit {
   cantprods:number;
   invent:number;
   cantprov:number;
-  selecprod:string;
-  
+
+  selecprod: inventarioInterface = {
+    nombreprod: '',
+    inventprod: 0
+  }
 
   Producto: ProductosInterface = {
     
@@ -43,7 +47,7 @@ controlentradas: ControlEntradaInterface = {
   proveedor: '',
   inventario: 0
 }
-
+ 
   constructor(
     private authService: AuthService,
     public proveedores: ProveedorService,
@@ -57,7 +61,7 @@ controlentradas: ControlEntradaInterface = {
     this.listadoProveedores = this.proveedores.getAllProveedor();
     this.listadoProductos = this.productos.getAllProducto();
     this.listadoControl = this.controlService.getAllCoentrada();
-    this.query = this.productos.getOneProducto(this.selecprod)
+    
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     
@@ -67,21 +71,28 @@ controlentradas: ControlEntradaInterface = {
 
   ngOnInit() {
    this.model.tipo = 'entrada'; 
-   this.cantprods = this.invent + this.cantprod;
+   
+   
   }
-  getid(){
-    
+  onChange(value){
+    console.log(value);
+    this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
   
   onGuardarEntrada({value}: {value: ControlEntradaInterface}){
+    
+    this.cantprods = this.invent + this.cantprod;
     value.cantidad=this.cantprod;
-    value.producto=this.selecprod;
+    value.producto=this.selecprod.nombreprod;
     value.inventario=this.cantprods;
     this.controlService.addCoentrada(value);
   }
   stock({value}: {value: ProductosInterface}){
-    value.Nombre = this.selecprod;
-    value.idprov = this.selecprod;
+  
+    
+    this.cantprods = this.invent + this.cantprod;
+    value.Nombre = this.selecprod.nombreprod;
+    value.idprov = this.selecprod.nombreprod;
     value.cantidad = this.cantprods;
     this.productos.updateProducto(value);
   }

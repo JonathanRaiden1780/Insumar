@@ -47,6 +47,12 @@ Producto: Observable<ProductosInterface>;
         }
       }));
     }
+    getdetalle(val: string){
+      this.ProductosCollection = this.afs.collection<ProductosInterface>('Productos/'+val+'/inventario');
+      
+       
+    }
+
     
     getAllProducto():Observable<ProductosInterface[]>{
       this.Productos = this.ProductosCollection.snapshotChanges()
