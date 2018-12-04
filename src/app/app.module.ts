@@ -37,6 +37,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ProveedorService } from './servicios/proveedor.service';
 import { SucursalService } from './servicios/sucursal.service';
 import { ControlService } from './servicios/control.service';
+import { ControlsalidaComponent } from './components/controlsalida/controlsalida.component';
+import { SalidasService } from './servicios/salidas.service';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { ControlService } from './servicios/control.service';
     ProveedoresComponent,
     SucursalComponent,
     ControlComponent,
-    AutorizacionComponent
+    AutorizacionComponent,
+    ControlsalidaComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +70,7 @@ import { ControlService } from './servicios/control.service';
     AngularFirestoreModule
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, 
-    ProveedorService, SucursalService, ControlService],
+    ProveedorService, SucursalService, ControlService, SalidasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 <br>
 <br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
-<h1 class="titulo-tabla">Entradas</h1>
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar)">
+<h1 class="titulo-tabla">Salidas</h1>
   <div style="overflow-x:auto;"> 
      <table class="table table-light">
         <thead>
@@ -9,15 +9,14 @@
               <th scope="col" >Fecha</th>
               <th scope="col">Cantidad</th>
               <th scope="col" >Producto</th>
-              <th scope="col" >Precio</th>
-              <th scope="col">Proveedor</th>
+              <th scope="col">Sucursal</th>
             </tr>
         </thead>
         <tbody>
             <tr class="table-active">   
                 <td>
                     <div class="form-group">
-                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">        
+                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlsalidas.fecha" #fecha="ngModel">        
                     </div>     
                 </td>             
                 <td>
@@ -35,18 +34,12 @@
                     </div>  
                 </td>
                 
-                <td>
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="$" 
-                        id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
-                    </div> 
-                </td>
                 <td >
                     <div class="form-group" >
-                        <select name="proveedor" class="form-control" placeholder="Proveedor"
-                        [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
+                        <select name="sucursal" class="form-control" placeholder="sucursal"
+                        [(ngModel)]="controlsalidas.sucursal" #proveedor="ngModel" >
                         
-                            <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
+                            <option [ngValue]="sucursal.Sucursal" *ngFor="let sucursal of listadoSucursal | async" >{{sucursal.Sucursal}}</option>
                         </select>
                     </div>  
                 </td>
@@ -66,11 +59,10 @@
     <table class="table table-light">  
         <thead>
             <tr>
-                <th scope="col" >Fecha</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col" >Producto</th>
-                <th scope="col" >Precio</th>
-                <th scope="col">Proveedor</th>
+              <th scope="col" >Fecha</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col" >Producto</th>
+              <th scope="col">Sucursal</th>
             </tr>
         </thead>
         <tbody>
@@ -79,8 +71,7 @@
                     <td><div>{{controlService.fecha}}</div></td>
                     <td><div>{{controlService.cantidad | number}}</div></td>
                     <td><div>{{controlService.producto}}</div></td>
-                    <td><div>$ {{controlService.Precio | number}}</div> </td>
-                    <td><div>{{controlService.proveedor}}</div></td>
+                    <td><div>{{controlService.sucursal}}</div></td>
                 </tr>
           </tbody>    
       </table>

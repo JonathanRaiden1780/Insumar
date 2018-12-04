@@ -10,6 +10,7 @@ import { ProveedoresComponent } from './components/Proveedores/Proveedores.compo
 import { AuthGuard } from './guards/auth.guard';
 import { ControlComponent } from './components/control/control.component';
 import { SucursalComponent } from './components/sucursal/sucursal.component';
+import { ControlsalidaComponent } from './components/controlsalida/controlsalida.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'Proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
   {path: 'Control', component: ControlComponent, canActivate: [AuthGuard]},
   {path: 'sucursal', component: SucursalComponent, canActivate: [AuthGuard]},
+  {path: 'salidas', component: ControlsalidaComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  

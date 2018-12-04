@@ -1,34 +1,34 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../servicios/auth.service';
-import { ControlService } from 'src/app/servicios/control.service';
-import { ControlEntradaInterface } from 'src/app/Models/ControlEntrada';
+import {  SalidasService} from 'src/app/servicios/salidas.service';
+import { ControlSalidaInterface } from 'src/app/Models/ControlSalida';
 import{ProductoService} from '../../servicios/producto.service'
-import{ProveedorService} from '../../servicios/proveedor.service'
+
 import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
 import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
+import { SucursalService } from 'src/app/servicios/sucursal.service';
 
 @Component({
-  selector: 'app-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css']
+  selector: 'app-controlsalida',
+  templateUrl: './controlsalida.component.html',
+  styleUrls: ['./controlsalida.component.css']
 })
-export class ControlComponent implements OnInit {
+export class ControlsalidaComponent implements OnInit {
   model: any = {};
   query: any;
   idProducto:string;
   listadoProductos: any;
-  listadoProveedores: any;
+  listadoSucursal: any;
   listadoControl: any;
   cantprod:number;
   cantprods:number;
   invent:number;
   cantprov:number;
 
-
-
+  
   selecprod: inventarioInterface = {
     nombreprod: '',
     inventprod: 0
@@ -39,30 +39,29 @@ export class ControlComponent implements OnInit {
     idprov:'',
     cantidad: 0
   }
-controlentradas: ControlEntradaInterface = {
+controlsalidas: ControlSalidaInterface = {
     
   id:'',
   cantidad: 0,
   producto: '',
   fecha: '',
-  precio: '',
-  proveedor: '',
-  inventario: 0
+  sucursal:''
+  
 }
  
   constructor(
     private authService: AuthService,
-    public proveedores: ProveedorService,
+    public sucursal: SucursalService,
     public productos: ProductoService,
-    private controlService: ControlService,
+    private controlService: SalidasService,
     private router: Router,
     private afs: AngularFirestore
 
   ){
     
-    this.listadoProveedores = this.proveedores.getAllProveedor();
+    this.listadoSucursal = this.sucursal.getAllSucursal();
     this.listadoProductos = this.productos.getAllProducto();
-    this.listadoControl = this.controlService.getAllCoentrada();
+    this.listadoControl = this.controlService.getAllCosalida();
     
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
@@ -72,7 +71,7 @@ controlentradas: ControlEntradaInterface = {
 
 
   ngOnInit() {
-   this.model.tipo = 'entrada'; 
+   this.model.tipo = 'salida'; 
    
    
   }
@@ -86,19 +85,19 @@ controlentradas: ControlEntradaInterface = {
     
     function sum(a:number , b:number):number{
       
-      return a + b;
+      return a - b;
     }
     //this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
   
-  onGuardarEntrada({value}: {value: ControlEntradaInterface}){
+  onGuardarSalida({value}: {value: ControlSalidaInterface}){
     
     
     value.cantidad=this.cantprod;
     value.producto=this.query.Nombre;
-    value.inventario=this.cantprods
     
-    this.controlService.addCoentrada(value);
+    
+    this.controlService.addCosalida(value);
   }
   stock({value}: {value: ProductosInterface}){
   
