@@ -21,16 +21,17 @@ export class SucursalService {
      }
   
     deleteSucursal(Sucursal: SucursalInterface){
-      this.SucursalDoc = this.afs.doc('Sucursales/${Sucursal.id}');
+      this.SucursalDoc = this.afs.doc('Sucursales/' + Sucursal.idsucu);
       this.SucursalDoc.delete();
     }
      updateSucursal(Sucursal: SucursalInterface){
-        this.SucursalDoc=this.afs.doc('Sucursales/${Sucursal.id}');
+        this.SucursalDoc=this.afs.doc('Sucursales/' + Sucursal.idsucu);
         this.SucursalDoc.update(Sucursal);
       }
   
     addSucursal(Sucursal: SucursalInterface){
-      this.SucursalCollection.add(Sucursal);
+      //this.SucursalCollection.add(Sucursal);
+      this.SucursalCollection.doc(Sucursal.Sucursal).set(Sucursal);
     }
     getOneSucursal(idsucu: string){
       this.SucursalDoc = this.afs.doc<SucursalInterface>('Sucursales/${idsucu}');

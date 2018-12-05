@@ -1,6 +1,6 @@
 <br>
 <br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar)">
+<form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar); sucursals(formGuardar)">
 <h1 class="titulo-tabla">Salidas</h1>
   <div style="overflow-x:auto;"> 
      <table class="table table-light">
@@ -10,6 +10,7 @@
               <th scope="col">Cantidad</th>
               <th scope="col" >Producto</th>
               <th scope="col">Sucursal</th>
+              <th scope="col">Inventario</th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +23,8 @@
                 <td>
                     <div class="form-group">
                         <input type="number" class="form-control" placeholder="Cantidad del Producto" 
-                            id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
+                            id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" 
+                            max="{{query.cantidad}}" >
                     </div> 
                 </td>
                 <td>
@@ -43,13 +45,19 @@
                         </select>
                     </div>  
                 </td>
-                
+                <td >
+                    <div class="form-group" >
+                        <fieldset>    
+                            <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
+                        </fieldset>
+                    </div>  
+                </td>
             </tr>
         </tbody>
       </table> 
       
 </div>
-<p>stock: {{ query.cantidad}}</p>
+
 <p class="lead">
         <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
       </p> 

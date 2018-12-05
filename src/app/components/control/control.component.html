@@ -11,6 +11,7 @@
               <th scope="col" >Producto</th>
               <th scope="col" >Precio</th>
               <th scope="col">Proveedor</th>
+              <th scope="col">Inventario</th>
             </tr>
         </thead>
         <tbody>
@@ -50,13 +51,20 @@
                         </select>
                     </div>  
                 </td>
+                <td >
+                    <div class="form-group" >
+                        <fieldset>    
+                            <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
+                        </fieldset>
+                    </div>  
+                </td>
                 
             </tr>
         </tbody>
       </table> 
       
 </div>
-<p>stock: {{ query.cantidad}}</p>
+
 <p class="lead">
         <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
       </p> 

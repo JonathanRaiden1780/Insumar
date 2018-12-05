@@ -108,4 +108,5 @@ controlentradas: ControlEntradaInterface = {
     value.cantidad = this.cantprods;
     this.productos.updateProducto(value);
   }
+  
 }

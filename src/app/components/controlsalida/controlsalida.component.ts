@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
 import { SucursalService } from 'src/app/servicios/sucursal.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { SucursalInterface } from 'src/app/Models/Sucursal';
 
 @Component({
   selector: 'app-controlsalida',
@@ -55,7 +57,8 @@ controlsalidas: ControlSalidaInterface = {
     public productos: ProductoService,
     private controlService: SalidasService,
     private router: Router,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    public flashMensaje: FlashMessagesService
 
   ){
     
@@ -92,19 +95,40 @@ controlsalidas: ControlSalidaInterface = {
   
   onGuardarSalida({value}: {value: ControlSalidaInterface}){
     
+    if(this.cantprod > this.query.cantidad)
+    { 
+      this.flashMensaje.show('No hay suficiente producto',{
+      cssClass: 'alert-danger', timeout: 4000});
+    } 
+    else
+    {
+      this.flashMensaje.show('Salida registrada exitosamente',{
+        cssClass: 'alert-success', timeout: 4000});
+      value.cantidad=this.cantprod;
+      value.producto=this.query.Nombre;
+      this.controlService.addCosalida(value);
+    }
     
-    value.cantidad=this.cantprod;
-    value.producto=this.query.Nombre;
-    
-    
-    this.controlService.addCosalida(value);
   }
   stock({value}: {value: ProductosInterface}){
   
-    
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
-    value.cantidad = this.cantprods;
-    this.productos.updateProducto(value);
+    if(this.cantprod <= this.query.cantidad)
+    { 
+        value.Nombre = this.query.Nombre;
+        value.idprov = this.query.Nombre;
+        value.cantidad = this.cantprods;
+        this.productos.updateProducto(value);
+        
+    }
+  }
+  sucursals({value}: {value: SucursalInterface}){
+  
+    if(this.cantprod <= this.query.cantidad)
+    { 
+        value.idsucu = this.controlsalidas.sucursal;
+        value.Sucursal = this.controlsalidas.sucursal;
+        this.sucursal.updateSucursal(value);
+      
+    }
   }
 }

@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./sucursal.component.css']
 })
 export class SucursalComponent implements OnInit {
-  
+  listadoSucursal: any;
   Sucursal: SucursalInterface = {
     
     idsucu: '',
@@ -20,12 +20,14 @@ export class SucursalComponent implements OnInit {
   constructor(private authService: AuthService,
     private sucursalService: SucursalService,
     private router: Router
-  ) { }
+  ) {
+    this.listadoSucursal = this.sucursalService.getAllSucursal();
+   }
 
   ngOnInit() {
   }
   onGuardarSucursal({value}: {value: SucursalInterface}){
     this.sucursalService.addSucursal(value);
-    this.router.navigate(['/']);
+    
   }
 }
