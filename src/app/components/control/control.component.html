@@ -1,96 +1,97 @@
-<br>
-<br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
-<h1 class="titulo-tabla">Entradas</h1>
-  <div style="overflow-x:auto;"> 
-     <table class="table table-light">
-        <thead>
-            <tr>
-              <th scope="col" >Fecha</th>
-              <th scope="col">Cantidad</th>
-              <th scope="col" >Producto</th>
-              <th scope="col" >Precio</th>
-              <th scope="col">Proveedor</th>
-              <th scope="col">Inventario</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-active">   
-                <td>
-                    <div class="form-group">
-                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">        
-                    </div>     
-                </td>             
-                <td>
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Cantidad del Producto" 
-                            id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
-                    </div> 
-                </td>
-                <td>
-                    <div class="form-group" >   
-                        <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
-                        [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
-                            <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
-                        </select>
-                    </div>  
-                </td>
-                
-                <td>
-                    <div class="form-group">
-                        <input type="number" class="form-control" placeholder="$" 
-                        id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
-                    </div> 
-                </td>
-                <td >
-                    <div class="form-group" >
-                        <select name="proveedor" class="form-control" placeholder="Proveedor"
-                        [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
-                        
-                            <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
-                        </select>
-                    </div>  
-                </td>
-                <td >
-                    <div class="form-group" >
-                        <fieldset>    
-                            <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
-                        </fieldset>
-                    </div>  
-                </td>
-                
-            </tr>
-        </tbody>
-      </table> 
-      
+<div class="card bg-light mt-3">
+    <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
+        <div class="card-header form-inline"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
+          <div class="card-body" style="overflow-x:auto;"> 
+             <table class="table table-light ">
+                <thead>
+                    <tr class="table-primary text-center">
+                        <th scope="col"><strong>Fecha</strong></th>
+                        <th scope="col"><strong>Cantidad</strong></th>
+                        <th scope="col"><strong>Producto</strong></th>
+                        <th scope="col"><strong>Precio</strong></th>
+                        <th scope="col"><strong>Proveedor</strong></th>
+                        <th scope="col"><strong>Inventario</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-active">   
+                        <td>
+                            <div class="form-group">
+                                <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">        
+                            </div>     
+                        </td>             
+                        <td>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Cantidad del Producto" 
+                                    id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
+                            </div> 
+                        </td>
+                        <td>
+                            <div class="form-group" >   
+                                <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
+                                [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
+                                    <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
+                                </select>
+                            </div>  
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="$" 
+                                id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
+                            </div> 
+                        </td>
+                        <td >
+                            <div class="form-group" >
+                                <select name="proveedor" class="form-control" placeholder="Proveedor"
+                                [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
+                                
+                                    <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
+                                </select>
+                            </div>  
+                        </td>
+                        <td >
+                            <div class="form-group" >
+                                <fieldset>    
+                                    <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
+                                </fieldset>
+                            </div>  
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-warning btn-lg" value="Guardar"><strong>Ingresar</strong></button>
+        </div>
+    </form>
 </div>
 
-<p class="lead">
-        <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
-      </p> 
-</form>
-<form  *ngFor="let controlService of listadoControl | async" >
-<div style="overflow-x:auto;"> 
-    <table class="table table-light">  
-        <thead>
-            <tr>
-                <th scope="col" >Fecha</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col" >Producto</th>
-                <th scope="col" >Precio</th>
-                <th scope="col">Proveedor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table-active ">   
-                <tr >
-                    <td><div>{{controlService.fecha}}</div></td>
-                    <td><div>{{controlService.cantidad | number}}</div></td>
-                    <td><div>{{controlService.producto}}</div></td>
-                    <td><div>$ {{controlService.Precio | number}}</div> </td>
-                    <td><div>{{controlService.proveedor}}</div></td>
-                </tr>
-          </tbody>    
-      </table>
-  </div>
-</form>
+<div class="card bg-light mt-3">
+    <div class="card-header form-inline text-center"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h2><strong> Registros</strong></h2></div>
+    <div class="card-body">
+    <form>
+        <div style="overflow-x:auto;"> 
+            <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
+                <thead class="table-warning text-center">
+                    <tr ng-repeat="controlService in $data">
+                        <td data-title="'Fecha'" sortable="'fecha'" filter="{ 'fecha': 'text' }">{{controlService.fecha}}</td>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col" >Producto</th>
+                        <th scope="col" >Precio</th>
+                        <th scope="col">Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
+                    <tr>
+                        <td>{{controlService.fecha}}</td>
+                        <td>{{controlService.cantidad | number}}</td>
+                        <td>{{controlService.producto}}</td>
+                        <td>$ {{controlService.Precio | number}}</td>
+                        <td>{{controlService.proveedor}}</td>
+                    </tr>
+                </tbody>    
+            </table>
+        </div>
+    </form>
+    </div>
+</div>

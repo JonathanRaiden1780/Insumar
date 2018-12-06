@@ -9,6 +9,7 @@ import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
 import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
+import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-control',
@@ -26,8 +27,6 @@ export class ControlComponent implements OnInit {
   cantprods:number;
   invent:number;
   cantprov:number;
-
-
 
   selecprod: inventarioInterface = {
     nombreprod: '',
@@ -108,5 +107,6 @@ controlentradas: ControlEntradaInterface = {
     value.cantidad = this.cantprods;
     this.productos.updateProducto(value);
   }
-  
+  faDolly = faDolly;
+  faArchive = faArchive;
 }

@@ -1,9 +1,11 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #2a206f ;">
- <img src="https://image.ibb.co/cSwFvL/Insumarlogo.png" style="width: 15%;"> 
+<nav class="navbar navbar-expand-lg navbar-dark navbar-collapse" style="background-color: #2a206f ;">
+ <img class="navbar-brand img-fluid" style="max-width: 100; height: auto;" src="https://image.ibb.co/cSwFvL/Insumarlogo.png" style="width: 14%;"> 
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <div class="collapse navbar-collapse">
-    
+<div class="collapse navbar-collapse" id="navbarTogglerDemo02"> 
     <ul class="navbar-nav mr-auto">
         <li class="navbar-nav nav-item" *ngIf="isLogin">
             <a class="nav-link" routerLinkActive="active-link" routerLink="/home">
@@ -12,7 +14,7 @@
           </a>
           </li>
           <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="/Control">
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/control">
               <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
               <strong> Entradas</strong>
             </a>
@@ -30,8 +32,7 @@
             </a>
           </li>
     </ul>
-
-    <ul class="navbar-bar">
+    <ul class="navbar-bar form-inline my-2 my-lg-0">
         <li class="navbar-nav nav-item" *ngIf="!isLogin">
           <a class="nav-link" routerLinkActive="active-link" routerLink="/login">
           <fa-icon [icon]="faSignInAlt" class="fa-2x"></fa-icon>
@@ -51,6 +52,6 @@
           </a>
         </li>
     </ul>
-  </div>
+  </div> 
 </nav>
 

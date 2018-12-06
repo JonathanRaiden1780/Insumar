@@ -15,12 +15,13 @@ import { ControlsalidaComponent } from './components/controlsalida/controlsalida
 
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: '', component: LoginComponent},
+  {path: 'home', component: HomePageComponent },
   {path: 'login', component: LoginComponent},
   {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
-  {path: 'Proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
-  {path: 'Control', component: ControlComponent, canActivate: [AuthGuard]},
+  {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
+  {path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
   {path: 'sucursal', component: SucursalComponent, canActivate: [AuthGuard]},
   {path: 'salidas', component: ControlsalidaComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},

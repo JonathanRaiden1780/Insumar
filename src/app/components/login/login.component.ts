@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { faKey, faUser, faDolly } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faUser, faDolly, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth.service';
 import {Router} from '@angular/router';
+
 import {FormsModule} from '@angular/forms';
-import {FlashMessagesService} from 'angular2-flash-messages'
+
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 
 @Component({
@@ -28,23 +30,18 @@ export class LoginComponent implements OnInit {
   faKey = faKey;
   faUser = faUser;
   faDolly = faDolly;
+  faEnvelope = faEnvelope;
 
   onSubmitLogin(){
     this.authService.loginEmail(this.email,this.password)
     .then( (res) =>{
-      this.flashMensaje.show('Bienvenido',{
-        cssClass: 'alert-success', timeout: 4000});
-        if(this.email=='mejahv_hs@hotmail.com'){
-          this.router.navigate(['/Proveedores'])
-        }
-        else{
-          this.router.navigate(['/register']);
-        }
-      
-    }).catch((err)=>{
-      this.flashMensaje.show(err.messages,{
-        cssClass: 'alert-danger', timeout: 4000});
-        this.router.navigate(['/login']);
+      this.flashMensaje.show('Isumar',
+      {cssClass: 'alert-success', timeout: 4000 });
+      this.router.navigate(['/home']);
+    }).catch((err) => {
+      this.flashMensaje.show(err.message,
+      {cssClass: 'alert-danger', timeout: 4000 });
+      this.router.navigate(['/login']);
     });
  }
 }
