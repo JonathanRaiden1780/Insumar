@@ -39,6 +39,7 @@ import { SucursalService } from './servicios/sucursal.service';
 import { ControlService } from './servicios/control.service';
 import { ControlsalidaComponent } from './components/controlsalida/controlsalida.component';
 import { SalidasService } from './servicios/salidas.service';
+import { ReportsComponent } from './components/reports/reports.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { SalidasService } from './servicios/salidas.service';
     SucursalComponent,
     ControlComponent,
     AutorizacionComponent,
-    ControlsalidaComponent
+    ControlsalidaComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,

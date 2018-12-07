@@ -1,6 +1,6 @@
 <div class="card bg-light mt-3">
     <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
-        <div class="card-header form-inline"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
+        <div class="card-header form-inline text-white" style="background-color: #279b37"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
           <div class="card-body" style="overflow-x:auto;"> 
              <table class="table table-light ">
                 <thead>
@@ -67,14 +67,14 @@
 </div>
 
 <div class="card bg-light mt-3">
-    <div class="card-header form-inline text-center"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h2><strong> Registros</strong></h2></div>
+    <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Registros</strong></h1></div>
     <div class="card-body">
     <form>
         <div style="overflow-x:auto;"> 
             <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
                 <thead class="table-warning text-center">
                     <tr ng-repeat="controlService in $data">
-                        <td data-title="'Fecha'" sortable="'fecha'" filter="{ 'fecha': 'text' }">{{controlService.fecha}}</td>
+                        <th scope="col">Fecha</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col" >Producto</th>
                         <th scope="col" >Precio</th>
