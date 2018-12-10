@@ -1,52 +1,119 @@
-<br>
-<br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarSucursal(formGuardar)">
-<legend>Sucursal Nuevo</legend>
-<div style="overflow-x:auto;">
-<table class="table table-light">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Sucursal</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-active">
-      <td>        
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Sucursal.idsucu" #id="ngModel">
-        </div> 
-      </td>
-      <td>
-          <div class="form-group">
-              <input type="text" class="form-control" placeholder="Sucursal" 
-              id="Sucursal" name="Sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
-            </div> 
-      </td>
-    </tr>
-  </tbody>
-</table> 
-</div>
-  <p class="lead">
-    <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
-  </p> 
+<div class="card"></div>
 
-</form>
-
-<form  *ngFor="let sucursal of listadoSucursal | async" >
-  <div style="overflow-x:auto;"> 
-      <table class="table table-light">  
-          <thead>
-              <tr>
-                <th scope="col">Sucursal</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr class="table-active ">   
-                  <tr >
-                      <td>{{sucursal.Sucursal}}</td>
-                  </tr>
-            </tbody>    
-        </table>
+<div class="card border-success mt-3 mr-3 ml-3">
+  <div class="card-header text-center text-white" style="background-color: #2a206f"><strong><h2>Nombre Sucursal</h2></strong></div>
+    <div class="card bg-light mt-3">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
+            <div class="card-header form-inline text-white text-center" style="background-color: #279b37"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
+              <div class="card-body" style="overflow-x:auto;"> 
+                 <table class="table table-light ">
+                    <thead>
+                        <tr class="table-primary text-center">
+                            <th scope="col"><strong>Fecha</strong></th>
+                            <th scope="col"><strong>Cantidad</strong></th>
+                            <th scope="col"><strong>Producto</strong></th>
+                    </thead>
+                    <tbody>
+                        <tr class="table-active">   
+                            <td>
+                                <div class="form-group">
+                                    <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">        
+                                </div>     
+                            </td>             
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="Cantidad del Producto" 
+                                        id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
+                                </div> 
+                            </td>
+                            <td>
+                                <div class="form-group" >   
+                                    <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto"
+                                    [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
+                                        <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
+                                    </select>
+                                </div>  
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="$" 
+                                    id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
+                                </div> 
+                            </td>
+                            <td >
+                                <div class="form-group" >
+                                    <select name="proveedor" class="form-control" placeholder="Proveedor"
+                                    [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
+                                    
+                                        <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
+                                    </select>
+                                </div>  
+                            </td>
+                            <td >
+                                <div class="form-group" >
+                                    <fieldset>    
+                                        <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
+                                    </fieldset>
+                                </div>  
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-lg" value="Guardar"><h5><strong>Ingresar</strong></h5></button></div>
+        </form>
     </div>
-  </form>
+    <div class="card bg-light mt-3">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar); sucursals(formGuardar)">
+            <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
+                <div class="card-body" style="overflow-x:auto;"> 
+                    <table class="table table-light">
+                        <thead>
+                            <tr class="table-primary text-center">
+                                <th scope="col" >Fecha</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col" >Producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active">   
+                                <td>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlsalidas.fecha" #fecha="ngModel">        
+                                    </div>     
+                                </td>             
+                                <td>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" max="{{query.cantidad}}">
+                                    </div> 
+                                </td>
+                                <td>
+                                    <div class="form-group" >   
+                                        <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
+                                            <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
+                                        </select>
+                                    </div>  
+                                </td>
+                                <td>
+                                    <div class="form-group" >
+                                        <select name="sucursal" class="form-control" placeholder="sucursal" [(ngModel)]="controlsalidas.sucursal" #proveedor="ngModel" >
+                                            <option [ngValue]="sucursal.Sucursal" *ngFor="let sucursal of listadoSucursal | async" >{{sucursal.Sucursal}}</option>
+                                        </select>
+                                    </div>  
+                                </td>
+                                <td>
+                                    <div class="form-group" >
+                                        <fieldset>    
+                                            <input class="form-control" id="Inventario" type="text" placeholder="{{ query.cantidad }}" readonly="">
+                                        </fieldset>
+                                    </div>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-lg" value="Guardar"><h5><strong>Registrar</strong></h5></button></div>
+        </form>
+    </div>
+    
+</div>

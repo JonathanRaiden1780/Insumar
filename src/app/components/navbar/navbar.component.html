@@ -13,22 +13,31 @@
             <strong> Pagina Principal</strong>
           </a>
           </li>
-          <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="/control">
-              <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
-              <strong> Entradas</strong>
+          <li class="nav-item dropdown" *ngIf="isLogin">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon>
+              <strong> Administracion</strong>
             </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/control">
+                <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
+                <strong> Entradas</strong>
+              </a>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/salidas">
+                <fa-icon [icon]="faBoxOpen" class="fa-2x"></fa-icon>
+                <strong> Salidas</strong>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/reportes">
+                <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
+                <strong> Reportes</strong>
+              </a>
+            </div>
           </li>
           <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="/salidas">
-              <fa-icon [icon]="faBoxOpen" class="fa-2x"></fa-icon>
-              <strong> Salidas</strong>
-            </a>
-          </li>
-          <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="/reportes">
-              <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
-              <strong> Reportes</strong>
+            <a class="nav-link" routerLinkActive="active-link" routerLink="/sucursal">
+              <fa-icon [icon]="faWarehouse" class="fa-2x"></fa-icon>
+              <strong> Sucursales</strong>
             </a>
           </li>
     </ul>
@@ -43,12 +52,6 @@
           <a class="nav-link" href="#" (click)="onClickLogout()">
             <fa-icon [icon]="faSignOutAlt" class="fa-2x"></fa-icon>
             <strong> Salir</strong>
-          </a>
-        </li>
-        <li class="navbar-nav nav-item">
-          <a class="nav-link" routerLink="/register">
-            <fa-icon [icon]="faPeopleCarry" class="fa-2x"></fa-icon>
-            <strong> Acerca de</strong>
           </a>
         </li>
     </ul>

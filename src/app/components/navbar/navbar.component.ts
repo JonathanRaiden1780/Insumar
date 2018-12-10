@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faDolly, faSignInAlt, faSignOutAlt, faPeopleCarry, faHome, faBox, faBoxOpen, faChartArea } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faSignInAlt, faSignOutAlt, faPeopleCarry, faHome, faBox, faBoxOpen, faChartArea, faWarehouse, faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages'
 
@@ -44,5 +44,7 @@ export class NavbarComponent implements OnInit {
   faBox = faBox;
   faBoxOpen= faBoxOpen;
   faChartArea = faChartArea;
+  faWarehouse = faWarehouse;
+  faTruckLoading = faTruckLoading;
 
 }

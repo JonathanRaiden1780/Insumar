@@ -12,6 +12,7 @@ import { ControlComponent } from './components/control/control.component';
 import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { ControlsalidaComponent } from './components/controlsalida/controlsalida.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { AlimentadorComponent } from './components/alimentador/alimentador.component';
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
   {path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
   {path: 'sucursal', component: SucursalComponent, canActivate: [AuthGuard]},
+  {path: 'alimentador', component: AlimentadorComponent, canActivate: [AuthGuard]},
   {path: 'reportes', component: ReportsComponent, canActivate: [AuthGuard]},
   {path: 'salidas', component: ControlsalidaComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},

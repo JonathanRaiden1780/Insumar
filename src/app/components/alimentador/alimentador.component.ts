@@ -4,13 +4,13 @@ import {AuthService} from '../../servicios/auth.service';
 import {SucursalService} from '../../servicios/sucursal.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import { faDolly } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
-  selector: 'app-sucursal',
-  templateUrl: './sucursal.component.html',
-  styleUrls: ['./sucursal.component.css']
+  selector: 'app-alimentador',
+  templateUrl: './alimentador.component.html',
+  styleUrls: ['./alimentador.component.css']
 })
-export class SucursalComponent implements OnInit {
+export class AlimentadorComponent implements OnInit {
   listadoSucursal: any;
   Sucursal: SucursalInterface = {
     
@@ -31,6 +31,4 @@ export class SucursalComponent implements OnInit {
     this.sucursalService.addSucursal(value);
     
   }
-
-  faDolly = faDolly;
 }
