@@ -12,7 +12,7 @@ import { inventarioInterface } from 'src/app/Models/inventario';
 import { SucursalService } from 'src/app/servicios/sucursal.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
-import { faDolly } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-controlsalida',
@@ -131,4 +131,5 @@ controlsalidas: ControlSalidaInterface = {
     }
   }
   faDolly = faDolly;
+  faArchive = faArchive;
 }

@@ -32,12 +32,17 @@
                 <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
                 <strong> Reportes</strong>
               </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/alimentador">
+                <fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon>
+                <strong> Alimentador</strong>
+              </a>
             </div>
           </li>
           <li class="navbar-nav nav-item" *ngIf="isLogin">
             <a class="nav-link" routerLinkActive="active-link" routerLink="/sucursal">
               <fa-icon [icon]="faWarehouse" class="fa-2x"></fa-icon>
-              <strong> Sucursales</strong>
+              <strong> Salidas</strong>
             </a>
           </li>
     </ul>

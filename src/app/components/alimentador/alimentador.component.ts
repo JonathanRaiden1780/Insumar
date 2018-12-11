@@ -4,6 +4,7 @@ import {AuthService} from '../../servicios/auth.service';
 import {SucursalService} from '../../servicios/sucursal.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-alimentador',
@@ -31,4 +32,5 @@ export class AlimentadorComponent implements OnInit {
     this.sucursalService.addSucursal(value);
     
   }
+  faTruckLoading = faTruckLoading;
 }

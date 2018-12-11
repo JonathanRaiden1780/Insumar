@@ -1,35 +1,64 @@
-<br>
-<br>
-<form #formGuardar="ngForm" (ngSubmit)="onGuardarProveedor(formGuardar)">
-<legend>Producto Nuevo</legend>
-<div style="overflow-x:auto;">
-<table class="table table-light">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nombre</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-active">
-      <td>        
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Proveedor.id" #id="ngModel">
-        </div> 
-      </td>
-      <td>
-          <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nombre" 
-              id="Nombre" name="Nombre" [(ngModel)]="Proveedor.Nombre" #descripcion="ngModel">
-            </div> 
-      </td>
-    </tr>
-  </tbody>
-</table> 
+<div class="row mt-3">
+  <div class="col-sm-6">
+    <div class="card"><div class="card-header text-white text-center" style="background-color: #2a206f"><h1><strong>Ingresar Proovedor</strong></h1></div>
+      <div class="card-body">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarProveedor(formGuardar)">
+          <div style="overflow-x:auto;">
+          <table class="table table-light">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-active">
+                <td>        
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Proveedor.id" #id="ngModel">
+                  </div> 
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre" id="Nombre" name="Nombre" [(ngModel)]="Proveedor.Nombre" #descripcion="ngModel">
+                  </div> 
+                </td>
+              </tr>
+            </tbody>
+          </table> 
+          </div>
+          <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" value="Guardar"><h3><strong>Ingresar</strong></h3></button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card"><div class="card-header text-center text-white" style="background-color: #2a206f"><h1><strong>Proveedores</strong></h1></div>
+      <div class="card-body">
+        <form>
+          <div style="overflow-x:auto;"> 
+          <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
+            <thead class="table-warning text-center">
+              <tr ng-repeat="controlService in $data">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+              </tr>
+            </thead>
+            <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
+              <tr>
+                <td>{{controlService.id}}</td>
+                <td>{{controlService.Proveedor}}</td>
+              </tr>
+            </tbody>    
+          </table>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-  <p class="lead">
-    <button type="submit" class="btn btn-warning  btn-lg" value="Guardar"> Registrar</button>
-  </p> 
 
-</form>
+
+
+
 
