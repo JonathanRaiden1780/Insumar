@@ -1,62 +1,65 @@
-<div class="card mt-3">
-    <div class="card-header form-inline text-white" style="background-color: #2a206f"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h1><strong>  Alimentador</strong></h1></div>
-<!-- Ingresa Producto-->
-<app-start></app-start>
-<!-- Ingresa Proovedor-->
-<app-Proveedor></app-Proveedor>
-<!-- Ingresa  Sucursal-->
-<div class="row">
-  <div class="col-sm-6">
+<div class="container">
     <div class="card mt-3">
-      <div class="card-header text-white text-center" style="background-color: #2a206f"><h1><strong>Ingresar nueva sucursal</strong></h1></div>
-        <div class="card-body">
-          <form #formGuardar="ngForm" (ngSubmit)="onGuardarSucursal(formGuardar)">
-            <div style="overflow-x:auto;">
-              <table class="table table-light">
-                <thead class="text-center">
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Sucursal</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="table-active">
-                    <td>        
-                      <div class="form-group">
-                      <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Sucursal.idsucu" #id="ngModel">
-                      </div> 
-                    </td>
-                    <td>
-                      <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Sucursal" id="Sucursal" name="Sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
-                      </div> 
-                    </td>
-                  </tr>
-                </tbody>
-              </table> 
+        <div class="card-header form-inline text-white" style="background-color: rgb(98, 128, 184)"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h1><strong> Captura</strong></h1></div>
+    <!-- Ingresa Producto-->
+    <app-start></app-start>
+    <!-- Ingresa Proovedor-->
+    <app-Proveedor></app-Proveedor>
+    <!-- Ingresa  Sucursal-->
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-header text-white text-center" style="background-color: #275DAD"><h1><strong>Ingresar nueva sucursal</strong></h1></div>
+            <div class="card-body">
+              <form #formGuardar="ngForm" (ngSubmit)="onGuardarSucursal(formGuardar)">
+                <div style="overflow-x:auto;">
+                  <table class="table table-light">
+                    <thead class="text-center text-white" style="background-color: #5B616A">
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Sucursal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-active">
+                        <td>        
+                          <div class="form-group">
+                          <input type="text" class="form-control" placeholder="ID" id="ID" name="ID" [(ngModel)]="Sucursal.idsucu" #id="ngModel">
+                          </div> 
+                        </td>
+                        <td>
+                          <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Sucursal" id="Sucursal" name="Sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
+                          </div> 
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table> 
+                </div>
+                <div class="card-footer"><button type="submit" class="btn btn-block text-white" value="Guardar" style="background-color: #ABA9C3"><h3><strong>Ingresar</strong></h3></button></div>
+              </form>
             </div>
-            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" value="Guardar"><h3><strong>Ingresar</strong></h3></button></div>
-          </form>
+          </div>
+        </div>
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-header text-center text-white" style="background-color: #275DAD"><h1><strong>Sucursales</strong></h1></div>
+            <div class="card-body">
+              <form>
+                <div style="overflow-x:auto;"> 
+                  <table class="table table-light">  
+                    <tbody   *ngFor="let sucursal of listadoSucursal | async" >
+                      <tr><td>{{sucursal.Sucursal}}</td></tr>
+                    </tbody>    
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  <div class="col-sm-6">
-    <div class="card mt-3">
-      <div class="card-header text-center text-white" style="background-color: #2a206f"><h1><strong>Sucursales</strong></h1></div>
-        <div class="card-body">
-          <form>
-            <div style="overflow-x:auto;"> 
-              <table class="table table-light">  
-                <tbody   *ngFor="let sucursal of listadoSucursal | async" >
-                  <tr><td>{{sucursal.Sucursal}}</td></tr>
-                </tbody>    
-              </table>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+    
 </div>
 
 

@@ -18,8 +18,8 @@ import { AlimentadorComponent } from './components/alimentador/alimentador.compo
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'home', component: HomePageComponent },
   {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomePageComponent, canActivate: [AuthGuard] },
   {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},

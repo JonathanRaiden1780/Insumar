@@ -1,13 +1,12 @@
 <div class="row mt-3">
   <div class="col-sm-6">
     <div class="card">
-      <div class="card-header text-center text-white" style="background-color: #2a206f"><h1><strong>Agregar Productos</strong></h1></div>
+      <div class="card-header text-center text-white" style="background-color: #275DAD"><h1><strong>Agregar Productos</strong></h1></div>
       <div class="card-body">
         <form #formGuardar="ngForm" (ngSubmit)="onGuardarProducto(formGuardar)">
-          <legend>Producto Nuevo</legend>
             <div style="overflow-x:auto;">
               <table class="table table-light">
-                <thead>
+                <thead class="text-center text-white" style="background-color: #5B616A">
                   <tr>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Categoria</th>
@@ -29,18 +28,18 @@
                 </tbody>
               </table> 
             </div>
-          <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" value="Guardar"><h3><strong>Ingresar</strong></h3></button></div>
+          <div class="card-footer"><button type="submit" class="btn btn-block text-white" value="Guardar" style="background-color: #ABA9C3"><h3><strong>Ingresar</strong></h3></button></div>
         </form>
       </div>
     </div>
   </div>
   <div class="col-sm-6">
-    <div class="card"><div class="card-header text-center text-white" style="background-color: #2a206f"><h1><strong>Productos</strong></h1></div>
+    <div class="card"><div class="card-header text-center text-white" style="background-color: #275DAD"><h1><strong>Productos</strong></h1></div>
       <div class="card-body">
         <form>
           <div style="overflow-x:auto;"> 
             <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-              <thead class="table-warning text-center">
+              <thead class="text-center text-white" style="background-color: #5B616A">
                 <tr ng-repeat="controlService in $data">
                   <th scope="col">Producto</th>
                   <th scope="col">Categoria</th>
