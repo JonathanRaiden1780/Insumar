@@ -34,26 +34,30 @@
     </div>
   </div>
   <div class="col-sm-6">
-    <div class="card"><div class="card-header text-center text-white" style="background-color: #275DAD"><h1><strong>Productos</strong></h1></div>
-      <div class="card-body">
-        <form>
-          <div style="overflow-x:auto;"> 
+    <div class="card"><div class="card-header text-center text-white" style="background-color: #275DAD "><h1><strong>Productos</strong></h1></div>
+        <div style="overflow-x:auto;"> 
+          <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
+            <thead class="text-center text-white" style="background-color: #5B616A">
+              <tr ng-repeat="controlService in $data">
+                <th scope="col">Producto</th>
+                <th scope="col">Categoria</th>
+              </tr>
+            </thead>
+          </table>
+      <form class="card-body scroll">
+        
+          
             <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-              <thead class="text-center text-white" style="background-color: #5B616A">
-                <tr ng-repeat="controlService in $data">
-                  <th scope="col">Producto</th>
-                  <th scope="col">Categoria</th>
-                </tr>
-              </thead>
-              <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
-                <tr>
-                  <td>{{controlService.producto}}</td>
-                  <td>{{controlService.categoria}}</td>
-                </tr>
-              </tbody>    
+              <tbody class="text-left table-secondary" *ngFor="let productoService of listadoProductos | async "  >   
+                
+                <td>{{productoService.Nombre}}</td>
+                  <td>{{productoService.Categoria}}</td> 
+                
+              </tbody>
+            
             </table>
-          </div>
-        </form>
+      </form>
+        
       </div>
     </div>
   </div>

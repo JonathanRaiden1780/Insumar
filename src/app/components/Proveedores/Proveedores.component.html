@@ -37,17 +37,17 @@
       <div class="card-body">
         <form>
           <div style="overflow-x:auto;"> 
-          <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-            <thead class="table-warning text-center" style="background-color: #5B616A">
-              <tr ng-repeat="controlService in $data">
+          <table ng-table="tableEntradas" show-filter='true' class="table table-light" >  
+            <thead class="table-warning text-center " style="background-color: #5b616a ">
+              <tr >
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
               </tr>
             </thead>
-            <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
+            <tbody class="text-center table-secondary" *ngFor="let proveedorService of listadoProveedor | async"> 
               <tr>
-                <td>{{controlService.id}}</td>
-                <td>{{controlService.Proveedor}}</td>
+                <td>{{proveedorService.ID}}</td>
+                <td >{{proveedorService.Nombre}}</td>
               </tr>
             </tbody>    
           </table>

@@ -11,7 +11,7 @@
                 <div class="card-header text-center text-white" style="background-color: #05cc47"><strong>Ultimos Ingresos</strong></div>
                     <div class="card-body">
                         <table class="table table-hover">
-                            <thead class="table-info text-center">
+                            <thead class="table-info text-center" >
                             <tr>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Ingreso</th>
@@ -20,20 +20,16 @@
                                 <th scope="col">Proveedor</th>
                             </tr>
                             </thead>
-                            <tbody class="text-center" style="background-color: #c4dff6">
+                            <tbody class="text-center" style="background-color: #c4dff6" *ngFor="let entradas of listadoControlen | async">
                             <tr>
-                                <td>03/12/18 - 11:49</td>
-                                <td>40</td>
-                                <td>Plumas</td>
+                                <td>{{entradas.fecha}}</td>
+                                <td>{{entradas.cantidad}}</td>
+                                <td>{{entradas.inventario}}</td>
+                                <td>{{entradas.producto}}</td>
+                                <td>{{entradas.proveedor}}</td>
                             </tr>
                             </tbody>
-                            <tbody class="text-center" style="background-color: #c4dff6">
-                                <tr>
-                                <td>03/12/18 - 11:49</td>
-                                <td>20</td>
-                                <td>Papel</td>
-                                </tr>
-                            </tbody>
+                            
                         </table> 
                     </div>
             </div>
@@ -46,26 +42,22 @@
                             <thead class="table-info text-center">
                                 <tr>
                                     <th scope="col">Fecha</th>
-                                    <th scope="col">Ingreso</th>
-                                    <th scope="col">Stock</th>
+                                    <th scope="col">Cantidad</th>
                                     <th scope="col">Producto</th>
-                                    <th scope="col">Proveedor</th>
+                                    <th scope="col">Sucursal</th>
+                                    <th scope="col">Stock</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center text-white" style="background-color: #E87D7C">
+                            <tbody class="text-center text-white" style="background-color: #E87D7C"  *ngFor="let salidas of listadoControlsa | async">
                                 <tr>
-                                    <td>03/12/18 - 11:49</td>
-                                    <td>40</td>
-                                    <td>Plumas</td>
+                                    <td>{{salidas.fecha}}</td>
+                                    <td>{{salidas.cantidad}}</td>
+                                    <td>{{salidas.producto}}</td>
+                                    <td>{{salidas.sucursal}}</td>
+                                    <td>{{salidas.inventario}}</td>
                                 </tr>
                             </tbody>
-                            <tbody class="text-center text-white" style="background-color: #E87D7C">
-                                <tr>
-                                    <td>03/12/18 - 11:49</td>
-                                    <td>20</td>
-                                    <td>Papel</td>
-                                </tr>
-                            </tbody>
+                            
                         </table> 
                     </div>
             </div>
@@ -77,36 +69,8 @@
 <div class="card mt-3 mr-3 ml-3 mb-3">
     <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Resumen</strong></h2></div>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card  mt-3 mb-3 ml-3">
-                    <div class="card-header text-center text-white" style="background-color: #05cc47"><strong>Ultimos envios de Insumos</strong></div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="table-info text-center">
-                            <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Envio</th>
-                                <th scope="col">Sucursal</th>
-                            </tr>
-                            </thead>
-                            <tbody class="text-center" style="background-color: #c4dff6">
-                            <tr>
-                                <td>03/12/18 - 11:49</td>
-                                <td>40</td>
-                                <td>Plumas</td>
-                            </tr>
-                            </tbody>
-                            <tbody class="text-center" style="background-color: #c4dff6">
-                                <tr>
-                                <td>03/12/18 - 11:49</td>
-                                <td>20</td>
-                                <td>Papel</td>
-                                </tr>
-                            </tbody>
-                        </table> 
-                    </div>
-                </div>
+            <div class="col-sm-3">
+               
             </div>
             <div class="col-sm-6">
                 <div class="card mt-3 mb-3 mr-3">
@@ -120,19 +84,12 @@
                                     <th scope="col">Sucursal</th>
                                 </tr>
                                 </thead>
-                                <tbody class="text-center text-white" style="background-color: #E87D7C">
+                                <tbody class="text-center text-white" style="background-color: #E87D7C" *ngFor="let productos of listadoProveedor | async">
                                 <tr>
-                                    <td>03/12/18 - 11:49</td>
-                                    <td>40</td>
-                                    <td>Plumas</td>
+                                    <td>{{productos.Nombre}}</td>
+                                    <td>{{productos.cantidad}}</td>
+                                    <td>{{productos.Categoria}}</td>
                                 </tr>
-                                </tbody>
-                                <tbody class="text-center text-white" style="background-color: #E87D7C">
-                                    <tr>
-                                    <td>03/12/18 - 11:49</td>
-                                    <td>20</td>
-                                    <td>Papel</td>
-                                    </tr>
                                 </tbody>
                             </table> 
                         </div>

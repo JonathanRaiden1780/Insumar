@@ -26,6 +26,7 @@ import { CommonModule } from '@angular/common';
 
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {FlashMessagesService} from 'angular2-flash-messages';
+
 import { from } from 'rxjs';
 
 import { SucursalComponent } from './components/sucursal/sucursal.component';
@@ -71,7 +72,8 @@ import { AlimentadorComponent } from './components/alimentador/alimentador.compo
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FlashMessagesModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, 
     ProveedorService, SucursalService, ControlService, SalidasService],

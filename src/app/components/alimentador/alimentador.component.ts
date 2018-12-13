@@ -16,7 +16,7 @@ export class AlimentadorComponent implements OnInit {
   Sucursal: SucursalInterface = {
     
     idsucu: '',
-    Sucursal: ''
+    Sucursal: '' 
     
   }
   constructor(private authService: AuthService,

@@ -30,7 +30,8 @@ constructor(
     }
 
   addProveedor(Proveedor: ProveedoresInterface){
-    this.ProveedorCollection.add(Proveedor);
+    //this.ProveedorCollection.add(Proveedor);
+    this.ProveedorCollection.doc(Proveedor.Nombre).set(Proveedor);
   }
   getOneProveedor(idprov: string){
     this.ProveedorDoc = this.afs.doc<ProveedoresInterface>('Proveedores/${idprov}');

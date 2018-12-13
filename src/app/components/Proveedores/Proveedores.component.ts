@@ -11,7 +11,7 @@ import {Observable} from 'rxjs';
   styleUrls: ['./Proveedores.component.css']
 })
 export class ProveedoresComponent implements OnInit {
-  
+  listadoProveedor: any;
   Proveedor: ProveedoresInterface = {
     
     idprov: '',
@@ -23,7 +23,9 @@ export class ProveedoresComponent implements OnInit {
     private authService: AuthService,
     private proveedorService: ProveedorService,
     private router: Router
-  ) { }
+  ) { 
+    this.listadoProveedor = proveedorService.getAllProveedor();
+  }
 
   ngOnInit() {
   }
