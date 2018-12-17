@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, concat} from 'rxjs';
 import {AuthService} from '../../servicios/auth.service';
 import {  SalidasService} from 'src/app/servicios/salidas.service';
 import { ControlSalidaInterface } from 'src/app/Models/ControlSalida';
@@ -13,24 +13,35 @@ import { SucursalService } from 'src/app/servicios/sucursal.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
 import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
+import { and } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-controlsalida',
   templateUrl: './controlsalida.component.html',
   styleUrls: ['./controlsalida.component.css']
+  
 })
 export class ControlsalidaComponent implements OnInit {
+  
   model: any = {};
   query: any;
   idProducto:string;
   listadoProductos: any;
   listadoSucursal: any;
   listadoControl: any;
+  listadoControl1: any;
+  listadoControl2: any;
+  listadoControl3: any;
+  listadoControl4: any;
+  listadoControl5: any;
+  listadoControl6: any;
+  listadoControl7: any;
+  listadoControl8: any;
   cantprod:number;
   cantprods:number;
   invent:number;
   cantprov:number;
-
+  sucursales:string;
   
   selecprod: inventarioInterface = {
     nombreprod: '',
@@ -66,6 +77,14 @@ controlsalidas: ControlSalidaInterface = {
     this.listadoSucursal = this.sucursal.getAllSucursal();
     this.listadoProductos = this.productos.getAllProducto();
     this.listadoControl = this.controlService.getAllCosalida();
+    this.listadoControl1 = this.controlService.getAllCosalidavig();
+    this.listadoControl2 = this.controlService.getAllCosalidapat();
+    this.listadoControl3 = this.controlService.getAllCosalidacor();
+    this.listadoControl4 = this.controlService.getAllCosalidatln();
+    this.listadoControl5 = this.controlService.getAllCosalidatla();
+    this.listadoControl6 = this.controlService.getAllCosalidator();
+    this.listadoControl7 = this.controlService.getAllCosalidaval();
+    this.listadoControl8 = this.controlService.getAllCosalidacoa();
     
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2); 
@@ -93,7 +112,7 @@ controlsalidas: ControlSalidaInterface = {
   }
   
   onGuardarSalida({value}: {value: ControlSalidaInterface}){
-    
+    this.controlService.llamarsu(this.sucursales);
     if(this.cantprod > this.query.cantidad)
     { 
       this.flashMensaje.show('No hay suficiente producto',{
@@ -105,6 +124,8 @@ controlsalidas: ControlSalidaInterface = {
         cssClass: 'alert-success', timeout: 4000});
       value.cantidad=this.cantprod;
       value.producto=this.query.Nombre;
+      value.id = this.query.Nombre;
+      value.sucursal = this.sucursales;
       this.controlService.addCosalida(value);
     }
     

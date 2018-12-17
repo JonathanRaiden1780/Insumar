@@ -5,7 +5,7 @@ import {ProductoService} from '../../servicios/producto.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import{ProveedorService} from '../../servicios/proveedor.service'
-import { InfiniteScroll } from 'angular2-infinite-scroll';
+
 
 
 @Component({

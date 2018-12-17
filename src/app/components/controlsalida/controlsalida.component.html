@@ -35,8 +35,8 @@
                                 </td>
                                 <td>
                                     <div class="form-group" >
-                                        <select name="sucursal" class="form-control" placeholder="sucursal" [(ngModel)]="controlsalidas.sucursal" #proveedor="ngModel" >
-                                            <option [ngValue]="sucursal.Sucursal" *ngFor="let sucursal of listadoSucursal | async" >{{sucursal.Sucursal}}</option>
+                                        <select name="sucursal" class="form-control" placeholder="sucursal" [(ngModel)]="sucursales" #proveedor="ngModel" >
+                                            <option [ngValue]="sucursal.Sucursal" *ngFor="let sucursal of listadoSucursal | async">{{sucursal.Sucursal}}</option>
                                         </select>
                                     </div>  
                                 </td>
@@ -69,8 +69,56 @@
                                     <th scope="col">Sucursal</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
-                                <tr>
+                            <tbody class="text-center table-secondary" > 
+                                <tr *ngFor="let controlService of listadoControl1 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl2 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl3 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl4 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl5 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl6 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl7 | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.sucursal}}</td>
+                                </tr>
+                                <tr *ngFor="let controlService of listadoControl8 | async "> 
                                     <td>{{controlService.fecha}}</td>
                                     <td>{{controlService.cantidad | number}}</td>
                                     <td>{{controlService.producto}}</td>
