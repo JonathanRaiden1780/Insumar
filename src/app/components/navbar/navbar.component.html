@@ -19,7 +19,7 @@
               <strong> Administracion</strong>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/control">
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/entradas">
                 <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
                 <strong> Entradas</strong>
               </a>
@@ -39,11 +39,26 @@
               </a>
             </div>
           </li>
-          <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="/sucursal">
+          <li class="nav-item dropdown" *ngIf="isLogin">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <fa-icon [icon]="faWarehouse" class="fa-2x"></fa-icon>
-              <strong> Salidas</strong>
+              <strong> Centro de Trabajo</strong>
             </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/entradasCT">
+                <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
+                <strong> Entradas</strong>
+              </a>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/salidasCT">
+                <fa-icon [icon]="faBoxOpen" class="fa-2x"></fa-icon>
+                <strong> Salidas</strong>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/pedidosCT">
+                <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
+                <strong> Pedidos</strong>
+              </a>
+            </div>
           </li>
     </ul>
     <ul class="navbar-bar form-inline my-2 my-lg-0">

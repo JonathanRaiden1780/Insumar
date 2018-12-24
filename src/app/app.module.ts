@@ -42,6 +42,9 @@ import { ControlsalidaComponent } from './components/controlsalida/controlsalida
 import { SalidasService } from './servicios/salidas.service';
 import { ReportsComponent } from './components/reports/reports.component';
 import { AlimentadorComponent } from './components/alimentador/alimentador.component';
+import { EntradasCTComponent } from './components/entradas-ct/entradas-ct.component';
+import { SalidasCTComponent } from './components/salidas-ct/salidas-ct.component';
+import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component';
 
 
 @NgModule({
@@ -59,7 +62,10 @@ import { AlimentadorComponent } from './components/alimentador/alimentador.compo
     AutorizacionComponent,
     ControlsalidaComponent,
     ReportsComponent,
-    AlimentadorComponent
+    AlimentadorComponent,
+    EntradasCTComponent,
+    SalidasCTComponent,
+    PedidosCTComponent
   ],
   imports: [
     CommonModule,

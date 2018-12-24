@@ -13,6 +13,9 @@ import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { ControlsalidaComponent } from './components/controlsalida/controlsalida.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { AlimentadorComponent } from './components/alimentador/alimentador.component';
+import { EntradasCTComponent } from './components/entradas-ct/entradas-ct.component';
+import { SalidasCTComponent } from './components/salidas-ct/salidas-ct.component';
+import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component';
 
 
 
@@ -23,11 +26,14 @@ const routes: Routes = [
   {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
-  {path: 'control', component: ControlComponent, canActivate: [AuthGuard]},
+  {path: 'entradas', component: ControlComponent, canActivate: [AuthGuard]},
   {path: 'sucursal', component: SucursalComponent, canActivate: [AuthGuard]},
   {path: 'alimentador', component: AlimentadorComponent, canActivate: [AuthGuard]},
   {path: 'reportes', component: ReportsComponent, canActivate: [AuthGuard]},
   {path: 'salidas', component: ControlsalidaComponent, canActivate: [AuthGuard]},
+  {path: 'entradasCT', component: EntradasCTComponent, canActivate: [AuthGuard]},
+  {path: 'salidasCT', component: SalidasCTComponent, canActivate: [AuthGuard]},
+  {path: 'pedidosCT', component: PedidosCTComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  
