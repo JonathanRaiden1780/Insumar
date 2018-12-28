@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AngularFirestore } from 'angularfire2/firestore';
+
+import { faDolly } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-entradas-ct',
   templateUrl: './entradas-ct.component.html',
@@ -7,7 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntradasCTComponent implements OnInit {
 
-  constructor() { }
+  faDolly = faDolly;
+  rows;
+  columns;
+  
+  constructor(private afs: AngularFirestore) { 
+    this.getData();
+  }
+
+  getData() {
+    this.afs.collection('Productos').valueChanges().subscribe((Productos) => {
+      this.rows = Productos;
+    })
+  }
 
   ngOnInit() {
   }

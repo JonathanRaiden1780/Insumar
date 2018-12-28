@@ -17,6 +17,9 @@ import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./control.component.css']
 })
 export class ControlComponent implements OnInit {
+
+  faDolly = faDolly;
+  faArchive = faArchive;
   model: any = {};
   query: any;
   idProducto:string;
@@ -107,6 +110,5 @@ controlentradas: ControlEntradaInterface = {
     value.cantidad = this.cantprods;
     this.productos.updateProducto(value);
   }
-  faDolly = faDolly;
-  faArchive = faArchive;
+
 }

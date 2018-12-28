@@ -46,6 +46,8 @@ import { EntradasCTComponent } from './components/entradas-ct/entradas-ct.compon
 import { SalidasCTComponent } from './components/salidas-ct/salidas-ct.component';
 import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component
     PedidosCTComponent
   ],
   imports: [
+    NgxDatatableModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,

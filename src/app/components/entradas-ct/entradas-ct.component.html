@@ -1,3 +1,30 @@
-<p>
-  entradas-ct works!
-</p>
+<div class="text-center mt-3 col-md-6 mx-auto" style="width: 80%">
+      <ngx-datatable
+      class="dark"
+      [headerHeight]="50"
+      [columnMode]="'force'"
+      [rowHeight]="'auto'"
+      [footerHeight]="50"
+      [count]="true"
+      [limit]="10"
+      [rows]="rows"
+        >
+        <ngx-datatable-column name="Fecha">
+          <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Idprov">
+          <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Cantidad">
+          <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+
+    <!--https://tphangout.com/angular-5-data-tables-revisited/   https://stackoverflow.com/questions/46661305/is-it-possible-to-change-the-ngx-datatable-column-name-->
