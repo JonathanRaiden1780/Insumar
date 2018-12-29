@@ -4,14 +4,19 @@
 @import '@swimlane/ngx-datatable/release/themes/dark.css';
 @import '@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '@swimlane/ngx-datatable/release/assets/icons.css';
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .alert.flash-message{
     margin-top: 10px;
 }
 body{
-
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
      background-size: 110%; width: auto;  
      background-repeat: no-repeat;
      background-image: url('https://image.ibb.co/mLiVFL/fondo-espacio-trabajo-diseno-grafico-estilo-hecho-mano-23-2147791711.jpg');
      background-position: 60% 50%;
      background-attachment: fixed;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

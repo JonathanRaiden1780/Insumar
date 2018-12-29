@@ -1,11 +1,18 @@
+import '../polyfills';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { MatFormFieldModule, MatIconModule, MatNativeDateModule } from '@angular/material';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -47,6 +54,8 @@ import { SalidasCTComponent } from './components/salidas-ct/salidas-ct.component
 import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { AsignComponent } from './components/asign/asign.component';
 
 
 @NgModule({
@@ -67,7 +76,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AlimentadorComponent,
     EntradasCTComponent,
     SalidasCTComponent,
-    PedidosCTComponent
+    PedidosCTComponent,
+    PedidosComponent,
+    AsignComponent
   ],
   imports: [
     NgxDatatableModule,
@@ -77,15 +88,21 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     FlashMessagesModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    
+    MatFormFieldModule,
+    MatIconModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, 
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, 
     ProveedorService, SucursalService, ControlService, SalidasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
