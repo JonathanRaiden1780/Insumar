@@ -10,7 +10,6 @@
         <li class="navbar-nav nav-item" *ngIf="isLogin">
             <a class="nav-link" routerLinkActive="active-link" routerLink="/home">
             <fa-icon [icon]="faHome" class="fa-2x"></fa-icon>
-            <strong> Pagina Principal</strong>
           </a>
           </li>
           <li class="nav-item dropdown" *ngIf="isLogin">
@@ -31,6 +30,10 @@
               <a class="dropdown-item" routerLinkActive="active-link" routerLink="/reportes">
                 <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
                 <strong> Reportes</strong>
+              </a>
+              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/inventADMIN">
+                <fa-icon [icon]="faBoxes" class="fa-2x"></fa-icon>
+                <strong> Inventario</strong>
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" routerLinkActive="active-link" routerLink="/alimentador">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faDolly, faSignInAlt, faSignOutAlt, faPeopleCarry, faHome, faBox, faBoxOpen, faChartArea, faWarehouse, faTruckLoading } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faSignInAlt, faSignOutAlt, faPeopleCarry, faHome, faBox, faBoxOpen, faChartArea, faWarehouse, faTruckLoading, faBoxes } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../servicios/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages'
 
@@ -9,6 +9,20 @@ import {FlashMessagesService} from 'angular2-flash-messages'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+ 
+  faDolly = faDolly;
+  faSignInAlt = faSignInAlt;
+  faSignOutAlt = faSignOutAlt;
+  faPeopleCarry = faPeopleCarry;
+  faHome = faHome;
+  faBox = faBox;
+  faBoxOpen= faBoxOpen;
+  faChartArea = faChartArea;
+  faWarehouse = faWarehouse;
+  faTruckLoading = faTruckLoading;
+  faBoxes = faBoxes;
+
+
   public isLogin: boolean;
   public  nombreUsusario: string;
   public  emailUser: string;
@@ -36,15 +50,5 @@ export class NavbarComponent implements OnInit {
       cssClass: 'alert-success', timeout: 4000});
   }
 
-  faDolly = faDolly;
-  faSignInAlt = faSignInAlt;
-  faSignOutAlt = faSignOutAlt;
-  faPeopleCarry = faPeopleCarry;
-  faHome = faHome;
-  faBox = faBox;
-  faBoxOpen= faBoxOpen;
-  faChartArea = faChartArea;
-  faWarehouse = faWarehouse;
-  faTruckLoading = faTruckLoading;
 
 }

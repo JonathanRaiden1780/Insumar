@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { MatFormFieldModule, MatIconModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatIconModule, MatNativeDateModule, MatCheckboxModule, MatRadioModule, MatOptionModule, MatSelectModule } from '@angular/material';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -92,8 +92,13 @@ import { AsignComponent } from './components/asign/asign.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatIconModule,
     MatNativeDateModule,
+    MatRadioModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, 
     AngularFireAuthModule,

@@ -12,7 +12,7 @@ import { inventarioInterface } from 'src/app/Models/inventario';
 import { SucursalService } from 'src/app/servicios/sucursal.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
-import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faArchive, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { and } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -23,6 +23,9 @@ import { and } from '@angular/router/src/utils/collection';
 })
 export class ControlsalidaComponent implements OnInit {
   
+  faTimes = faTimes;
+  faEdit = faEdit;
+
   model: any = {};
   query: any;
   idProducto:string;

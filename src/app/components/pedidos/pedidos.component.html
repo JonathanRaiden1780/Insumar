@@ -1,32 +1,81 @@
-<p>
-  <mat-form-field appearance="legacy">
-    <mat-label>Legacy form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="standard">
-    <mat-label>Standard form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="fill">
-    <mat-label>Fill form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
-<p>
-  <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
+  <div class="container mt-3">
+   <!-- Captura de entradas-->
+   <div class="card bg-light">
+      <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
+          <div class="card-header form-inline text-white text-center" style="background-color: #279b37"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Solicitud de Insumos</strong></h1></div>
+              <div class="card-body" style="overflow-x:auto;">
+              <h4><strong>Bienvenid@: </strong></h4>
+              <h4><strong>Sucursal: </strong></h4>
+                  <table class="table table-light ">
+                      <thead>
+                          <tr class="table-primary text-center">
+                              <th scope="col"><strong>Cantidad</strong></th>
+                              <th scope="col"><strong>Producto</strong></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="table-active">                
+                              <td>
+                                  <div class="form-group">
+                                      <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
+                                  </div> 
+                              </td>
+                              <td>
+                                  <div class="form-group" >   
+                                      <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
+                                          <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
+                                      </select>
+                                  </div>  
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table> 
+              </div>
+          <div class="card-footer">
+              <button type="submit" class="btn btn-block text-white" style="background-color: #279b37" value="Guardar"><h3><strong>Ingresar</strong></h3></button>
+          </div>
+      </form>
+  </div>
+
+  <div class="card bg-light mt-3">
+      <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Solicitud Actual</strong></h1></div>
+          <div class="card-body">
+              <form>
+                  <div style="overflow-x:auto;"> 
+                      <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
+                          <thead class="table-warning text-center">
+                              <tr ng-repeat="controlService in $data">
+                                  <th scope="col">Fecha</th>
+                                  <th scope="col">Cantidad</th>
+                                  <th scope="col" >Producto</th>
+                                  <th scope="col" >Modifica/Elimina</th>
+                              </tr>
+                          </thead>
+                          <tbody class="text-center table-secondary"> 
+                              <tr>
+                                  <td>1</td>
+                                  <td>2</td>
+                                  <td>3</td>
+                                  <td>
+                                      <button class="btn" style="color: white; background-color: #76b39d"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                      <button class="btn" style="color: white; background-color: red"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                  </td>
+                              </tr>
+                          </tbody>   
+                          <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
+                              <tr>
+                                  <td>{{controlService.fecha}}</td>
+                                  <td>{{controlService.cantidad | number}}</td>
+                                  <td>{{controlService.producto}}</td>
+                                  <td>
+                                      <button class="btn" style="color: white; background-color: #76b39d"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                      <button class="btn" style="color: white; background-color: red"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                  </td>
+                              </tr>
+                          </tbody>    
+                      </table>
+                  </div>
+              </form>
+          </div>
+  </div>
+  </div>

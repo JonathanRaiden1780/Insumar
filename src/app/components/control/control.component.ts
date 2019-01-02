@@ -9,7 +9,7 @@ import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
 import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
-import { faDolly, faArchive } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faArchive, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-control',
@@ -20,6 +20,9 @@ export class ControlComponent implements OnInit {
 
   faDolly = faDolly;
   faArchive = faArchive;
+  faEdit = faEdit;
+  faTimes = faTimes;
+  
   model: any = {};
   query: any;
   idProducto:string;
