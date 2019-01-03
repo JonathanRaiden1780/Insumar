@@ -1,17 +1,17 @@
 <div class="container">
     <flash-messages class="text-center"></flash-messages>
     <!--Bienvenida-->
-    <div class="card-header col-md-2 mt-3 text-white" style="background-color: #2a206f"><h3><strong>Bienvenid@:</strong></h3></div>
+    <div class="card-header col-md-3 mt-3 text-white form-inline" style="background-color: #2a206f"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h3><strong>- Administración:</strong></h3></div>
     <!--Ultimos Movimientos-->
 <div class="card mt-3 mr-3 ml-3">
     <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Ultimos Movimientos</strong></h2></div>
     <div class="row">
         <div class="col-sm-6">
             <div class="card  mt-3 mb-3 ml-3">
-                <div class="card-header text-center text-white" style="background-color: #05cc47"><strong>Ultimos Ingresos</strong></div>
+                <div class="card-header text-center text-white" style="background-color: #279b37"><h4>Ultimos Ingresos</h4></div>
                     <div class="card-body">
                         <table class="table table-hover">
-                            <thead class="table-info text-center" >
+                            <thead class="table text-center text-white" style="background-color: #0b409c" >
                             <tr>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Ingreso</th>
@@ -36,10 +36,10 @@
         </div>
         <div class="col-sm-6">
             <div class="card mt-3 mb-3 mr-3">
-                <div class="card-header text-center text-white" style="background-color: #e80d0e"><strong>Ultimas salidas</strong></div>
+                <div class="card-header text-center text-white" style="background-color: #f5564e"><h4>Ultimas salidas</h4></div>
                     <div class="card-body">
                         <table class="table table-hover">
-                            <thead class="table-info text-center">
+                            <thead class="table text-center text-white" style="background-color: #0b409c">
                                 <tr>
                                     <th scope="col">Fecha</th>
                                     <th scope="col">Cantidad</th>
@@ -48,7 +48,7 @@
                                     <th scope="col">Stock</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center text-white" style="background-color: #E87D7C"  *ngFor="let salidas of listadoControlsa | async">
+                            <tbody class="text-center" style="background-color: #c4dff6"  *ngFor="let salidas of listadoControlsa | async">
                                 <tr>
                                     <td>{{salidas.fecha}}</td>
                                     <td>{{salidas.cantidad}}</td>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SalidasService } from 'src/app/servicios/salidas.service';
 import { ControlService } from 'src/app/servicios/control.service';
+import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +10,9 @@ import { ControlService } from 'src/app/servicios/control.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+
+  faTruckLoading = faTruckLoading;
+
   listadoProductos: any;
   listadoControlen: any;
   listadoControlsa: any;

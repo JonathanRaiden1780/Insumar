@@ -9,6 +9,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { MatFormFieldModule, MatIconModule, MatNativeDateModule, MatCheckboxModule, MatRadioModule, MatOptionModule, MatSelectModule } from '@angular/material';
 
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -101,6 +102,7 @@ import { AsignComponent } from './components/asign/asign.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, 
+    DataTablesModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

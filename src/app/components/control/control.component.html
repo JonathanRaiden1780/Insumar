@@ -57,44 +57,54 @@
                         </tbody>
                     </table> 
                 </div>
-            <div class="card-footer">
                 <button type="submit" class="btn btn-warning btn-block" value="Guardar"><h3><strong>Ingresar</strong></h3></button>
+            <div class="card-footer">
+            <div class="btn-group mt-2" role="group" aria-label="Botones de cambios a inventario">
+                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/alimentador']" routerLinkActive="router-link-active" >Modificar/Agregar registros a inventario</button>
+                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/reportes']" routerLinkActive="router-link-active" >Ir a reportes</button>
+                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/inventADMIN']" routerLinkActive="router-link-active" >Inventario</button>
+            </div>
             </div>
         </form>
     </div>
      <!-- Muestra Registros-->       
     <div class="card bg-light mt-3">
-        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Registros</strong></h1></div>
+        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><h1><strong> Ultimos Registros</strong></h1></div>
             <div class="card-body">
-                <form>
+                    <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
+                            Rerender
+                          </button>
+                <form>                            
                     <div style="overflow-x:auto;"> 
-                        <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-                            <thead class="table-warning text-center">
-                                <tr ng-repeat="controlService in $data">
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col" >Producto</th>
-                                    <th scope="col" >Precio</th>
-                                    <th scope="col">Proveedor</th>
-                                    <th scope="col">Modifica/Elimina</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center table-secondary" *ngFor="let controlService of listadoControl | async"> 
-                                <tr>
-                                    <td>{{controlService.fecha}}</td>
-                                    <td>{{controlService.cantidad | number}}</td>
-                                    <td>{{controlService.producto}}</td>
-                                    <td>$ {{controlService.Precio | number}}</td>
-                                    <td>{{controlService.proveedor}}</td>
-                                    <td>
-                                        <button class="btn" style="color: white; background-color: #76b39d"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
-                                        <button class="btn" style="color: white; background-color: red"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                    </td>
-                                </tr>
-                            </tbody>    
-                        </table>
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
+                                    <thead class="text-white bg-warning">
+                                        <tr>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col" >Producto</th>
+                                            <th scope="col" >Precio</th>
+                                            <th scope="col">Proveedor</th>
+                                            <th scope="col">Modifica/Elimina</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="background-color: #f2f7ff">
+                                        <tr *ngFor="let controlService of listadoControl | async">
+                                            <td>{{controlService.fecha}}</td>
+                                            <td>{{controlService.cantidad | number}}</td>
+                                            <td>{{controlService.producto}}</td>
+                                            <td>$ {{controlService.Precio | number}}</td>
+                                            <td>{{controlService.proveedor}}</td>
+                                            <td>
+                                                <button class="btn" style="color: white; background-color: #76b39d"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: red"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                     </div>
                 </form>
             </div>
     </div>
 </div>
+
+<!-- https://www.youtube.com/watch?v=6u3UhlOaq4E -->
