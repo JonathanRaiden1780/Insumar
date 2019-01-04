@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren} from '@angular/core';
+
+import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { ProductoService } from '../../servicios/producto.service'
+import { faBoxes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-asign',
@@ -8,34 +12,35 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class AsignComponent implements OnInit {
 
-  constructor() { }
+  faBoxes = faBoxes;
 
-  @ViewChild(DataTableDirective)
-  dtOptions: any = {};
+  listadoProductos: any;
 
-  ngOnInit(): void {
+  @ViewChildren(DataTableDirective)
+  dtElements: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  getall = [];
+
+  constructor(public productos: ProductoService) { 
+    this.listadoProductos = this.productos.getAllProducto();
+  }
+
+  ngOnInit(){
+    this.getAllProducto()
     this.dtOptions = {
-      ajax: 'data/data.json',
-      columns: [{
-        title: 'ID',
-        data: 'id'
-      }, {
-        title: 'First name',
-        data: 'firstName'
-      }, {
-        title: 'Last name',
-        data: 'lastName'
-      }],
-      // Declare the use of the extension in the dom parameter
-      dom: 'Bfrtip',
-      // Configure the buttons
-      buttons: [
-        'columnsToggle',
-        'colvis',
-        'copy',
-        'print',
-        'excel'
-      ]
+      pagingType: 'full_numbers',
+      pageLength: 2,
+      processing: true,
+      scrollY: "100px",
+      paging: true,
+      search: true,
+      scrollCollapse: true
     };
   }
+
+  getAllProducto() {
+    this.productos.getAllProducto();
+  }
+  
 }

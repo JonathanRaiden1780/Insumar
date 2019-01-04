@@ -1,2 +1,34 @@
-<table datatable [dtOptions]="dtOptions" class="row-border hover"></table>
+<div class="container">
+        <div class="card bg-light mt-3">
+                <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faBoxes" class="fa-2x"></fa-icon><h1><strong> Inventario</strong></h1></div>
+                    <div class="card-body">
+                        <form>                            
+                            <div style="overflow-x:auto;"> 
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
+                                            <thead class="text-white bg-warning">
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Inventario</th>
+                                                    <th scope="col">Unidad</th>
+                                                    <th scope="col" >Categoria</th>
+                                                    <th scope="col" >Proveedor</th>
+                                                    <th scope="col">Precio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="background-color: #f2f7ff">
+                                                <tr *ngFor="let productos of listadoProductos | async">
+                                                    <td>{{productos.Nombre}}</td>
+                                                    <td>{{productos.inventario | number}}</td>
+                                                    <td>{{productos.unidad}}</td>
+                                                    <td>{{productos.Categoria}}</td>
+                                                    <td>{{productos.proveedor}}</td>
+                                                    <td>$ {{productos.Precio | number}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                            </div>
+                        </form>
+                    </div>
+            </div>
+</div>
 

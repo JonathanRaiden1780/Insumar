@@ -16,7 +16,6 @@ export class EntradasCTComponent implements OnInit {
   columns;
   
   constructor(private afs: AngularFirestore) { 
-    this.getData();
   }
 
   getData() {
@@ -26,6 +25,7 @@ export class EntradasCTComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getData()
   }
 
 }

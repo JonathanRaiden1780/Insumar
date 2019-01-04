@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'salidasCT', component: SalidasCTComponent, canActivate: [AuthGuard]},
   {path: 'pedidosCT', component: PedidosCTComponent, canActivate: [AuthGuard]},
   {path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard]},
-  {path: 'control', component: AsignComponent, canActivate: [AuthGuard]},
+  {path: 'inventADMIN', component: AsignComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  

@@ -29,7 +29,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   faTimes = faTimes;
 
   @ViewChildren(DataTableDirective)
-  dtElement: DataTableDirective;
+  dtElements: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   getall = [];
@@ -98,9 +98,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
       scrollY: "100px",
       paging: true,
       search: true,
-      scrollCollapse: true,
-      
-
+      scrollCollapse: true
     };
   }
 
@@ -131,7 +129,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   }
 
   rerender(): void {
-    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+    this.dtElements.dtInstance.then((dtInstance: DataTables.Api) => {
         // Destroy the table first
         dtInstance.destroy();
         // Call the dtTrigger to rerender again

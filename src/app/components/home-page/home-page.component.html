@@ -1,68 +1,93 @@
-<div class="container">
+<div class="container" width="6000">
     <flash-messages class="text-center"></flash-messages>
     <!--Bienvenida-->
     <div class="card-header col-md-3 mt-3 text-white form-inline" style="background-color: #2a206f"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h3><strong>- Administración:</strong></h3></div>
     <!--Ultimos Movimientos-->
+
 <div class="card mt-3 mr-3 ml-3">
     <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Ultimos Movimientos</strong></h2></div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card  mt-3 mb-3 ml-3">
-                <div class="card-header text-center text-white" style="background-color: #279b37"><h4>Ultimos Ingresos</h4></div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="table text-center text-white" style="background-color: #0b409c" >
-                            <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Ingreso</th>
-                                <th scope="col">Stock</th>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Proveedor</th>
-                            </tr>
-                            </thead>
-                            <tbody class="text-center" style="background-color: #c4dff6" *ngFor="let entradas of listadoControlen | async">
-                            <tr>
-                                <td>{{entradas.fecha}}</td>
-                                <td>{{entradas.cantidad}}</td>
-                                <td>{{entradas.inventario}}</td>
-                                <td>{{entradas.producto}}</td>
-                                <td>{{entradas.proveedor}}</td>
-                            </tr>
-                            </tbody>
-                            
-                        </table> 
-                    </div>
+    <div class="card  mt-3 mb-3 ml-3 mr-3">
+            <div class="card-header text-center text-white" style="background-color: #279b37"><h4>Ultimos Ingresos</h4></div>
+                <div class="card-body">
+                        <ngx-datatable
+                        class="dark"
+                        [headerHeight]="35"
+                        [columnMode]="'force'"
+                        [rowHeight]="'auto'"
+                        [footerHeight]="30"
+                        [count]="true"
+                        [limit]="3"
+                        [rows]="rows1"
+                        >
+                        <ngx-datatable-column name="fecha">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                        </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="cantidad">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                        </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="inventario">
+                          <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="producto">
+                          <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="proveedor">
+                          <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                          </ng-template>
+                        </ngx-datatable-column>
+                        </ngx-datatable>
+                </div>
+        </div>
+    <div class="card mt-3 mb-3 ml-3 mr-3">
+        <div class="card-header text-center text-white" style="background-color: #f5564e"><h4>Ultimas salidas</h4></div>
+            <div class="card-body">
+                    <ngx-datatable
+                    class="dark"
+                    [headerHeight]="35"
+                    [columnMode]="'force'"
+                    [rowHeight]="'auto'"
+                    [footerHeight]="30"
+                    [count]="true"
+                    [limit]="3"
+                    [rows]="rows2"
+                    >
+                    <ngx-datatable-column name="fecha">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="cantidad">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="producto">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="sucursal">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="inventario">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    </ngx-datatable>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card mt-3 mb-3 mr-3">
-                <div class="card-header text-center text-white" style="background-color: #f5564e"><h4>Ultimas salidas</h4></div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <thead class="table text-center text-white" style="background-color: #0b409c">
-                                <tr>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Sucursal</th>
-                                    <th scope="col">Stock</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-center" style="background-color: #c4dff6"  *ngFor="let salidas of listadoControlsa | async">
-                                <tr>
-                                    <td>{{salidas.fecha}}</td>
-                                    <td>{{salidas.cantidad}}</td>
-                                    <td>{{salidas.producto}}</td>
-                                    <td>{{salidas.sucursal}}</td>
-                                    <td>{{salidas.inventario}}</td>
-                                </tr>
-                            </tbody>
-                            
-                        </table> 
-                    </div>
-            </div>
-        </div>
-    </div>
     <div class="card-footer text-muted text-right">Ultima Actualizacion</div>
 </div>
     <!-- Resumen-->
@@ -70,23 +95,33 @@
     <div class="card-header text-center text-white" style="background-color: #ff6a00"><h2><strong>Sin stock</strong></h2></div>
         <div class="row">
                         <div class="card-body">
-                            <table class="table table-hover">
-                                <thead class="table-info text-center">
-                                <tr>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Sucursal</th>
-                                </tr>
-                                </thead>
-                                <tbody class="text-center text-white" style="background-color: #E87D7C" *ngFor="let productos of listadoProveedor | async">
-                                <tr>
-                                    <td>{{productos.Nombre}}</td>
-                                    <td>{{productos.cantidad}}</td>
-                                    <td>{{productos.Categoria}}</td>
-                                </tr>
-                                </tbody>
-                            </table> 
+                                <ngx-datatable
+                                class="dark"
+                                [headerHeight]="35"
+                                [columnMode]="'force'"
+                                [rowHeight]="'auto'"
+                                [footerHeight]="30"
+                                [count]="true"
+                                [limit]="5"
+                                [rows]="rows3"
+                                >
+                                <ngx-datatable-column name="Idprov">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                    {{value}}
+                                </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="inventario">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                    {{value}}
+                                </ng-template>
+                                </ngx-datatable-column>
+                                </ngx-datatable>
                         </div>
                 </div>
     <div class="card-footer text-muted text-right">Ultima Actualizacion</div>
 </div>
+
+
+
+
+

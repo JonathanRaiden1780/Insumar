@@ -2,7 +2,7 @@
   <h1><strong>Inventario</strong></h1>
 </div>
 
-<div class="text-center mt-3 col-md-6 mx-auto mb-3" style="width: 80%">
+<div class="text-center mt-3 col-md-6 mx-auto mb-3" style="width: 469">
   <ngx-datatable
     class="dark"
     [headerHeight]="50"
@@ -12,6 +12,7 @@
     [count]="true"
     [limit]="10"
     [rows]="rows"
+    width="469"
   >
     <ngx-datatable-column name="Fecha">
     <ng-template ngx-datatable-cell-template let-value="value">
