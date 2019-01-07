@@ -9,6 +9,7 @@
                             <tr class="table-primary text-center">
                                 <th scope="col"><strong>Fecha</strong></th>
                                 <th scope="col"><strong>Cantidad</strong></th>
+                                <th scope="col"><strong>Unidad</strong></th>
                                 <th scope="col"><strong>Producto</strong></th>
                                 <th scope="col"><strong>Precio</strong></th>
                                 <th scope="col"><strong>Proveedor</strong></th>
@@ -19,14 +20,22 @@
                             <tr class="table-active">   
                                 <td>
                                     <div class="form-group">
-                                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">        
+                                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel" (change)="onChange($event.target.value)">        
                                     </div>     
                                 </td>             
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel">
+                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" (change)="onChange($event.target.value)">
                                     </div> 
                                 </td>
+                                <td>
+                                        <div class="form-group" >
+                                            <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="controlentradas.pieza" #pieza="ngModel"  (change)="onChange($event.target.value)">
+                                                <option [ngValue]="pieza"  > Pieza </option>
+                                                <option [ngValue]="pieza"  > Paquete </option>
+                                            </select>
+                                        </div>  
+                                    </td>
                                 <td>
                                     <div class="form-group" >   
                                         <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
@@ -36,16 +45,17 @@
                                 </td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="$" id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
+                                        <input type="number" class="form-control" placeholder="$" id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel" (change)="onChange($event.target.value)">
                                     </div> 
                                 </td>
                                 <td>
                                     <div class="form-group" >
-                                        <select name="proveedor" class="form-control" placeholder="Proveedor" [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
+                                        <select name="proveedor" class="form-control" placeholder="Proveedor" [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel"  (change)="onChange($event.target.value)">
                                             <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
                                         </select>
                                     </div>  
-                                </td>
+                                </td> 
+                                
                                 <td>
                                     <div class="form-group" >
                                         <fieldset>    
@@ -57,7 +67,7 @@
                         </tbody>
                     </table> 
                 </div>
-                <button type="submit" class="btn btn-warning btn-block" value="Guardar"><h3><strong>Ingresar</strong></h3></button>
+                <button type="submit" class="btn btn-warning btn-block" value="Guardar" (click)="refresh()"><h3><strong>Ingresar</strong></h3></button>
             <div class="card-footer">
             <div class="btn-group mt-2" role="group" aria-label="Botones de cambios a inventario">
                 <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/alimentador']" routerLinkActive="router-link-active" >Modificar/Agregar registros a inventario</button>
@@ -74,13 +84,14 @@
                     <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
                             Rerender
                           </button>
-                <form>                            
+                          <form #form2Guardar="ngForm" (ngSubmit)=" onUpdateEntrada(formGuardar); updatestock(formGuardar)">
                     <div style="overflow-x:auto;"> 
                             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
                                     <thead class="text-white bg-warning">
                                         <tr>
                                             <th scope="col">Fecha</th>
                                             <th scope="col">Cantidad</th>
+                                            <th scope="col">Pieza</th>
                                             <th scope="col" >Producto</th>
                                             <th scope="col" >Precio</th>
                                             <th scope="col">Proveedor</th>
@@ -91,12 +102,13 @@
                                         <tr *ngFor="let controlService of listadoControl | async">
                                             <td>{{controlService.fecha}}</td>
                                             <td>{{controlService.cantidad | number}}</td>
+                                            <td>{{controlService.pieza | number}}</td>
                                             <td>{{controlService.producto}}</td>
                                             <td>$ {{controlService.Precio | number}}</td>
                                             <td>{{controlService.proveedor}}</td>
                                             <td>
-                                                <button class="btn" style="color: white; background-color: #76b39d"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
-                                                <button class="btn" style="color: white; background-color: red"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: #76b39d" (click)="rerender()"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad);refresh()" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                             </td>
                                         </tr>
                                     </tbody>

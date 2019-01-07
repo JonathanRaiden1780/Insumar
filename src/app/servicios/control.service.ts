@@ -19,8 +19,9 @@ Coentrada: Observable<ControlEntradaInterface>;
       this.CoentradasCollection = this.afs.collection('Coentradas', ref => ref);
      }
 
-    deleteCoentrada(Coentrada: ControlEntradaInterface){
-      this.CoentradasDoc = this.afs.doc('Coentradas/${Coentrada.id}');
+    deleteCoentrada(Coentrada: string){
+      this.CoentradasDoc = this.afs.doc('Coentradas/'  + Coentrada);
+      
       this.CoentradasDoc.delete();
     }
      updateCoentrada(Coentrada: ControlEntradaInterface){

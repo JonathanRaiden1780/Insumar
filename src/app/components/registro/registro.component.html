@@ -1,0 +1,53 @@
+
+<div class="col-md-3 mx-auto mt-2">
+    <form>
+        <div class="card mb-3 text-center" style="max-width: 20rem; background-color: #2a206f">
+                <div class="card-header">
+                    <img class="card-img-top" src="https://i.ibb.co/Jqfz0QQ/SEVSCASANOVA.png" alt="casanova-renta-de-autos-24">
+                </div>
+                <form #formguardar="ngForm" (ngSubmit)="addnewuser();guardarregistro(formguardar)">
+                    
+                      <div class="card-header form-group text-white">
+                        <p>Nombre</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><fa-icon [icon]="faMailBulk"></fa-icon></span>
+                          </div>
+                          <input type="text" name="nombre" [(ngModel)]="nombre" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Juan Perez">
+                        </div>
+                      </div>
+                      <div class="card-header form-group text-white">
+                        <p>Lugar de Trabajo</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><fa-icon [icon]="faMailBulk"></fa-icon></span>
+                          </div>
+                          <input type="text" name="sucursal" [(ngModel)]="sucursal" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Centenario...">
+                        </div>
+                      </div>
+                      <div class="card-header form-group text-white">
+                        <p>Correo Electronico</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><fa-icon [icon]="faMailBulk"></fa-icon></span>
+                          </div>
+                          <input type="email" name="email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="tunombre@casanovarentacar.mx">
+                        </div>
+                      </div>
+                      <div class="card-header form-group text-white">
+                        <p>Contraseña</p>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><fa-icon [icon]="faKey"></fa-icon></span>
+                          </div>
+                          <input type ="password" name="password" [(ngModel)]="pass" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="**********************">
+                        </div>
+                      </div>
+                    <button type="submit" value="Guardar" class="btn btn-warning text-center btn-block"><fa-icon [icon]="faSignInAlt" class="fa-2x"></fa-icon><h6> Registrar</h6></button>
+                </form>
+        </div>
+    </form>
+</div>
+<div class="col-md-6 mx-auto mt-2">
+  <flash-messages></flash-messages>
+</div>

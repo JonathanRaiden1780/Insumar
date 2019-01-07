@@ -18,6 +18,7 @@ import { SalidasCTComponent } from './components/salidas-ct/salidas-ct.component
 import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { AsignComponent } from './components/asign/asign.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'pedidosCT', component: PedidosCTComponent, canActivate: [AuthGuard]},
   {path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard]},
   {path: 'inventADMIN', component: AsignComponent, canActivate: [AuthGuard]},
+  {path: 'registro', component: RegistroComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
  

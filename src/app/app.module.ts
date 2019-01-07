@@ -57,6 +57,7 @@ import { PedidosCTComponent } from './components/pedidos-ct/pedidos-ct.component
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { AsignComponent } from './components/asign/asign.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { AsignComponent } from './components/asign/asign.component';
     SalidasCTComponent,
     PedidosCTComponent,
     PedidosComponent,
-    AsignComponent
+    AsignComponent,
+    RegistroComponent
   ],
   imports: [
     NgxDatatableModule,

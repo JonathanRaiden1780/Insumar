@@ -15,6 +15,7 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
 import {map} from 'rxjs/operators';
+import { id } from '@swimlane/ngx-datatable/release/utils';
 
 @Component({
   selector: 'app-control',
@@ -33,7 +34,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   getall = [];
-
+  cantidadregistrada: number;
   
   model: any = {};
   query: any;
@@ -43,6 +44,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   listadoControl: any;
   cantprod:number;
   cantprods:number;
+  cantprodres: number;
   invent:number;
   cantprov:number;
 
@@ -87,6 +89,10 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
   }
 
+  refresh(){
+    this.refresh();
+  }
+
   ngOnInit(){
     this.model.tipo = 'entrada'; 
 
@@ -106,10 +112,17 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     this.controlService.getAllCoentrada();
   }
 
+  eliminar(id: string){
+    console.log('eliminar registro ',id)
+    this.controlService.deleteCoentrada( id );
+  }
+
   onChange(value){
     this.invent = this.query.cantidad;
     
     this.cantprods =sum(this.invent, this.cantprod);
+    
+
     console.log(this.query.cantidad );
     console.log(this.cantprods);
     
@@ -118,6 +131,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
       
       return a + b;
     }
+    
     //this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
 
@@ -151,5 +165,31 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     value.cantidad = this.cantprods;
     this.productos.updateProducto(value);
   }
+  onUpdateEntrada({value}: {value: ControlEntradaInterface}){
+
+    value.cantidad=this.cantprodres;
+    value.producto=this.query.Nombre;
+    value.inventario=this.cantprodres;
+    
+    //this.controlService.addCoentrada(value);
+  }
+  updatestock({value}: {value: ProductosInterface}){
+    value.Nombre = this.query.Nombre;
+    value.idprov = this.query.Nombre;
+    value.cantidad = this.cantprodres;
+    this.productos.updateProducto(value);
+  }
+  
+  getcantidad(x : number){
+    this.invent = this.query.cantidad;
+    this.cantidadregistrada = x;
+    this.cantprodres =res(this.invent, this.cantidadregistrada);
+    function res(a:number , b:number):number{
+      
+      return a - b;
+    }
+
+  }
+
 
 }
