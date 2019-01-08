@@ -10,12 +10,9 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
 import { faDolly, faArchive, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-
+import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-
-import {map} from 'rxjs/operators';
-import { id } from '@swimlane/ngx-datatable/release/utils';
 
 @Component({
   selector: 'app-control',
@@ -42,10 +39,11 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   listadoProductos: any;
   listadoProveedores: any;
   listadoControl: any;
+  listadoPiezas: any;
   cantprod:number;
   cantprods:number;
   cantprodres: number;
-  pieza:string;
+  piezasu:string;
   invent:number;
   cantprov:number;
 
@@ -62,6 +60,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
   id:'',
   cantidad: 0,
+  pieza:'',
   producto: '',
   fecha: '',
   precio: '',
@@ -83,7 +82,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     this.listadoProveedores = this.proveedores.getAllProveedor();
     this.listadoProductos = this.productos.getAllProducto();
     this.listadoControl = this.controlService.getAllCoentrada();
-
+    this.listadoPiezas = this.controlService.gettipo();
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     
@@ -108,6 +107,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
 
   getAllCoentrada() {
     this.controlService.getAllCoentrada();
+
   }
 
   eliminar(id: string){
@@ -156,8 +156,8 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
 
     value.cantidad=this.cantprod;
     value.producto=this.query.Nombre;
-    value.inventario=this.cantprods
-    value.pieza = this.pieza;
+    value.inventario=this.cantprods;
+    value.pieza = this.piezasu;
     this.controlService.addCoentrada(value);
   }
   stock({value}: {value: ProductosInterface}){
@@ -179,14 +179,14 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     value.Nombre = this.query.Nombre;
     value.idprov = this.query.Nombre;
     value.cantidad = this.cantprodres;
-    value.pieza = this.pieza;
+    
     this.productos.updateProducto(value);
   }
   idup:string;
-  getforupdate(x : string){
-    this.idup = x;
-    console.log(this.idup);
-      return this.idup;
+  getforupdate(x : ControlEntradaInterface){
+    
+    console.log(x);
+    this.controlService.update(x);
       
   }
   getcantidad(x : number){

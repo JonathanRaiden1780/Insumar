@@ -30,9 +30,8 @@
                                 </td>
                                 <td>
                                     <div class="form-group" >
-                                        <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="controlentradas.pieza" #piezas="ngModel"  (change)="onChange($event.target.value)">
-                                            <option [ngValue]="pieza"  > Pieza </option>
-                                            <option [ngValue]="pieza"  > Paquete </option>
+                                        <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="piezasu" #piezas="ngModel"  (change)="onChange($event.target.value)">
+                                            <option [ngValue]="piezas.Nombre"  *ngFor="let piezas of listadoPiezas | async">{{piezas.Nombre}} </option>
                                         </select>
                                     </div>  
                                 </td>
@@ -84,7 +83,7 @@
                     <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
                             Rerender
                           </button>
-                          <form #form2Guardar="ngForm" (ngSubmit)=" onUpdateEntrada(formGuardar); updatestock(formGuardar)">
+                          <form #form2Guardar="ngForm" (ngSubmit)=" onUpdateEntrada(formGuardar); updatestock(formGuardar) ">
                     <div style="overflow-x:auto;"> 
                             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
                                     <thead class="text-white bg-warning">
@@ -107,7 +106,7 @@
                                             <td>$ {{controlService.Precio | number}}</td>
                                             <td>{{controlService.proveedor}}</td>
                                             <td>
-                                                <button class="btn" style="color: white; background-color: #76b39d" data-toggle="modal" data-target="#modupdate" ><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: #76b39d" data-toggle="modal" data-target="#modupdate" (click)="getforupdate(controlService)" ><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
                                                 <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                             </td>
                                         </tr>

@@ -3,6 +3,8 @@ import {ControlEntradaInterface} from '../Models/ControlEntrada';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import { TipoInterface } from '../Models/tipo';
+import { UpdateInterface } from '../Models/update';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,23 @@ CoentradasCollection: AngularFirestoreCollection<ControlEntradaInterface>;
 CoentradasDoc: AngularFirestoreDocument<ControlEntradaInterface>;
 Coentradas: Observable<ControlEntradaInterface[]>;
 Coentrada: Observable<ControlEntradaInterface>;
+PiezaCollection: AngularFirestoreCollection<TipoInterface>;
+PiezaDoc: AngularFirestoreDocument<TipoInterface>;
+Piezas: Observable<TipoInterface[]>;
+Pieza: Observable<TipoInterface>;
+UpdateCollection: AngularFirestoreCollection<UpdateInterface>;
+UpdateDoc: AngularFirestoreDocument<UpdateInterface>;
+Updates: Observable<UpdateInterface[]>;
+Update: Observable<UpdateInterface>;
 
+
+public coentra: ControlEntradaInterface ;
   constructor(
     private afs: AngularFirestore) {
       this.CoentradasCollection = this.afs.collection('Coentradas', ref => ref);
+      this.PiezaCollection = this.afs.collection('Pieza', ref => ref);
+      this.UpdateCollection = this.afs.collection('Update', ref => ref);
+
      }
 
     deleteCoentrada(Coentrada: string){
@@ -44,6 +59,21 @@ Coentrada: Observable<ControlEntradaInterface>;
         }
       }));
     }
+    update(Update: UpdateInterface){
+      this.UpdateDoc=this.afs.doc('Update/QUERY');
+      this.UpdateDoc.update(Update);
+    }
+    getAllUpdate():Observable<UpdateInterface[]>{
+      this.Updates = this.UpdateCollection.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as UpdateInterface;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      }));
+      return this.Updates;
+    }
     getAllCoentrada():Observable<ControlEntradaInterface[]>{
       this.Coentradas = this.CoentradasCollection.snapshotChanges()
       .pipe(map(changes => {
@@ -54,6 +84,17 @@ Coentrada: Observable<ControlEntradaInterface>;
         });
       }));
       return this.Coentradas;
+    }
+    gettipo():Observable<TipoInterface[]>{
+      this.Piezas = this.PiezaCollection.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as TipoInterface;
+          //data.id = action.payload.doc.id;
+          return data;
+        });
+      }));
+      return this.Piezas;
     }
   }
 /*

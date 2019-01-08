@@ -2,49 +2,74 @@
 <div class="modal fade" id="modupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modificar: {{idup}}</h5>
+      <div class="modal-header" >
+        <h5 class="modal-title" id="exampleModalLabel">Modificar: {{producto}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <form #formGuardar="ngForm" (ngSubmit)="updateform(formGuardar); updatestock(formGuardar)">
-          <div class="form-row">
+          <form #formGuardar="ngForm" (ngSubmit)="updateform(formGuardar); updatestock(formGuardar)" >
+          <div class="form-row" >
             <div class="form-group col-md-5">
               <label for="fecha">Fecha</label>
-              <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel">
+              <input type="date" class="form-control" id="fecha" name="fecha" [(ngModel)]="controlService.fecha" #fecha="ngModel">
             </div> 
             <div class="form-group col-md-3">
                 <label for="cantidad">Cantidad</label>
-                <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="controlentradas.cantidad" #cantidad="ngModel">
+                <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="controlentradas.coentra.cantidad" #cantidad="ngModel">
             </div>
             <div class="form-group col-md-3">
                 <label for="pieza">Unidad</label>
-                <select name="pieza" class="form-control" placeholder="Unidad" [(ngModel)]="controlentradas.pieza" #pieza="ngModel">
+                <select name="pieza" class="form-control" placeholder="Unidad" [(ngModel)]="controlentradas.coentra.pieza" #pieza="ngModel">
                     <option [ngValue]="pieza"  > Pieza </option>
                     <option [ngValue]="pieza"  > Paquete </option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="proveedores">Proveedor</label>
-                <select name="proveedores" class="form-control" placeholder="proveedores" [(ngModel)]="controlentradas.proveedor" #proveedores="ngModel">
+                <select name="proveedores" class="form-control" placeholder="proveedores" [(ngModel)]="controlentradas.coentra.proveedor" #proveedores="ngModel">
                     <option [ngValue]="proveedores"> Pieza </option>
                 </select>
             </div>    
             <div class="form-group col-md-3">
                 <label for="precio">Precio</label>
-                <input type="number" class="form-control" placeholder="$ " id="precio" name="precio" [(ngModel)]="controlentradas.precio" #precio="ngModel">
+                <input type="number" class="form-control" placeholder="$ " id="precio" name="precio" [(ngModel)]="controlentradas.coentra.precio" #precio="ngModel">
             </div>
               
           </div>
         </form>
-        
+        <div style="overflow-x:auto;"> 
+        <table  class="row-border hover text-center" width="1050">
+                <thead class="text-white bg-warning">
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Pieza</th>
+                        <th scope="col" >Producto</th>
+                        <th scope="col" >Precio</th>
+                        <th scope="col">Proveedor</th>
+                        
+                    </tr>
+                </thead>
+                <tbody style="background-color: #f2f7ff">
+                    <tr *ngFor="let controlService of upd | async">
+                        <td>{{controlService.fecha}}</td>
+                        <td>{{this.cantidad}}</td>
+                        <td>{{pieza}}</td>
+                        <td>{{producto}}</td>
+                        <td>$ {{precio | number}}</td>
+                        <td>{{proveedor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" (click)="save()">Save changes</button>
       </div>
+      
     </div>
   </div>
 </div>
