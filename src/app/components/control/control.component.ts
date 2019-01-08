@@ -45,6 +45,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   cantprod:number;
   cantprods:number;
   cantprodres: number;
+  pieza:string;
   invent:number;
   cantprov:number;
 
@@ -89,9 +90,6 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
   }
 
-  refresh(){
-    this.refresh();
-  }
 
   ngOnInit(){
     this.model.tipo = 'entrada'; 
@@ -113,9 +111,12 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   }
 
   eliminar(id: string){
+    const confirma = confirm('Esta seguro?')
+    if(confirma){
     console.log('eliminar registro ',id)
     this.controlService.deleteCoentrada( id );
   }
+}
 
   onChange(value){
     this.invent = this.query.cantidad;
@@ -156,13 +157,14 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     value.cantidad=this.cantprod;
     value.producto=this.query.Nombre;
     value.inventario=this.cantprods
-    
+    value.pieza = this.pieza;
     this.controlService.addCoentrada(value);
   }
   stock({value}: {value: ProductosInterface}){
     value.Nombre = this.query.Nombre;
     value.idprov = this.query.Nombre;
     value.cantidad = this.cantprods;
+    
     this.productos.updateProducto(value);
   }
   onUpdateEntrada({value}: {value: ControlEntradaInterface}){
@@ -177,9 +179,16 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     value.Nombre = this.query.Nombre;
     value.idprov = this.query.Nombre;
     value.cantidad = this.cantprodres;
+    value.pieza = this.pieza;
     this.productos.updateProducto(value);
   }
-  
+  idup:string;
+  getforupdate(x : string){
+    this.idup = x;
+    console.log(this.idup);
+      return this.idup;
+      
+  }
   getcantidad(x : number){
     this.invent = this.query.cantidad;
     this.cantidadregistrada = x;

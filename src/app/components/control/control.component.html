@@ -29,13 +29,13 @@
                                     </div> 
                                 </td>
                                 <td>
-                                        <div class="form-group" >
-                                            <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="controlentradas.pieza" #pieza="ngModel"  (change)="onChange($event.target.value)">
-                                                <option [ngValue]="pieza"  > Pieza </option>
-                                                <option [ngValue]="pieza"  > Paquete </option>
-                                            </select>
-                                        </div>  
-                                    </td>
+                                    <div class="form-group" >
+                                        <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="controlentradas.pieza" #piezas="ngModel"  (change)="onChange($event.target.value)">
+                                            <option [ngValue]="pieza"  > Pieza </option>
+                                            <option [ngValue]="pieza"  > Paquete </option>
+                                        </select>
+                                    </div>  
+                                </td>
                                 <td>
                                     <div class="form-group" >   
                                         <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" (change)="onChange($event.target.value)">
@@ -67,7 +67,7 @@
                         </tbody>
                     </table> 
                 </div>
-                <button type="submit" class="btn btn-warning btn-block" value="Guardar" (click)="refresh()"><h3><strong>Ingresar</strong></h3></button>
+                <button type="submit" class="btn btn-warning btn-block" value="Guardar" ><h3><strong>Ingresar</strong></h3></button>
             <div class="card-footer">
             <div class="btn-group mt-2" role="group" aria-label="Botones de cambios a inventario">
                 <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/alimentador']" routerLinkActive="router-link-active" >Modificar/Agregar registros a inventario</button>
@@ -102,13 +102,13 @@
                                         <tr *ngFor="let controlService of listadoControl | async">
                                             <td>{{controlService.fecha}}</td>
                                             <td>{{controlService.cantidad | number}}</td>
-                                            <td>{{controlService.pieza | number}}</td>
+                                            <td>{{controlService.pieza}}</td>
                                             <td>{{controlService.producto}}</td>
                                             <td>$ {{controlService.Precio | number}}</td>
                                             <td>{{controlService.proveedor}}</td>
                                             <td>
-                                                <button class="btn" style="color: white; background-color: #76b39d" (click)="rerender()"><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
-                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad);refresh()" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: #76b39d" data-toggle="modal" data-target="#modupdate" ><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -118,5 +118,5 @@
             </div>
     </div>
 </div>
-
+<app-modalupdate></app-modalupdate>
 <!-- https://www.youtube.com/watch?v=6u3UhlOaq4E -->

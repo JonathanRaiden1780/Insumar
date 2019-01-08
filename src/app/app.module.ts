@@ -58,6 +58,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { AsignComponent } from './components/asign/asign.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { ModalupdateComponent } from './components/modal/modalupdate/modalupdate.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { RegistroComponent } from './components/registro/registro.component';
     PedidosCTComponent,
     PedidosComponent,
     AsignComponent,
-    RegistroComponent
+    RegistroComponent,
+    ModalupdateComponent
   ],
   imports: [
     NgxDatatableModule,
