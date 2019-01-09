@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" >
-        <h5 class="modal-title" id="exampleModalLabel">Modificar: {{producto}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Modificar</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,30 +11,25 @@
       <div class="modal-body">
           <form #formGuardar="ngForm" (ngSubmit)="updateform(formGuardar); updatestock(formGuardar)" >
           <div class="form-row" >
-            <div class="form-group col-md-5">
-              <label for="fecha">Fecha</label>
-              <input type="date" class="form-control" id="fecha" name="fecha" >
-            </div> 
             <div class="form-group col-md-3">
                 <label for="cantidad">Cantidad</label>
-                <input type="number" class="form-control" id="cantidad" name="cantidad" >
+                <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="cantidad"  >
             </div>
             <div class="form-group col-md-3">
                 <label for="pieza">Unidad</label>
-                <select name="pieza" class="form-control" placeholder="Unidad" >
-                    <option [ngValue]="pieza"  > Pieza </option>
-                    <option [ngValue]="pieza"  > Paquete </option>
+                <select name="pieza" class="form-control" placeholder="Unidad" [(ngModel)]="unidad" >
+                    <option [ngValue]="piezas"  *ngFor="let piezas of listadoPiezas | async">{{piezas.Nombre}} </option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="proveedores">Proveedor</label>
-                <select name="proveedores" class="form-control" placeholder="proveedores" >
-                    <option [ngValue]="proveedores"> Pieza </option>
+                <select name="proveedores" class="form-control" placeholder="proveedores"  [(ngModel)]="proveedores">
+                    <option [ngValue]="proveedores" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
                 </select>
             </div>    
             <div class="form-group col-md-3">
                 <label for="precio">Precio</label>
-                <input type="number" class="form-control" placeholder="$ " id="precio" name="precio" >
+                <input type="text" class="form-control" placeholder="$ " id="precio" name="precio"  [(ngModel)]="precio">
             </div>
               
           </div>
@@ -60,7 +55,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" (click)="save()">Save changes</button>
+        <button type="submit" class="btn btn-primary" (click)="click()">Save changes</button>
       </div>
       
     </div>

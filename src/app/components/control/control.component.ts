@@ -168,14 +168,14 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
     this.productos.updateProducto(value);
   }
-  onUpdateEntrada({value}: {value: ControlEntradaInterface}){
+ /* onUpdateEntrada({value}: {value: ControlEntradaInterface}){
 
     value.cantidad=this.cantprodres;
-    value.producto=this.query.Nombre;
+    value.producto=this.query.producto;
     value.inventario=this.cantprodres;
     
     //this.controlService.addCoentrada(value);
-  }
+  }*/
   public userUid: string = null;
   public isAdmin: any = null;
   getCurrentUser() {
@@ -190,8 +190,8 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     })
   }
   updatestock({value}: {value: ProductosInterface}){
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
+    value.Nombre = this.query.nombre;
+    value.idprov = this.query.nombre;
     value.cantidad = this.cantprodres;
     
     this.productos.updateProducto(value);

@@ -14,6 +14,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
 import { faDolly, faArchive, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { and } from '@angular/router/src/utils/collection';
+import { ControlService } from 'src/app/servicios/control.service';
 
 @Component({
   selector: 'app-controlsalida',
@@ -71,6 +72,7 @@ controlsalidas: ControlSalidaInterface = {
     public sucursal: SucursalService,
     public productos: ProductoService,
     private controlService: SalidasService,
+    private controleService: ControlService,
     private router: Router,
     private afs: AngularFirestore,
     public flashMensaje: FlashMessagesService
@@ -99,6 +101,25 @@ controlsalidas: ControlSalidaInterface = {
    
    
   }
+  eliminar(id: string){
+    const confirma = confirm('Esta seguro?')
+    if(confirma){
+    console.log('eliminar registro ',id)
+    this.controleService.deleteCoentrada( id );
+  }
+}
+cantidadregistrada: number;
+cantprodres: number;
+getcantidad(x : number){
+  this.invent = this.query.cantidad;
+  this.cantidadregistrada = x;
+  this.cantprodres =res(this.invent, this.cantidadregistrada);
+  function res(a:number , b:number):number{
+    
+    return a - b;
+  }
+
+}
   onChange(value){
     this.invent = this.query.cantidad;
     
@@ -153,6 +174,13 @@ controlsalidas: ControlSalidaInterface = {
         this.sucursal.updateSucursal(value);
       
     }
+  }
+  updatestock({value}: {value: ProductosInterface}){
+    value.Nombre = this.query.Nombre;
+    value.idprov = this.query.nombre;
+    value.cantidad = this.cantprodres;
+    
+    this.productos.updateProducto(value);
   }
   faDolly = faDolly;
   faArchive = faArchive;
