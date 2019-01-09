@@ -85,5 +85,8 @@ export class AuthService {
         }
       }));
     }
+    isUserAdmin(userUid) {
+      return this.afs.doc<RegistroInterface>(`Registro/${userUid}`).valueChanges();
+    }
 
 }

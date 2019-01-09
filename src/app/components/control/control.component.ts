@@ -92,6 +92,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
 
   ngOnInit(){
     this.model.tipo = 'entrada'; 
+    this.getCurrentUser();
 
     this.getAllCoentrada()
     this.dtOptions = {
@@ -175,6 +176,19 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
     //this.controlService.addCoentrada(value);
   }
+  public userUid: string = null;
+  public isAdmin: any = null;
+  getCurrentUser() {
+    this.authService.getAuth().subscribe(auth => {
+      if (auth) {
+        this.userUid = auth.email;
+        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+          this.isAdmin = Object.assign({}, userRole.admin).hasOwnProperty('admin');
+          // this.isAdmin = true;
+        })
+      }
+    })
+  }
   updatestock({value}: {value: ProductosInterface}){
     value.Nombre = this.query.Nombre;
     value.idprov = this.query.Nombre;
@@ -186,6 +200,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
   getforupdate(x : ControlEntradaInterface){
     
     console.log(x);
+    this.controlService.coentra = Object.assign({},x);
     this.controlService.update(x);
       
   }

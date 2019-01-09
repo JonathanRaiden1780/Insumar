@@ -105,8 +105,8 @@
                                             <td>{{controlService.producto}}</td>
                                             <td>$ {{controlService.Precio | number}}</td>
                                             <td>{{controlService.proveedor}}</td>
-                                            <td>
-                                                <button class="btn" style="color: white; background-color: #76b39d" data-toggle="modal" data-target="#modupdate" (click)="getforupdate(controlService)" ><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
+                                            <td >
+                                                <button class="btn" style="color: white; background-color: #76b39d" data-toggle="modal" data-target="#modupdate" (click)="getforupdate(controlService); refresh()" ><fa-icon [icon]="faEdit" class="fa-1x"></fa-icon></button>
                                                 <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                             </td>
                                         </tr>
@@ -117,5 +117,5 @@
             </div>
     </div>
 </div>
-<app-modalupdate></app-modalupdate>
+<app-modalupdate [userUid]="userUid"></app-modalupdate>
 <!-- https://www.youtube.com/watch?v=6u3UhlOaq4E -->

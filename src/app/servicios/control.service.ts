@@ -23,11 +23,11 @@ UpdateCollection: AngularFirestoreCollection<UpdateInterface>;
 UpdateDoc: AngularFirestoreDocument<UpdateInterface>;
 Updates: Observable<UpdateInterface[]>;
 Update: Observable<UpdateInterface>;
-
+ 
 
 public coentra: ControlEntradaInterface ;
-  constructor(
-    private afs: AngularFirestore) {
+
+  constructor(private afs: AngularFirestore) {
       this.CoentradasCollection = this.afs.collection('Coentradas', ref => ref);
       this.PiezaCollection = this.afs.collection('Pieza', ref => ref);
       this.UpdateCollection = this.afs.collection('Update', ref => ref);
@@ -63,7 +63,7 @@ public coentra: ControlEntradaInterface ;
       this.UpdateDoc=this.afs.doc('Update/QUERY');
       this.UpdateDoc.update(Update);
     }
-    getAllUpdate():Observable<UpdateInterface[]>{
+    getAllUpdate(){
       this.Updates = this.UpdateCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
@@ -72,8 +72,11 @@ public coentra: ControlEntradaInterface ;
           return data;
         });
       }));
-      return this.Updates;
+     // return this.Updates;
     }
+    refresh(): void {
+      window.location.reload();
+  }
     getAllCoentrada():Observable<ControlEntradaInterface[]>{
       this.Coentradas = this.CoentradasCollection.snapshotChanges()
       .pipe(map(changes => {

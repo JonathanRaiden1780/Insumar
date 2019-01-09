@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ControlService } from 'src/app/servicios/control.service';
 import { ControlEntradaInterface } from 'src/app/Models/ControlEntrada';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -30,31 +30,30 @@ export class ModalupdateComponent implements OnInit {
   ) { 
     this.upd = this.controlService.getAllUpdate();
     this.listadoControl = this.controlService.getAllCoentrada();
-    this.afs.collection('Update').doc('QUERY').valueChanges().pipe(take(1)).subscribe(res => {this.arrass(res)} );
-  }
-
-  ngOnInit() {
-    this.getAllUpdate()
-
-    console.log('s');
+    this.afs.collection('Update').doc('QUERY').valueChanges().pipe(take(1)).subscribe(res => {this.nombre(res)} );
+    this.afs.collection('Update').doc('QUERY').valueChanges().pipe(take(1)).subscribe(res => {this.numbers(res)} );
     
+  }
+  @Input() userUid: string;
+  ngOnInit() {
+    //this.getAllUpdate()
+    console.log('s');
+    //this.upd.getitem().subscribe(producto => this.list = producto as Array<string>);
   }
 
   getAllUpdate(){
     this.controlService.getAllUpdate();
   }
-  arrass(x: UpdateInterface): UpdateInterface {
-    this.idup = x;
-    console.log(this.idup);
-    this.producto = this.idup.producto;
-    this.fecha = this.idup.fecha;
-    this.cantidad = this.idup.cantidad;
-    this.unidad = this.idup.pieza;
-    this.proveedor = this.idup.proveedor;
-    this.precio = this.idup.precio;
-
-    return this.idup;
+  nombre(x: UpdateInterface): string {
+    this.producto = x.producto;
+    return this.producto;
    }
+   numbers(x: UpdateInterface): number {
+    this.cantidad = x.cantidad;
+    this.invent = x.cantidad;
+    return this.cantidad, this.invent;
+   }
+   
    save(){
      console.log(this.idup.producto);
    }
