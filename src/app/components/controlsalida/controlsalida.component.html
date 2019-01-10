@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Captura de Salidas-->
     <div class="card bg-light mt-3">
-        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar); sucursals(formGuardar)">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar)">
             <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
                 <div class="card-body" style="overflow-x:auto;"> 
                     <table class="table table-light">
@@ -22,7 +22,7 @@
                                 </td>             
                                 <td>
                                     <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" max="{{query.cantidad}}">
+                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" >
                                     </div> 
                                 </td>
                                 <td>
@@ -70,7 +70,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl2 | async "> 
@@ -79,7 +79,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl3 | async "> 
@@ -88,7 +88,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl4 | async "> 
@@ -97,7 +97,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl5 | async "> 
@@ -106,7 +106,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl6 | async "> 
@@ -115,7 +115,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl7 | async "> 
@@ -124,7 +124,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl | async "> 
@@ -133,7 +133,7 @@
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
                                     <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let controlService of listadoControl8 | async "> 
@@ -141,8 +141,8 @@
                                     <td>{{controlService.cantidad | number}}</td>
                                     <td>{{controlService.producto}}</td>
                                     <td>{{controlService.sucursal}}</td>
-                                    <td>
-                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                    <td> 
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
                             </tbody>    

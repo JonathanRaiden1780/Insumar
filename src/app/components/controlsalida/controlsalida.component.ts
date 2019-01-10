@@ -4,7 +4,6 @@ import {AuthService} from '../../servicios/auth.service';
 import {  SalidasService} from 'src/app/servicios/salidas.service';
 import { ControlSalidaInterface } from 'src/app/Models/ControlSalida';
 import{ProductoService} from '../../servicios/producto.service'
-
 import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
 import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
@@ -13,7 +12,6 @@ import { SucursalService } from 'src/app/servicios/sucursal.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
 import { faDolly, faArchive, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { and } from '@angular/router/src/utils/collection';
 import { ControlService } from 'src/app/servicios/control.service';
 
 @Component({
@@ -101,11 +99,11 @@ controlsalidas: ControlSalidaInterface = {
    
    
   }
-  eliminar(id: string){
+  eliminar(id: string, sucu: string){
     const confirma = confirm('Esta seguro?')
     if(confirma){
-    console.log('eliminar registro ',id)
-    this.controleService.deleteCoentrada( id );
+    console.log('eliminar registro ',id, sucu)
+    this.controlService.deleteCosalida( id, sucu );
   }
 }
 cantidadregistrada: number;
@@ -116,7 +114,7 @@ getcantidad(x : number){
   this.cantprodres =res(this.invent, this.cantidadregistrada);
   function res(a:number , b:number):number{
     
-    return a - b;
+    return a + b;
   }
 
 }
@@ -165,19 +163,19 @@ getcantidad(x : number){
         
     }
   }
-  sucursals({value}: {value: SucursalInterface}){
+  /*sucursals({value}: {value: SucursalInterface}){
   
     if(this.cantprod <= this.query.cantidad)
     { 
-        value.idsucu = this.controlsalidas.sucursal;
-        value.Sucursal = this.controlsalidas.sucursal;
-        this.sucursal.updateSucursal(value);
-      
+      //  value.idsucu = this.controlsalidas.sucursal;
+     //   value.Sucursal = this.controlsalidas.sucursal;
+     //   this.sucursal.updateSucursal(value);
+      // creo ya no sirve el metodo desde que se guarda en la ccoleccion de subcoleccion
     }
-  }
+  }*/
   updatestock({value}: {value: ProductosInterface}){
     value.Nombre = this.query.Nombre;
-    value.idprov = this.query.nombre;
+    value.idprov = this.query.Nombre;
     value.cantidad = this.cantprodres;
     
     this.productos.updateProducto(value);

@@ -50,8 +50,8 @@ export class SalidasService {
       this.CosalidasCollection = this.afs.collection('Cosalidas').doc(this.sucursaless).collection('salidas', ref => ref);
       
      }
-    deleteCosalida(Cosalida: ControlSalidaInterface){
-      this.CosalidasDoc = this.afs.doc('Cosalidas/${Cosalida.id}');
+     deleteCosalida(Cosalida: string, id: string){
+      this.CosalidasDoc = this.afs.doc('Cosalidas/'+id+'/salidas/' + Cosalida);
       this.CosalidasDoc.delete();
     }
      updateCosalida(Cosalida: ControlSalidaInterface){
@@ -59,9 +59,20 @@ export class SalidasService {
         this.CosalidasDoc.update(Cosalida);
       }
 
-    addCosalida(Cosalida: ControlSalidaInterface){
-      this.CosalidasCollection.doc(Cosalida.id).set(Cosalida);
-      console.log(this.sucursaless);
+    addCosalida(Cosalidaasp: ControlSalidaInterface){
+      this.afs.firestore.doc('Cosalidas/'+Cosalidaasp.id+'/salidas/'+Cosalidaasp.producto).get()
+      .then(docSnapshot => {
+        if (docSnapshot.exists == true) {
+          this.CosalidasDoc = this.afs.doc('Cosalidas/'+Cosalidaasp.id+'/salidas/'+Cosalidaasp.producto);
+          this.CosalidasDoc.update(Cosalidaasp);
+        }
+        else{
+          console.log(Cosalidaasp)
+          this.CosalidasCollection.doc(Cosalidaasp.id).set(Cosalidaasp);
+        }
+      });
+      //this.CosalidasCollection.add(Cosalida);
+     // console.log(this.sucursaless);
     }
     getOneCosalida(id: string){
       this.CosalidasDoc = this.afs.doc<ControlSalidaInterface>('Cosalidas/${id}');
@@ -126,6 +137,7 @@ export class SalidasService {
       return this.Cosalidas;
       
     };
+    
     getAllCosalidacor():Observable<ControlSalidaInterface[]>{
       this.Cosalidas = this.CosalidasCollectioncor.snapshotChanges()
       .pipe(map(changes => {
