@@ -39,12 +39,18 @@ export class ControlsalidaComponent implements OnInit {
   listadoControl6: any;
   listadoControl7: any;
   listadoControl8: any;
+  listadoControlgen: any;
   cantprod:number;
   cantprods:number;
   invent:number;
   cantprov:number;
   sucursales:string;
+  act:ProductosInterface  = {
+    idprov:'',
+    Nombre: '',
+    cantidad: 0,
   
+  }
   selecprod: inventarioInterface = {
     nombreprod: '',
     inventprod: 0
@@ -78,6 +84,7 @@ controlsalidas: ControlSalidaInterface = {
   ){
     
     this.listadoSucursal = this.sucursal.getAllSucursal();
+    this.listadoControlgen = this.controlService.getAllCosalidagen();
     this.listadoProductos = this.productos.getAllProducto();
     this.listadoControl = this.controlService.getAllCosalida();
     this.listadoControl1 = this.controlService.getAllCosalidavig();
@@ -124,7 +131,10 @@ getcantidad(x : number){
     this.cantprods =sum(this.invent, this.cantprod);
     console.log(this.query.cantidad );
     console.log(this.cantprods);
-    
+    //this.act.idprov  = this.query.Nombre;
+    console.log(this.query.idprov , this.query.Nombre)
+    this.act.Nombre  = this.query.Nombre;
+    this.act.cantidad  = this.cantprods; 
     
     function sum(a:number , b:number):number{
       
@@ -134,6 +144,10 @@ getcantidad(x : number){
   }
   
   onGuardarSalida({value}: {value: ControlSalidaInterface}){
+
+    
+    this.stock(this.act);
+
     this.controlService.llamarsu(this.sucursales);
     if(this.cantprod > this.query.cantidad)
     { 
@@ -150,18 +164,15 @@ getcantidad(x : number){
       value.sucursal = this.sucursales;
       this.controlService.addCosalida(value);
     }
+
     
   }
-  stock({value}: {value: ProductosInterface}){
+  stock( value: ProductosInterface){
   
-    if(this.cantprod <= this.query.cantidad)
-    { 
-        value.Nombre = this.query.Nombre;
-        value.idprov = this.query.Nombre;
-        value.cantidad = this.cantprods;
+    value.idprov = this.query.Nombre;
         this.productos.updateProducto(value);
         
-    }
+   
   }
   /*sucursals({value}: {value: SucursalInterface}){
   

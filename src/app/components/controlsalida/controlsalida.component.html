@@ -1,7 +1,7 @@
 <div class="container">
     <!-- Captura de Salidas-->
     <div class="card bg-light mt-3">
-        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar)">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar)">
             <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
                 <div class="card-body" style="overflow-x:auto;"> 
                     <table class="table table-light">
@@ -64,7 +64,7 @@
                             </thead>
                     
                             <tbody class="text-center table-secondary" > 
-                                <tr *ngFor="let controlService of listadoControl1 | async "> 
+                                <tr *ngFor="let controlService of listadoControlgen | async "> <!--antes listadoControl1-->
                                     <td>{{controlService.fecha}}</td>
                                     <td>{{controlService.cantidad | number}}</td>
                                     <td>{{controlService.producto}}</td>
@@ -73,7 +73,7 @@
                                         <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
-                                <tr *ngFor="let controlService of listadoControl2 | async "> 
+                      <!--      <tr *ngFor="let controlService of listadoControl2 | async "> 
                                     <td>{{controlService.fecha}}</td>
                                     <td>{{controlService.cantidad | number}}</td>
                                     <td>{{controlService.producto}}</td>
@@ -145,6 +145,7 @@
                                         <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                     </td>
                                 </tr>
+                                -->
                             </tbody>    
                         </table>
                     </div>

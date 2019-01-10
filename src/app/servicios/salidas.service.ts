@@ -15,6 +15,7 @@ import { ControlsalidaComponent } from '../components/controlsalida/controlsalid
 export class SalidasService {
   
   CosalidasCollection: AngularFirestoreCollection<ControlSalidaInterface>;
+  CosalidasCollectiongen: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectioncen: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectioncoa: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectionvig: AngularFirestoreCollection<ControlSalidaInterface>;
@@ -32,7 +33,7 @@ export class SalidasService {
     private afs: AngularFirestore
     ) {
       
-      
+      this.CosalidasCollectiongen = this.afs.collection('Cosalidas', ref => ref);  
       this.CosalidasCollectioncoa = this.afs.collection('Cosalidas').doc('Coacalco').collection('salidas', ref => ref);  
       this.CosalidasCollectioncen = this.afs.collection('Cosalidas').doc('Centenario').collection('salidas', ref => ref);
       this.CosalidasCollectionvig = this.afs.collection('Cosalidas').doc('La Viga').collection('salidas', ref => ref);
@@ -51,7 +52,7 @@ export class SalidasService {
       
      }
      deleteCosalida(Cosalida: string, id: string){
-      this.CosalidasDoc = this.afs.doc('Cosalidas/'+id+'/salidas/' + Cosalida);
+      this.CosalidasDoc = this.afs.doc('Cosalidas/'+id);
       this.CosalidasDoc.delete();
     }
      updateCosalida(Cosalida: ControlSalidaInterface){
@@ -60,6 +61,8 @@ export class SalidasService {
       }
 
     addCosalida(Cosalidaasp: ControlSalidaInterface){
+
+      this.CosalidasCollectiongen.add(Cosalidaasp);
       this.afs.firestore.doc('Cosalidas/'+Cosalidaasp.id+'/salidas/'+Cosalidaasp.producto).get()
       .then(docSnapshot => {
         if (docSnapshot.exists == true) {
@@ -71,7 +74,7 @@ export class SalidasService {
           this.CosalidasCollection.doc(Cosalidaasp.id).set(Cosalidaasp);
         }
       });
-      //this.CosalidasCollection.add(Cosalida);
+      
      // console.log(this.sucursaless);
     }
     getOneCosalida(id: string){
@@ -86,7 +89,19 @@ export class SalidasService {
         }
       }));
     }
-
+    getAllCosalidagen():Observable<ControlSalidaInterface[]>{
+      this.Cosalidas = this.CosalidasCollectiongen.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as ControlSalidaInterface;
+          data.id = action.payload.doc.id;
+          return data;
+          
+        });
+      }));
+      return this.Cosalidas;
+      
+    };
     getAllCosalida():Observable<ControlSalidaInterface[]>{
       this.Cosalidas = this.CosalidasCollectioncen.snapshotChanges()
       .pipe(map(changes => {
