@@ -6,13 +6,16 @@ import { ControlSalidaInterface } from 'src/app/Models/ControlSalida';
 import{ProductoService} from '../../servicios/producto.service'
 import {ProductosInterface} from '../../Models/Productos';
 import {Router} from '@angular/router';
-import { AngularFirestore, validateEventsArray } from 'angularfire2/firestore';
+import { AngularFirestore, validateEventsArray, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { inventarioInterface } from 'src/app/Models/inventario';
 import { SucursalService } from 'src/app/servicios/sucursal.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { SucursalInterface } from 'src/app/Models/Sucursal';
 import { faDolly, faArchive, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ControlService } from 'src/app/servicios/control.service';
+import { take, map } from 'rxjs/operators';
+import { RegistroInterface } from 'src/app/Models/registro';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-salidas-ct',
@@ -25,35 +28,19 @@ export class SalidasCTComponent implements OnInit {
   faEdit = faEdit;
 
   model: any = {};
-  query: any;
+  query: string;
+  querys: any;
   idProducto:string;
-  listadoProductos: any;
-  listadoSucursal: any;
-  listadoControl: any;
-  listadoControl1: any;
-  listadoControl2: any;
-  listadoControl3: any;
-  listadoControl4: any;
-  listadoControl5: any;
-  listadoControl6: any;
-  listadoControl7: any;
-  listadoControl8: any;
+  listado: any;
+  listadolocal: any;
+ fecha:string;
   cantprod:number;
   cantprods:number;
   invent:number;
   cantprov:number;
   sucursales:string;
   
-  selecprod: inventarioInterface = {
-    nombreprod: '',
-    inventprod: 0
-  }
-
-  Producto: ProductosInterface = {
-    
-    idprov:'',
-    cantidad: 0
-  }
+  
 controlsalidas: ControlSalidaInterface = {
     
   id:'',
@@ -63,41 +50,102 @@ controlsalidas: ControlSalidaInterface = {
   sucursal:''
   
 }
+
+public isLogin: boolean;
+public  nombreUsusario: string;
+public  emailUser: string;
+asigna:string;
  
   constructor(
     private authService: AuthService,
-    public sucursal: SucursalService,
     public productos: ProductoService,
     private controlService: SalidasService,
-    private controleService: ControlService,
+   
     private router: Router,
     private afs: AngularFirestore,
     public flashMensaje: FlashMessagesService
-
+    
   ){
     
-    this.listadoSucursal = this.sucursal.getAllSucursal();
-    this.listadoProductos = this.productos.getAllProducto();
-    this.listadoControl = this.controlService.getAllCosalida();
-    this.listadoControl1 = this.controlService.getAllCosalidavig();
-    this.listadoControl2 = this.controlService.getAllCosalidapat();
-    this.listadoControl3 = this.controlService.getAllCosalidacor();
-    this.listadoControl4 = this.controlService.getAllCosalidatln();
-    this.listadoControl5 = this.controlService.getAllCosalidatla();
-    this.listadoControl6 = this.controlService.getAllCosalidator();
-    this.listadoControl7 = this.controlService.getAllCosalidaval();
-    this.listadoControl8 = this.controlService.getAllCosalidacoa();
-    
+  
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2); 
   }
 
+rows;
+columns;
 
   ngOnInit() {
    this.model.tipo = 'salida'; 
-   
+   this.authService.getAuth().subscribe ( auth => {
+    if(auth){
+      this.isLogin=true;
+      this.nombreUsusario = auth.displayName;
+      this.emailUser=auth.email;
+      this.nombreusuaro(this.emailUser);
+      
+    }
+    else{
+      this.isLogin = false;
+    }
+  });    
+}
+sucursaless: any;
+nombreusuaro(x:string){
+  
+  this.afs.collection('Registro').doc(x).valueChanges().pipe(take(1)).subscribe(res => {this.arrass(res)} );
+  //this.AuthService.getUser(this.emailUsuario);
+  
+  
+}
+arrass(x: RegistroInterface): string {
+  this.sucursaless= x.sucursal;
+  
+  this.getData();
+  return this.sucursaless;
+}
+arrass2(x: ControlSalidaInterface): string {
+  this.querys= x;
+  
+  console.log(this.querys)
+  return this.querys;
+}
+Cosalidas: Observable<ControlSalidaInterface[]>;
+CosalidasCollectionval: AngularFirestoreCollection<ControlSalidaInterface>;
+CosalidasCollectionloc: AngularFirestoreCollection<ControlSalidaInterface>;
+  getData() {
+    this.CosalidasCollectionval = this.afs.collection('Cosalidas').doc(this.sucursaless).collection('salidas', ref => ref);
+    this.CosalidasCollectionloc = this.afs.collection('Cosalidasl').doc(this.sucursaless).collection('salidas', ref => ref);
+   this.listadolocal= this.getalllistadolocal();
+    this.listado = this.getAllCosalidagen();
    
   }
+  getAllCosalidagen():Observable<ControlSalidaInterface[]>{
+    this.Cosalidas = this.CosalidasCollectionval.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as ControlSalidaInterface;
+        data.id = action.payload.doc.id;
+        return data;
+        
+      });
+    }));
+    return this.Cosalidas;
+    
+  };
+  getalllistadolocal():Observable<ControlSalidaInterface[]>{
+    this.Cosalidas = this.CosalidasCollectionloc.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as ControlSalidaInterface;
+        data.id = action.payload.doc.id;
+        return data;
+        
+      });
+    }));
+    return this.Cosalidas;
+    
+  };
   eliminar(id: string, sucu: string){
     const confirma = confirm('Esta seguro?')
     if(confirma){
@@ -105,10 +153,11 @@ controlsalidas: ControlSalidaInterface = {
     this.controlService.deleteCosalida( id, sucu );
   }
 }
+act:any;
 cantidadregistrada: number;
 cantprodres: number;
 getcantidad(x : number){
-  this.invent = this.query.cantidad;
+ // this.invent = this.query.cantidad;
   this.cantidadregistrada = x;
   this.cantprodres =res(this.invent, this.cantidadregistrada);
   function res(a:number , b:number):number{
@@ -118,11 +167,15 @@ getcantidad(x : number){
 
 }
   onChange(value){
-    this.invent = this.query.cantidad;
-    
-    this.cantprods =sum(this.invent, this.cantprod);
-    console.log(this.query.cantidad );
+    console.log(this.query );
+    console.log(this.sucursaless);
+   this.afs.collection('Cosalidas').doc(this.sucursaless).collection('salidas').doc(this.query).valueChanges().pipe(take(1)).subscribe(res => {this.arrass2(res)}  );
+   this.invent = this.querys.cantidad;
+   this.cantprods =sum(this.invent, this.cantprod);
+    console.log(this.querys );
     console.log(this.cantprods);
+    this.act.Nombre  = this.query;
+    this.act.cantidad  = this.cantprods; 
     
     
     function sum(a:number , b:number):number{
@@ -133,8 +186,9 @@ getcantidad(x : number){
   }
   
   onGuardarSalida({value}: {value: ControlSalidaInterface}){
-    this.controlService.llamarsu(this.sucursales);
-    if(this.cantprod > this.query.cantidad)
+    
+    this.controlService.llamarsu(this.sucursaless);
+    if(this.cantprod > this.querys.cantidad)
     { 
       this.flashMensaje.show('No hay suficiente producto',{
       cssClass: 'alert-danger', timeout: 4000});
@@ -144,41 +198,18 @@ getcantidad(x : number){
       this.flashMensaje.show('Salida registrada exitosamente',{
         cssClass: 'alert-success', timeout: 4000});
       value.cantidad=this.cantprod;
-      value.producto=this.query.Nombre;
-      value.id = this.query.Nombre;
-      value.sucursal = this.sucursales;
-      this.controlService.addCosalida(value);
-    }
-    
-  }
-  stock({value}: {value: ProductosInterface}){
-  
-    if(this.cantprod <= this.query.cantidad)
-    { 
-        value.Nombre = this.query.Nombre;
-        value.idprov = this.query.Nombre;
-        value.cantidad = this.cantprods;
-        this.productos.updateProducto(value);
-        
-    }
-  }
-  sucursals({value}: {value: SucursalInterface}){
-  
-    if(this.cantprod <= this.query.cantidad)
-    { 
-        value.idsucu = this.controlsalidas.sucursal;
-        value.Sucursal = this.controlsalidas.sucursal;
-        this.sucursal.updateSucursal(value);
+      value.producto=this.query;
+      value.id = this.sucursaless;
       
+      console.log(value)
+      this.controlService.addcosalidalocal(value);
+      this.controlService.updateCosalida(value);
     }
-  }
-  updatestock({value}: {value: ProductosInterface}){
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
-    value.cantidad = this.cantprodres;
     
-    this.productos.updateProducto(value);
   }
+ 
+ 
   faDolly = faDolly;
   faArchive = faArchive;
 }
+

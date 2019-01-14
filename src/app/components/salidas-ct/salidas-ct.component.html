@@ -1,154 +1,83 @@
 <div class="container">
-  <!-- Captura de Salidas-->
-  <div class="card bg-light mt-3">
-      <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar); stock(formGuardar); sucursals(formGuardar)">
-          <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
-              <div class="card-body" style="overflow-x:auto;"> 
-                  <table class="table table-light">
-                      <thead>
-                          <tr class="table-primary text-center">
-                              <th scope="col" >Fecha</th>
-                              <th scope="col">Cantidad</th>
-                              <th scope="col" >Producto</th>
-                              <th scope="col">Sucursal</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr class="table-active">   
-                              <td>
-                                  <div class="form-group">
-                                      <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlsalidas.fecha" #fecha="ngModel">        
-                                  </div>     
-                              </td>             
-                              <td>
-                                  <div class="form-group">
-                                      <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" >
-                                  </div> 
-                              </td>
-                              <td>
-                                   <div class="form-group" >   
-                                      <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" >
-                                          <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
-                                      </select>
-                                  </div>  
-                              </td>
-                              <td>
-                                  <div class="form-group" >
-                                      <select name="sucursal" class="form-control" placeholder="sucursal" [(ngModel)]="sucursales" #proveedor="ngModel" >
-                                          <option [ngValue]="sucursal.Sucursal" *ngFor="let sucursal of listadoSucursal | async">{{sucursal.Sucursal}}</option>
-                                      </select>
-                                  </div>  
-                              </td>
-                           </tr>
-                      </tbody>
-                  </table> 
-              </div>
-          <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Registrar</strong></h3></button></div>
-      </form>
+    <!-- Captura de Salidas-->
+    <div class="card bg-light mt-3">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar)">
+            <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
+                <div class="card-body" style="overflow-x:auto;"> 
+                    <table class="table table-light">
+                        <thead>
+                            <tr class="table-primary text-center">
+                                <th scope="col" >Fecha</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col" >Producto</th>
+                                <th scope="col">Asignado a</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active">   
+                                <td>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlsalidas.fecha" #fecha="ngModel">        
+                                    </div>     
+                                </td>             
+                                <td>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" min="0" >
+                                    </div> 
+                                </td>
+                                <td>
+                                     <div class="form-group" >   
+                                        <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" >
+                                            <option [ngValue]="controlsalidas.producto"  *ngFor="let controlsalidas of listado | async">{{controlsalidas.producto }}  </option>
+                                        </select>
+                                    </div>  
+                                </td>
+                                <td>
+                                      <div class="form-group">
+                                              <input type="text" class="form-control" placeholder="Juan Perez" id="asignas" name="Asignado" [(ngModel)]="asigna" #asignas="ngModel" min="0" >
+                                          </div> 
+                                    
+                                </td>
+                             </tr>
+                        </tbody>
+                    </table> 
+                </div>
+            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" (click)="onChange($event.target.value)" value="Guardar" ><h3><strong>Registrar</strong></h3></button></div>
+        </form>
+    </div>
+     <!-- Mostrar registro de Salidas-->       
+    <div class="card bg-light mt-3">
+        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Registros</strong></h1></div>
+            <div class="card-body">
+                <form  >
+                    <div style="overflow-x:auto;"> 
+                        <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
+                            <thead class="table-warning text-center">
+                                <tr ng-repeat="controlService in $data">
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Asignado a</th>
+                                    <th scope="col">Eliminar</th>
+                                </tr>
+                            </thead>
+                    
+                            <tbody class="text-center table-secondary" > 
+                                <tr *ngFor="let controlService of listadolocal | async "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.Asignado}}</td>
+                                    <td>
+                                        <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                    </td>
+                                </tr>
+                                
+                            </tbody>    
+                        </table>
+                    </div>
+                </form>
+            </div>
+    </div>
   </div>
-   <!-- Mostrar registro de Salidas-->       
-  <div class="card bg-light mt-3">
-      <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Registros</strong></h1></div>
-          <div class="card-body">
-              <form #form2Guardar="ngForm" (ngSubmit)="  updatestock(formGuardar) ">
-                  <div style="overflow-x:auto;"> 
-                      <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-                          <thead class="table-warning text-center">
-                              <tr ng-repeat="controlService in $data">
-                                  <th scope="col">Fecha</th>
-                                  <th scope="col">Cantidad</th>
-                                  <th scope="col">Producto</th>
-                                  <th scope="col">Sucursal</th>
-                                  <th scope="col">Eliminar</th>
-                              </tr>
-                          </thead>
-                  
-                          <tbody class="text-center table-secondary" > 
-                              <tr *ngFor="let controlService of listadoControl1 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl2 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl3 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl4 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl5 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl6 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl7 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td>
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                              <tr *ngFor="let controlService of listadoControl8 | async "> 
-                                  <td>{{controlService.fecha}}</td>
-                                  <td>{{controlService.cantidad | number}}</td>
-                                  <td>{{controlService.producto}}</td>
-                                  <td>{{controlService.sucursal}}</td>
-                                  <td> 
-                                      <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                  </td>
-                              </tr>
-                          </tbody>    
-                      </table>
-                  </div>
-              </form>
-          </div>
-  </div>
-</div>
+  

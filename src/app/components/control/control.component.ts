@@ -13,6 +13,7 @@ import { faDolly, faArchive, faEdit, faTimes } from '@fortawesome/free-solid-svg
 import { NgForm } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-control',
@@ -88,7 +89,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     
     
   }
-
+  nombre:string;
 
   ngOnInit(){
     this.model.tipo = 'entrada'; 
@@ -111,11 +112,12 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
 
   }
 
-  eliminar(id: string){
+  eliminar(id: string, x:string){
     const confirma = confirm('Esta seguro?')
+    this.nombre = x;
     if(confirma){
-    console.log('eliminar registro ',id)
-    this.controlService.deleteCoentrada( id );
+    console.log('eliminar registro ',id , x)
+   this.controlService.deleteCoentrada( id );
   }
 }
 
@@ -160,22 +162,9 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     value.inventario=this.cantprods;
     value.pieza = this.piezasu;
     this.controlService.addCoentrada(value);
+    this.stock(value);
   }
-  stock({value}: {value: ProductosInterface}){
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
-    value.cantidad = this.cantprods;
-    
-    this.productos.updateProducto(value);
-  }
- /* onUpdateEntrada({value}: {value: ControlEntradaInterface}){
-
-    value.cantidad=this.cantprodres;
-    value.producto=this.query.producto;
-    value.inventario=this.cantprodres;
-    
-    //this.controlService.addCoentrada(value);
-  }*/
+ 
   public userUid: string = null;
   public isAdmin: any = null;
   getCurrentUser() {
@@ -189,11 +178,18 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
       }
     })
   }
-  updatestock({value}: {value: ProductosInterface}){
-    value.Nombre = this.query.nombre;
-    value.idprov = this.query.nombre;
+  updatestock(value: ProductosInterface){
+    value.Nombre = this.nombre;
+    value.idprov = this.nombre;
     value.cantidad = this.cantprodres;
-    
+    value.inventario = this.cantprodres;
+    this.productos.updateProducto(value);
+  }
+  stock(value: ProductosInterface){
+    value.Nombre = this.query.Nombre;
+    value.idprov = this.query.Nombre;
+    value.cantidad = this.cantprods;
+    value.inventario = this.cantprods;
     this.productos.updateProducto(value);
   }
   idup:string;
@@ -204,8 +200,8 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit{
     this.controlService.update(x);
       
   }
-  getcantidad(x : number){
-    this.invent = this.query.cantidad;
+  getcantidad(x : number, y:number){ 
+    this.invent = y;
     this.cantidadregistrada = x;
     this.cantprodres =res(this.invent, this.cantidadregistrada);
     function res(a:number , b:number):number{

@@ -106,8 +106,11 @@ controlsalidas: ControlSalidaInterface = {
    
    
   }
-  eliminar(id: string, sucu: string){
+  nombre:string;
+
+  eliminar(id: string, sucu: string, x:string){
     const confirma = confirm('Esta seguro?')
+    this.nombre=x;
     if(confirma){
     console.log('eliminar registro ',id, sucu)
     this.controlService.deleteCosalida( id, sucu );
@@ -115,8 +118,8 @@ controlsalidas: ControlSalidaInterface = {
 }
 cantidadregistrada: number;
 cantprodres: number;
-getcantidad(x : number){
-  this.invent = this.query.cantidad;
+getcantidad(x : number, y:number){
+  this.invent = y;
   this.cantidadregistrada = x;
   this.cantprodres =res(this.invent, this.cantidadregistrada);
   function res(a:number , b:number):number{
@@ -134,7 +137,9 @@ getcantidad(x : number){
     //this.act.idprov  = this.query.Nombre;
     console.log(this.query.idprov , this.query.Nombre)
     this.act.Nombre  = this.query.Nombre;
-    this.act.cantidad  = this.cantprods; 
+    this.act.idprov  = this.query.Nombre;
+    this.act.cantidad  = this.cantprods;
+    this.act.inventario  = this.cantprods; 
     
     function sum(a:number , b:number):number{
       
@@ -162,15 +167,16 @@ getcantidad(x : number){
       value.producto=this.query.Nombre;
       value.id = this.query.Nombre;
       value.sucursal = this.sucursales;
+      value.inventario = this.cantprods;
       this.controlService.addCosalida(value);
+      //this.controlService.addcosalidalocal(value);
     }
 
     
   }
   stock( value: ProductosInterface){
   
-    value.idprov = this.query.Nombre;
-        this.productos.updateProducto(value);
+    this.productos.updateProducto(value);
         
    
   }
@@ -184,11 +190,10 @@ getcantidad(x : number){
       // creo ya no sirve el metodo desde que se guarda en la ccoleccion de subcoleccion
     }
   }*/
-  updatestock({value}: {value: ProductosInterface}){
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
+  updatestock( value: ProductosInterface){
+    value.idprov = this.nombre
     value.cantidad = this.cantprodres;
-    
+    value.inventario = this.cantprodres;
     this.productos.updateProducto(value);
   }
   faDolly = faDolly;

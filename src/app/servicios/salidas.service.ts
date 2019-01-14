@@ -13,7 +13,7 @@ import { ControlsalidaComponent } from '../components/controlsalida/controlsalid
   
 }) 
 export class SalidasService {
-  
+  CosalidasCollectionl: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollection: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectiongen: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectioncen: AngularFirestoreCollection<ControlSalidaInterface>;
@@ -26,6 +26,7 @@ export class SalidasService {
   CosalidasCollectiontor: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasCollectionval: AngularFirestoreCollection<ControlSalidaInterface>;
   CosalidasDoc: AngularFirestoreDocument<ControlSalidaInterface>;
+  CosalidasDoc2: AngularFirestoreDocument<ControlSalidaInterface>;
   Cosalidas: Observable<ControlSalidaInterface[]>;
   Cosalida: Observable<ControlSalidaInterface>;
   sucursaless:string;
@@ -49,14 +50,16 @@ export class SalidasService {
        this.sucursaless = x;
       console.log(this.sucursaless)
       this.CosalidasCollection = this.afs.collection('Cosalidas').doc(this.sucursaless).collection('salidas', ref => ref);
-      
+      this.CosalidasCollectionl = this.afs.collection('Cosalidasl').doc(this.sucursaless).collection('salidas', ref => ref);
      }
      deleteCosalida(Cosalida: string, id: string){
       this.CosalidasDoc = this.afs.doc('Cosalidas/'+id);
       this.CosalidasDoc.delete();
+      this.CosalidasDoc2 = this.afs.doc('Cosalidas/'+Cosalida);
+      this.CosalidasDoc2.delete();
     }
      updateCosalida(Cosalida: ControlSalidaInterface){
-        this.CosalidasDoc=this.afs.doc('Cosalidas/${Cosalida.id}');
+        this.CosalidasDoc=this.afs.doc('Cosalidas/'+Cosalida.id+'/salidas/'+Cosalida.producto);
         this.CosalidasDoc.update(Cosalida);
       }
 
@@ -77,6 +80,10 @@ export class SalidasService {
       
      // console.log(this.sucursaless);
     }
+    addcosalidalocal(Cosalidaasp: ControlSalidaInterface){
+      this.CosalidasCollectionl.add(Cosalidaasp);
+    }
+    
     getOneCosalida(id: string){
       this.CosalidasDoc = this.afs.doc<ControlSalidaInterface>('Cosalidas/${id}');
       this.Cosalida = this.CosalidasDoc.snapshotChanges().pipe(map(action =>{
@@ -219,4 +226,5 @@ export class SalidasService {
       
     };
   }
+
 

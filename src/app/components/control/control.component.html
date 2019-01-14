@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <!-- Captura de entradas-->
     <div class="card bg-light">
-        <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar); stock(formGuardar)">
+        <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
             <div class="card-header form-inline text-white" style="background-color: #279b37"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
                 <div class="card-body" style="overflow-x:auto;"> 
                     <table class="table table-light ">
@@ -74,7 +74,7 @@
                     <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
                             Rerender
                           </button>
-                          <form #form2Guardar="ngForm" (ngSubmit)="  updatestock(formGuardar) ">
+                          <form >
                     <div style="overflow-x:auto;"> 
                             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
                                     <thead class="text-white bg-warning">
@@ -97,7 +97,7 @@
                                             <td>$ {{controlService.Precio | number}}</td>
                                             <td>{{controlService.proveedor}}</td>
                                             <td >
-                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.producto); getcantidad(controlService.cantidad, controlService.inventario); updatestock(controlService)"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
                                             </td>
                                         </tr>
                                     </tbody>
