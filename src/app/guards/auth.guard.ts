@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private afAuth: AngularFireAuth,
     private authService: AuthService
-  ){}
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -22,9 +22,9 @@ export class AuthGuard implements CanActivate {
     .pipe(take(1))
     .pipe(map(authState => !! authState))
     .pipe(tap( authenticated => {
-      if (!authenticated){
+      if (!authenticated) {
         this.router.navigate(['/login']);
       }
-    }))
+    }));
   }
 }

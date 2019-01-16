@@ -3,122 +3,131 @@
     <!--Bienvenida-->
     <div class="card-header col-md-3 mt-3 text-white form-inline" style="background-color: #2a206f"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h3><strong>- Administración:</strong></h3></div>
     <!--Ultimos Movimientos-->
-
-<div class="card mt-3 mr-3 ml-3">
-    <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Ultimos Movimientos</strong></h2></div>
-    <div class="card  mt-3 mb-3 ml-3 mr-3">
-            <div class="card-header text-center text-white" style="background-color: #279b37"><h4>Ultimos Ingresos</h4></div>
-                <div class="card-body">
-                        <ngx-datatable
-                        class="dark"
-                        [headerHeight]="35"
-                        [columnMode]="'force'"
-                        [rowHeight]="'auto'"
-                        [footerHeight]="30"
-                        [count]="true"
-                        [limit]="3"
-                        [rows]="rows1"
-                        >
-                        <ngx-datatable-column name="fecha">
-                        <ng-template ngx-datatable-cell-template let-value="value">
-                            {{value}}
-                        </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="cantidad">
-                        <ng-template ngx-datatable-cell-template let-value="value">
-                            {{value}}
-                        </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="inventario">
-                          <ng-template ngx-datatable-cell-template let-value="value">
-                            {{value}}
-                          </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="producto">
-                          <ng-template ngx-datatable-cell-template let-value="value">
-                            {{value}}
-                          </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="proveedor">
-                          <ng-template ngx-datatable-cell-template let-value="value">
-                            {{value}}
-                          </ng-template>
-                        </ngx-datatable-column>
-                        </ngx-datatable>
-                </div>
-        </div>
-    <div class="card mt-3 mb-3 ml-3 mr-3">
-        <div class="card-header text-center text-white" style="background-color: #f5564e"><h4>Ultimas salidas</h4></div>
+    <div class="card text-center mt-3 mb-1 ml-3 mr-3">
+            <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Ultimos Movimientos</strong></h2></div>
             <div class="card-body">
-                    <ngx-datatable
-                    class="dark"
-                    [headerHeight]="35"
-                    [columnMode]="'force'"
-                    [rowHeight]="'auto'"
-                    [footerHeight]="30"
-                    [count]="true"
-                    [limit]="3"
-                    [rows]="rows2"
-                    >
-                    <ngx-datatable-column name="fecha">
-                    <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
-                    </ng-template>
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="cantidad">
-                    <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
-                    </ng-template>
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="producto">
-                      <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
-                      </ng-template>
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="sucursal">
-                      <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
-                      </ng-template>
-                    </ngx-datatable-column>
-                    <ngx-datatable-column name="inventario">
-                      <ng-template ngx-datatable-cell-template let-value="value">
-                        {{value}}
-                      </ng-template>
-                    </ngx-datatable-column>
-                    </ngx-datatable>
+                <div class="row">
+                    <div class="col">     <!--Ultimos Ingresos-->
+                        <div class="card mt-1 mb-1">
+                                            <div class="card-header text-center text-white" style="background-color: #279b37"><fa-icon [icon]="faIngresa" class="fa-1x"></fa-icon><h4>Ingresos</h4></div>
+                                                <div class="text-center">
+                                                    <ngx-datatable
+                                                        class="material"
+                                                        [headerHeight]="35"
+                                                        [columnMode]="'force'"
+                                                        [rowHeight]="'auto'"
+                                                        [footerHeight]="30"
+                                                        [count]="false"
+                                                        [limit]="3"
+                                                        [rows]="rows1"
+                                                        >
+                                                        <ngx-datatable-column name="fecha">
+                                                            <ng-template ngx-datatable-cell-template let-value="value">
+                                                                {{value | date: 'dd-MM-yy' }}
+                                                            </ng-template>
+                                                        </ngx-datatable-column>
+                                                        <ngx-datatable-column name="cantidad">
+                                                        <ng-template ngx-datatable-cell-template let-value="value">
+                                                            {{value}}
+                                                        </ng-template>
+                                                        </ngx-datatable-column>
+                                                        <ngx-datatable-column name="producto">
+                                                          <ng-template ngx-datatable-cell-template let-value="value">
+                                                            {{value}}
+                                                          </ng-template>
+                                                        </ngx-datatable-column>
+                                                        <ngx-datatable-column name="inventario">
+                                                            <ng-template ngx-datatable-cell-template let-value="value">
+                                                                {{value}}
+                                                            </ng-template>
+                                                        </ngx-datatable-column>
+                                                    </ngx-datatable>
+                                                </div>
+                        </div>
+                    </div>
+                    <div class="col">     <!--Ultimas Salidas-->
+                        <div class="card mt-1 mb-1">
+                                    <div class="card-header text-white" style="background-color: #f5564e"><fa-icon [icon]="faAsignaciones" class="fa-1x"></fa-icon><h4>Asignaciones</h4></div>
+                                        <div class="">
+                                        <ngx-datatable
+                                            class="material"
+                                            [headerHeight]="35"
+                                            [columnMode]="'force'"
+                                            [rowHeight]="'auto'"
+                                            [footerHeight]="30"
+                                            [count]="true"
+                                            [limit]="3"
+                                            [rows]="rows2"
+                                            >
+                                            <ngx-datatable-column name="fecha">
+                                                <ng-template ngx-datatable-cell-template let-value="value">
+                                                    {{value | date: 'dd-MM-yy' }}
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="cantidad">
+                                                <ng-template ngx-datatable-cell-template let-value="value">
+                                                    {{value}}
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="producto">
+                                                <ng-template ngx-datatable-cell-template let-value="value">
+                                                    {{value}}
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                            <ngx-datatable-column name="sucursal">
+                                                <ng-template ngx-datatable-cell-template let-value="value">
+                                                    {{value}}
+                                                </ng-template>
+                                            </ngx-datatable-column>
+                                        </ngx-datatable>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        <div class="card-footer text-right">
+            <button type="button" class="btn btn-outline-primary" [routerLink]="['/inventADMIN']" routerLinkActive="router-link-active"><fa-icon [icon]="faAsignaciones"></fa-icon> Inventarios</button>
         </div>
-    <div class="card-footer text-muted text-right">Ultima Actualizacion</div>
-</div>
+    </div>
     <!-- Resumen-->
 <div class="card mt-3 mr-3 ml-3 mb-3">
-    <div class="card-header text-center text-white" style="background-color: #ff6a00"><h2><strong>Sin stock</strong></h2></div>
-        <div class="row">
-                        <div class="card-body">
-                                <ngx-datatable
-                                class="dark"
-                                [headerHeight]="35"
-                                [columnMode]="'force'"
-                                [rowHeight]="'auto'"
-                                [footerHeight]="30"
-                                [count]="true"
-                                [limit]="5"
-                                [rows]="rows3"
-                                >
-                                <ngx-datatable-column name="Idprov">
-                                <ng-template ngx-datatable-cell-template let-value="value">
-                                    {{value}}
-                                </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="inventario">
-                                <ng-template ngx-datatable-cell-template let-value="value">
-                                    {{value}}
-                                </ng-template>
-                                </ngx-datatable-column>
-                                </ngx-datatable>
-                        </div>
-                </div>
-    <div class="card-footer text-muted text-right">Ultima Actualizacion</div>
+    <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Requisiciones</strong></h2></div>
+    <ngx-datatable
+    class="material"
+    [headerHeight]="35"
+    [columnMode]="'force'"
+    [rowHeight]="'auto'"
+    [footerHeight]="30"
+    [count]="true"
+    [limit]="5"
+    [rows]="rows3"
+    >
+    <ngx-datatable-column name="Idprov">
+    <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+    </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="inventario">
+    <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+    </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="requisicion">
+        <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="sucursal">
+        <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="status">
+        <ng-template ngx-datatable-cell-template let-value="value">
+            {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    </ngx-datatable>
 </div>
 
 

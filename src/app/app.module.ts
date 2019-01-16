@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
+// tslint:disable-next-line:max-line-length
 import { MatFormFieldModule, MatIconModule, MatNativeDateModule, MatCheckboxModule, MatRadioModule, MatOptionModule, MatSelectModule } from '@angular/material';
 
 import { DataTablesModule } from 'angular-datatables';
@@ -28,7 +29,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 
 
-import { environment} from '../environments/environment'
+import { environment} from '../environments/environment';
 import { AuthGuard } from './guards/auth.guard';
 import { CommonModule } from '@angular/common';
 
@@ -59,6 +60,8 @@ import { PedidosComponent } from './components/pedidos/pedidos.component';
 import { AsignComponent } from './components/asign/asign.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ModalupdateComponent } from './components/modal/modalupdate/modalupdate.component';
+
+import { LOCALE_ID } from '@angular/core';
 
 
 @NgModule({
@@ -105,15 +108,26 @@ import { ModalupdateComponent } from './components/modal/modalupdate/modalupdate
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     DataTablesModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AuthService, AuthGuard, FlashMessagesService, ProductoService, 
-    ProveedorService, SucursalService, ControlService, SalidasService],
+
+  providers: [
+    AuthService,
+    AuthGuard,
+    FlashMessagesService,
+    ProductoService,
+    ProveedorService,
+    SucursalService,
+    ControlService,
+    SalidasService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule, {
+  providers: [{provide: LOCALE_ID, useValue: 'es-MX' }]
+});

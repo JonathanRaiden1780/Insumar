@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren } from '@angular/core';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SalidasService } from 'src/app/servicios/salidas.service';
 import { ControlService } from 'src/app/servicios/control.service';
-import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
+import { faTruckLoading, faBoxOpen, faBoxes, faInbox, faBox } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -17,6 +17,9 @@ import { DataTableDirective } from 'angular-datatables';
 export class HomePageComponent implements OnInit {
 
   faTruckLoading = faTruckLoading;
+  faAsignaciones = faBoxes;
+  faIngresa = faInbox;
+  faBox = faBox;
 
   rows1: any;
   rows2: any;

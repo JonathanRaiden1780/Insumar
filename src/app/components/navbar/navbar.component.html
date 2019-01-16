@@ -9,12 +9,16 @@
   <!-- Pagina Principal -->
     <ul class="navbar-nav mr-auto">
         <li class="navbar-nav nav-item" *ngIf="isLogin">
+            <a class="nav-link" [routerLink]="['/homeADMIN']" routerLinkActive="router-link-active" >
+                <fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon>
+                <strong> Administración</strong>
+            </a>
           </li>
           <!-- Administrador -->
           <li class="nav-item dropdown" *ngIf="isLogin">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon>
-              <strong> Administración</strong>
+              <fa-icon [icon]="faToolbox" class="fa-2x"></fa-icon>
+              <strong> Herramientas</strong>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" routerLinkActive="active-link" routerLink="/home">
@@ -76,10 +80,9 @@
         </a>
         </li>
         <li class="navbar-nav nav-item" *ngIf="isLogin">
-          <h3 class="text-white">Bienvenid@: {{nomUsuario}} </h3>
           <a class="nav-link" href="#" (click)="onClickLogout()">
             <fa-icon [icon]="faSignOutAlt" class="fa-2x"></fa-icon>
-            <strong> Salir</strong>
+            <strong> {{nomUsuario}} </strong>
           </a>
         </li>
     </ul>

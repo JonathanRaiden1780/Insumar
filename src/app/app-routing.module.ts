@@ -26,8 +26,8 @@ import { ModalupdateComponent } from './components/modal/modalupdate/modalupdate
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomePageComponent, canActivate: [AuthGuard] },
-  {path: 'start', component: StartComponent, canActivate: [AuthGuard]},  
+  {path: 'homeADMIN', component: HomePageComponent, canActivate: [AuthGuard] },
+  {path: 'start', component: StartComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
   {path: 'entradas', component: ControlComponent, canActivate: [AuthGuard]},
@@ -40,11 +40,11 @@ const routes: Routes = [
   {path: 'pedidosCT', component: PedidosCTComponent, canActivate: [AuthGuard]},
   {path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard]},
   {path: 'inventADMIN', component: AsignComponent, canActivate: [AuthGuard]},
-  {path: 'registro', component: RegistroComponent, canActivate: [AuthGuard]},
+  {path: 'registro', component: RegistroComponent},
   {path: 'modal', component: ModalupdateComponent, canActivate: [AuthGuard]},
   {path: '**', component: Page404Component},
 ];
- 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
