@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChildren} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
-import { Subject } from 'rxjs';
-import { DataTableDirective } from 'angular-datatables';
-import { ProductoService } from '../../servicios/producto.service'
-import { faBoxes } from '@fortawesome/free-solid-svg-icons';
+import { AngularFirestore } from 'angularfire2/firestore';
+
+import { faDolly } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { RegistroInterface } from 'src/app/Models/registro';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-asign',
@@ -11,36 +13,61 @@ import { faBoxes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./asign.component.css']
 })
 export class AsignComponent implements OnInit {
-
-  faBoxes = faBoxes;
-
-  listadoProductos: any;
-
-  @ViewChildren(DataTableDirective)
-  dtElements: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  getall = [];
-
-  constructor(public productos: ProductoService) { 
-    this.listadoProductos = this.productos.getAllProducto();
+  constructor(
+    private afs: AngularFirestore,
+    public authService: AuthService
+    ) {
   }
 
-  ngOnInit(){
-    this.getAllProducto()
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 2,
-      processing: true,
-      scrollY: "100px",
-      paging: true,
-      search: true,
-      scrollCollapse: true
-    };
+  faDolly = faDolly;
+  rows: any;
+  columns: any;
+
+  public isLogin: boolean;
+  public  nombreUsusario: string;
+  public  emailUser: string;
+  sucursals: any;
+
+  getSucursal( sucursal: string ) {
+
+  }
+  getSucursal2( sucursal2: string ) {
+
   }
 
-  getAllProducto() {
-    this.productos.getAllProducto();
+  getData() {
+    this.afs.collection('Productos').valueChanges().subscribe((Productos) => {
+      this.rows = Productos;
+    });
   }
-  
+
+  ngOnInit() {
+
+    this.authService.getAuth().subscribe ( auth => {
+      if (auth) {
+        this.isLogin = true;
+        this.nombreUsusario = auth.displayName;
+        this.emailUser = auth.email;
+        this.nombreusuaro(this.emailUser);
+
+      } else {
+        this.isLogin = false;
+      }
+    });
+  }
+  nombreusuaro(x: string) {
+
+    this.afs.collection('Registro').doc(x).valueChanges().pipe(take(1)).subscribe(res => {this.arrass(res); } );
+    // this.AuthService.getUser(this.emailUsuario);
+
+
+  }
+  arrass(x: RegistroInterface): string {
+    this.sucursals = x.sucursal;
+    this.getData();
+    console.log(this.sucursals);
+    return this.sucursals;
+  }
+
+
 }

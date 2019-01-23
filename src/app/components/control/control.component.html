@@ -1,111 +1,158 @@
-<div class="container mt-3">
-    <!-- Captura de entradas-->
-    <div class="card bg-light">
-        <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
-            <div class="card-header form-inline text-white" style="background-color: #279b37"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Entradas</strong></h1></div>
-                <div class="card-body" style="overflow-x:auto;"> 
-                    <table class="table table-light ">
-                        <thead>
-                            <tr class="table-primary text-center">
-                                <th scope="col"><strong>Fecha</strong></th>
-                                <th scope="col"><strong>Cantidad</strong></th>
-                                <th scope="col"><strong>Unidad</strong></th>
-                                <th scope="col"><strong>Producto</strong></th>
-                                <th scope="col"><strong>Precio</strong></th>
-                                <th scope="col"><strong>Proveedor</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-active">   
-                                <td>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel" >        
-                                    </div>     
-                                </td>             
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" >
-                                    </div> 
-                                </td>
-                                <td>
-                                    <div class="form-group" >
-                                        <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="piezasu" #piezas="ngModel"  >
-                                            <option [ngValue]="piezas.Nombre"  *ngFor="let piezas of listadoPiezas | async">{{piezas.Nombre}} </option>
-                                        </select>
-                                    </div>  
-                                </td>
-                                <td>
-                                    <div class="form-group" >   
-                                        <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" >
-                                            <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
-                                        </select>
-                                    </div>  
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="$" id="Precio" name="Precio" [(ngModel)]="controlentradas.precio" #precio="ngModel" >
-                                    </div> 
-                                </td>
-                                <td>
-                                    <div class="form-group" >
-                                        <select name="proveedor" class="form-control" placeholder="Proveedor" [(ngModel)]="controlentradas.proveedor" #proveedor="ngModel" >
-                                            <option [ngValue]="proveedores.Nombre" *ngFor="let proveedores of listadoProveedores | async" >{{proveedores.Nombre}}</option>
-                                        </select>
-                                    </div>  
-                                </td> 
-                            </tr>
-                        </tbody>
-                    </table> 
-                </div>
-                <button type="submit" class="btn btn-warning btn-block" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Ingresar</strong></h3></button>
-            <div class="card-footer">
-            <div class="btn-group mt-2" role="group" aria-label="Botones de cambios a inventario">
-                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/alimentador']" routerLinkActive="router-link-active" >Modificar/Agregar registros a inventario</button>
-                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/reportes']" routerLinkActive="router-link-active" >Ir a reportes</button>
-                <button type="" class="btn text-white mr-2" style="background-color: #279b37;" [routerLink]="['/inventADMIN']" routerLinkActive="router-link-active" >Inventario</button>
-            </div>
-            </div>
-        </form>
+<div class="row">
+<!-- Captura de entradas-->
+    <div class="col-sm-7">
+        <div class="card">
+            <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
+                    <div class="card-header form-inline text-white" style="background-color: #1a3263"><h1><strong>Ingresar Suministros</strong></h1><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon></div>
+                        <div class="card-body" style="overflow-x:auto;"> 
+                            <table class="table table-light ">
+                                <thead>
+                                    <tr class="table text-center">
+                                        <th scope="col" style="background-color: #e8e2db"><strong>Fecha Captura</strong></th>
+                                        <th scope="col" style="background-color: #f5564e"><strong>ID Factura</strong></th>
+                                        <th scope="col" style="background-color: #fab95b"><strong>Cantidad</strong></th>
+                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Codigo</strong></th>
+                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Unidad</strong></th>
+                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Producto</strong></th>
+                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Agregar/Quitar</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table">   
+                                        <td>
+                                            <div class="form-group"><!-- Poner la fecha de sistema - no puede capturar una fecha diferente ya que es solo fecha de captura-->
+                                                <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel" >        
+                                            </div>     
+                                        </td>
+    <!-- #Factura - en vez de proveedor para poder filtrar por factura los ingresos a sistema y a donde se asignaron los insumos-->             
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="string" class="form-control" placeholder="PET0001" id="IdFactura" name="IdFactura">
+                                            </div> 
+                                        </td>
+    <!-- Cantidad de Producto -->
+                                        <td> 
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" >
+                                            </div> 
+                                        </td>
+    <!-- Codigo - PK para los productos- habilitar para que al ingreso llene los demas campos (unidad y nombre)-->
+                                        <td> 
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" placeholder="PH0001" id="CodProducto" name="CodProducto">
+                                            </div> 
+                                        </td>
+                                        <td>
+                                            <div class="form-group" >
+                                                <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="piezasu" #piezas="ngModel"  >
+                                                    <option [ngValue]="piezas.Nombre"  *ngFor="let piezas of listadoPiezas | async">{{piezas.Nombre}} </option>
+                                                </select>
+                                            </div>  
+                                        </td>
+                                        <td>
+                                            <div class="form-group" >   
+                                                <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" >
+                                                    <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
+                                                </select>
+                                            </div>  
+                                        </td>
+<!-- Boton para agregar o quitar productos -->
+                                        <td> 
+                                            <div class="form-group">
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <button type="button" class="btn btn-success"><fa-icon [icon]="faPlus"></fa-icon></button>
+                                                    <button type="button" class="btn btn-danger"><fa-icon [icon]="faMinus"></fa-icon></button>
+                                                </div>
+                                            </div> 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                            <button type="submit" style="background-color: #1a3263" class="btn btn-block text-white" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Ingresar</strong></h3></button>
+                        </div>
+            </form>
+        </div>
     </div>
-     <!-- Muestra Registros-->       
-    <div class="card bg-light mt-3">
-        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><h1><strong> Ultimos Registros</strong></h1></div>
-            <div class="card-body">
-                    <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
-                            Rerender
-                          </button>
-                          <form >
-                    <div style="overflow-x:auto;"> 
+
+<!-- Inventario general consulta - Debe tener opcion de filtrado para poder revisar existencias -  la tabla es nada mas de consulta - la parte de abajo botones de llamada a los demas metodos de captura (+productos, +sucursal) -->    
+    <div class="col-sm-5 mt-3">
+        <div class="card">
+            <!--             <div class="card-body">
+                    <form>
+                        <div style="overflow-x:auto;"> 
                             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover text-center" width="1050">
-                                    <thead class="text-white bg-warning">
-                                        <tr>
-                                            <th scope="col">Fecha</th>
-                                            <th scope="col">Cantidad</th>
-                                            <th scope="col">Pieza</th>
-                                            <th scope="col" >Producto</th>
-                                            <th scope="col" >Precio</th>
-                                            <th scope="col">Proveedor</th>
-                                            <th scope="col">Eliminar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody style="background-color: #f2f7ff">
-                                        <tr *ngFor="let controlService of listadoControl | async">
-                                            <td>{{controlService.fecha}}</td>
-                                            <td>{{controlService.cantidad | number}}</td>
-                                            <td>{{controlService.pieza}}</td>
-                                            <td>{{controlService.producto}}</td>
-                                            <td>$ {{controlService.Precio | number}}</td>
-                                            <td>{{controlService.proveedor}}</td>
-                                            <td >
-                                                <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.producto); getcantidad(controlService.cantidad, controlService.inventario); updatestock(controlService)"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                    </div>
-                </form>
+                                <thead class="text-white bg-warning">
+                                    <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Pieza</th>
+                                        <th scope="col" >Producto</th>
+                                        <th scope="col" >Precio</th>
+                                        <th scope="col">Proveedor</th>
+                                        <th scope="col">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background-color: #f2f7ff">
+                                    <tr *ngFor="let controlService of listadoControl | async">
+                                        <td>{{controlService.fecha}}</td>
+                                        <td>{{controlService.cantidad | number}}</td>
+                                        <td>{{controlService.pieza}}</td>
+                                        <td>{{controlService.producto}}</td>
+                                        <td>$ {{controlService.Precio | number}}</td>
+                                        <td>{{controlService.proveedor}}</td>
+                                        <td >
+                                            <button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.producto); getcantidad(controlService.cantidad, controlService.inventario); updatestock(controlService)"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div> -->
+            <ngx-datatable
+                    class="material text-center"
+                    [headerHeight]="50"
+                    [columnMode]="'force'"
+                    [rowHeight]="'auto'"
+                    [footerHeight]="50"
+                    [count]="true"
+                    [limit]="2"
+                    [rows]="rows"
+                    width="469"
+                > 
+                <ngx-datatable-column name="Codigo">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Producto">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Stock">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            <br> 
+<!-- Botones para agregar nuevo contenido -->
+            <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-dark" (click)="Agrega('producto')"><fa-icon [icon]="faPlus"></fa-icon> Producto</button>
+                <button type="button" class="btn btn-dark" (click)="Agrega('sucursal')"><fa-icon [icon]="faPlus"></fa-icon> Sucursal</button>
             </div>
-    </div>
+        </div>
+        <div *ngIf="select">
+            <app-start></app-start>
+        </div>
+        <div *ngIf="!select">
+            <app-alimentador></app-alimentador>
+        </div>
+    </div>   
+
 </div>
+
+
 <!--<app-modalupdate [userUid]="userUid"></app-modalupdate> -->
 <!-- https://www.youtube.com/watch?v=6u3UhlOaq4E -->

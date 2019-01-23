@@ -12,13 +12,16 @@ import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./alimentador.component.css']
 })
 export class AlimentadorComponent implements OnInit {
+
+  faTruckLoading = faTruckLoading;
+
   listadoSucursal: any;
   Sucursal: SucursalInterface = {
-    
+
     idsucu: '',
-    Sucursal: '' 
-    
-  }
+    Sucursal: ''
+
+  };
   constructor(private authService: AuthService,
     private sucursalService: SucursalService,
     private router: Router
@@ -28,9 +31,9 @@ export class AlimentadorComponent implements OnInit {
 
   ngOnInit() {
   }
-  onGuardarSucursal({value}: {value: SucursalInterface}){
+  onGuardarSucursal({value}: {value: SucursalInterface}) {
     this.sucursalService.addSucursal(value);
-    
+
   }
-  faTruckLoading = faTruckLoading;
+
 }

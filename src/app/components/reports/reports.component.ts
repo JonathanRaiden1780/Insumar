@@ -5,7 +5,8 @@ import { ControlService } from 'src/app/servicios/control.service';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { formatDate } from '@angular/common';
- 
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-reports',
@@ -14,31 +15,33 @@ import { formatDate } from '@angular/common';
 })
 export class ReportsComponent implements OnInit {
 
+  faChartLine = faChartLine;
+
   @ViewChild('content') content: ElementRef;
   listadoProductos: any;
-  public downloadPDF(){
-    let doc = new jsPDF();
+  public downloadPDF() {
+    const doc = new jsPDF();
 
-    let specialElementHandlers ={
-      '#editor': function(element, renderer){
+    const specialElementHandlers = {
+      '#editor': function(element, renderer) {
         return true;
       }
     };
-    let content = this.content.nativeElement;
-    
-    doc.fromHTML(content.innerHTML, 15,15, {
+    const content = this.content.nativeElement;
+
+    doc.fromHTML(content.innerHTML, 15, 15, {
       'width': 300,
       'elementHandlers': specialElementHandlers,
       'height': 400
     });
-    
-    
-    doc.save('Reporte' + formatDate(new Date(),'dd/MM/yyyy hh:mm:ss a','en') + '.pdf');
+
+
+    doc.save('Reporte' + formatDate(new Date(), 'dd/MM/yyyy hh:mm:ss a', 'en') + '.pdf');
   }
   constructor(
     private authService: AuthService,
     public productos: ControlService
-    
+
   ) {
     this.listadoProductos = productos.getAllCoentrada();
    }

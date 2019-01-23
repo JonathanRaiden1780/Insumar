@@ -41,37 +41,16 @@ export class HomePageComponent implements OnInit {
     private salidas: SalidasService,
     private entradas: ControlService,
     private afs: AngularFirestore
-  ){
+  ) {
     this.listadoControlen = entradas.getAllCoentrada();
     this.listadoControlsa = salidas.getAllCosalida();
     this.listadoProductos = productos.getAllProducto();
    }
 
   ngOnInit() {
-    this.getData1()
-    this.getData2()
-    this.getData3()
-
-    this.getAllentrada()
-    this.dtOptions[0] = {
-      pagingType: 'full_numbers',
-      pageLength: 2,
-      processing: true,
-      scrollY: "100px",
-      paging: true,
-      search: true,
-      scrollCollapse: true
-    };
-    this.getAllsalidas()
-    this.dtOptions[1] = {
-      pagingType: 'full_numbers',
-      pageLength: 2,
-      processing: true,
-      scrollY: "100px",
-      paging: true,
-      search: true,
-      scrollCollapse: true
-    };
+    this.getData1();
+    this.getData2();
+    this.getData3();
   }
 
   getAllentrada() {
@@ -85,18 +64,18 @@ export class HomePageComponent implements OnInit {
   getData1() {
     this.afs.collection('Coentradas').valueChanges().subscribe((Coentradas) => {
       this.rows1 = Coentradas;
-    })
+    });
   }
-  
+
   getData2() {
-    this.afs.collection('Cosalidas/Centenario/salidas').valueChanges().subscribe((salidas) => { //falla en la coleccion REVISAR
+    this.afs.collection('Cosalidas/Centenario/salidas').valueChanges().subscribe((salidas) => { // falla en la coleccion REVISAR
       this.rows2 = salidas;
-    })
+    });
   }
 
   getData3() {
-    this.afs.collection('Productos').valueChanges().subscribe((Productos) => { 
+    this.afs.collection('Productos').valueChanges().subscribe((Productos) => {
       this.rows3 = Productos;
-    })
+    });
   }
 }

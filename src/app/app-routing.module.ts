@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: 'start', component: StartComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard]},
-  {path: 'entradas', component: ControlComponent, canActivate: [AuthGuard]},
+  {path: 'captura', component: ControlComponent, canActivate: [AuthGuard]},
   {path: 'sucursal', component: SucursalComponent, canActivate: [AuthGuard]},
   {path: 'alimentador', component: AlimentadorComponent, canActivate: [AuthGuard]},
   {path: 'reportes', component: ReportsComponent, canActivate: [AuthGuard]},
