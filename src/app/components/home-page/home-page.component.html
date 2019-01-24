@@ -1,51 +1,47 @@
 <div class="container" width="6000">
-    <flash-messages class="text-center"></flash-messages>
     <!--Bienvenida-->
-    <div class="card-header col-md-3 mt-3 text-white form-inline" style="background-color: #2a206f"><fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon><h3><strong>- Administración:</strong></h3></div>
+    <div class="card-header col-md-3 mt-3 text-white form-inline" style="background-color: #2a206f"><h3><fa-icon [icon]="faTruckLoading"></fa-icon><strong> Bienvenid@</strong></h3></div>
     <!--Ultimos Movimientos-->
     <div class="card text-center mt-3 mb-1 ml-3 mr-3">
-            <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Ultimos Movimientos</strong></h2></div>
+            <div class="card-header text-right text-white" style="background-color: #2a206f"><h2><strong>Resumen</strong></h2></div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col">     <!--Ultimos Ingresos-->
+<!--Proximos a quedarse sin inventario-->
+                    <div class="col">     
                         <div class="card mt-1 mb-1">
-                                            <div class="card-header text-center text-white" style="background-color: #279b37"><fa-icon [icon]="faIngresa" class="fa-1x"></fa-icon><h4>Ingresos</h4></div>
-                                                <div class="text-center">
-                                                    <ngx-datatable
-                                                        class="material"
-                                                        [headerHeight]="35"
-                                                        [columnMode]="'force'"
-                                                        [rowHeight]="'auto'"
-                                                        [footerHeight]="30"
-                                                        [count]="false"
-                                                        [limit]="3"
-                                                        [rows]="rows1"
-                                                        >
-                                                        <ngx-datatable-column name="fecha">
-                                                            <ng-template ngx-datatable-cell-template let-value="value">
-                                                                {{value | date: 'dd-MM-yy' }}
-                                                            </ng-template>
-                                                        </ngx-datatable-column>
-                                                        <ngx-datatable-column name="cantidad">
-                                                        <ng-template ngx-datatable-cell-template let-value="value">
-                                                            {{value}}
-                                                        </ng-template>
-                                                        </ngx-datatable-column>
-                                                        <ngx-datatable-column name="producto">
-                                                          <ng-template ngx-datatable-cell-template let-value="value">
-                                                            {{value}}
-                                                          </ng-template>
-                                                        </ngx-datatable-column>
-                                                        <ngx-datatable-column name="inventario">
-                                                            <ng-template ngx-datatable-cell-template let-value="value">
-                                                                {{value}}
-                                                            </ng-template>
-                                                        </ngx-datatable-column>
-                                                    </ngx-datatable>
-                                                </div>
+                            <div class="card-header text-center text-white" style="background-color: #f95959"><fa-icon [icon]="faBoxOpen" class="fa-1x"></fa-icon><h4>Insumos con inventario bajo</h4></div>
+                                <div class="text-center">
+                                    <ngx-datatable
+                                        class="material"
+                                        [headerHeight]="35"
+                                        [columnMode]="'force'"
+                                        [rowHeight]="'auto'"
+                                        [footerHeight]="30"
+                                        [count]="false"
+                                        [limit]="3"
+                                        [rows]="rows1"
+                                        >
+                                        <ngx-datatable-column name="Codigo">
+                                            <ng-template ngx-datatable-cell-template let-value="value">
+                                                {{value | date: 'dd-MM-yy' }}
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name="Producto">
+                                            <ng-template ngx-datatable-cell-template let-value="value">
+                                            {{value}}
+                                            </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name="Inventario">
+                                        <ng-template ngx-datatable-cell-template let-value="value">
+                                            {{value}}
+                                        </ng-template>
+                                        </ngx-datatable-column>
+                                    </ngx-datatable>
+                                </div>
                         </div>
                     </div>
-                    <div class="col">     <!--Ultimas Salidas-->
+<!--Desplegar si las sucursales tiene solicitudes de insumos-->
+                    <div class="col">     
                         <div class="card mt-1 mb-1">
                                     <div class="card-header text-white" style="background-color: #f5564e"><fa-icon [icon]="faAsignaciones" class="fa-1x"></fa-icon><h4>Asignaciones</h4></div>
                                         <div class="">
@@ -89,46 +85,6 @@
             <button type="button" class="btn btn-outline-primary" [routerLink]="['/inventADMIN']" routerLinkActive="router-link-active"><fa-icon [icon]="faAsignaciones"></fa-icon> Inventarios</button>
         </div>
     </div>
-    <!-- Requisiciones-->
-<div class="card mt-3 mr-3 ml-3 mb-3">
-    <div class="card-header text-center text-white" style="background-color: #2a206f"><h2><strong>Requisiciones</strong></h2></div>
-    <ngx-datatable
-    class="material"
-    [headerHeight]="35"
-    [columnMode]="'force'"
-    [rowHeight]="'auto'"
-    [footerHeight]="30"
-    [count]="true"
-    [limit]="5"
-    [rows]="rows3"
-    >
-    <ngx-datatable-column name="Idprov">
-    <ng-template ngx-datatable-cell-template let-value="value">
-        {{value}}
-    </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="inventario">
-    <ng-template ngx-datatable-cell-template let-value="value">
-        {{value}}
-    </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="requisicion">
-        <ng-template ngx-datatable-cell-template let-value="value">
-            {{value}}
-        </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="sucursal">
-        <ng-template ngx-datatable-cell-template let-value="value">
-            {{value}}
-        </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="status">
-        <ng-template ngx-datatable-cell-template let-value="value">
-            {{value}}
-        </ng-template>
-    </ngx-datatable-column>
-    </ngx-datatable>
-</div>
 
 
 

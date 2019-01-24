@@ -4,45 +4,47 @@ import {AuthService} from '../../servicios/auth.service';
 import {ProductoService} from '../../servicios/producto.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import{ProveedorService} from '../../servicios/proveedor.service'
-
-
+import {ProveedorService} from '../../servicios/proveedor.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-start',
-  
+
   templateUrl: './start.component.html',
-  
+
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
+  //  iconos
+  faTimes = faTimes;
+
   model: any = {};
   listadoProductos: any;
   Producto: ProductosInterface = {
-    
+
     Nombre: '',
     categoria: '',
-    cantidad:0    
-  }
+    cantidad: 0
+  };
 
   constructor(
     private authService: AuthService,
     private productoService: ProductoService,
-    
+
     private router: Router
-  ) { 
+  ) {
     this.listadoProductos = this.productoService.getAllProducto();
   }
 
   ngOnInit() {
-    this.model.tipo = 'entrada'; 
+    this.model.tipo = 'entrada';
   }
-  onGuardarProducto({value}: {value: ProductosInterface}){
-    value.cantidad=0;
+  onGuardarProducto({value}: {value: ProductosInterface}) {
+    value.cantidad = 0;
     value.idprov = value.Nombre;
-    
+
     this.productoService.addProducto(value);
-    
+
   }
 }
 /*

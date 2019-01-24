@@ -1,24 +1,43 @@
-<div class="row mt-3">
-  <div class="col-sm-6">
+  <div class="col-sm-auto">
     <div class="card">
-      <div class="card-header text-center text-white" style="background-color: #275DAD"><h1><strong>Agregar Productos</strong></h1></div>
+      <div class="card-header text-center text-white" style="background-color: #005792"><h4><strong>Agregar Productos</strong></h4></div>
       <div class="card-body">
         <form #formGuardar="ngForm" (ngSubmit)="onGuardarProducto(formGuardar)">
             <div style="overflow-x:auto;">
-              <table class="table table-light">
-                <thead class="text-center text-white" style="background-color: #5B616A">
+              <table class="table">
+                <thead class="text-center">
                   <tr>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Categoria</th>
+                    <th scope="col" style="background-color: #f95959">Codigo</th>
+                    <th scope="col" style="background-color: #455d7a; color: white">Descripcion/Nombre</th>
+                    <th scope="col" style="background-color: #455d7a; color: white">Unidad</th>
+                    <th scope="col" style="background-color: #455d7a; color: white">Categoria</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="table-active">
+                  <tr class="table">
+<!--Captura de Codigo-->
+                    <td>
+                      <div class="form-group text-center"> 
+                        <input type="text" class="form-control" placeholder="PH0101">
+                      </div>
+                    </td>
+<!--Captura de Nombre/Descripcion-->
                     <td>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre" id="Nombre" name="Nombre" [(ngModel)]="Producto.Nombre" #descripcion="ngModel">
+                        <input type="text" class="form-control" placeholder="Nombre" id="Papel Higienico Grande" name="Nombre" [(ngModel)]="Producto.Nombre" #descripcion="ngModel">
                       </div> 
                     </td>
+<!--Captura de Unidad-->
+                    <td>
+                      <div class="form-group text-center">
+                          <select class="form-control" id="CaptUnidad">
+                            <option>Pza.</option>
+                            <option>Paq.</option>
+                            <option>Lt.</option>
+                          </select>
+                        </div>
+                    </td>
+<!--Captura de Categoria-->
                     <td>
                       <div class="form-group">
                         <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="Producto.categoria" #categoria="ngModel">
@@ -28,40 +47,59 @@
                 </tbody>
               </table> 
             </div>
-          <div class="card-footer"><button type="submit" class="btn btn-block text-white" value="Guardar" style="background-color: #ABA9C3"><h3><strong>Ingresar</strong></h3></button></div>
+          <div class="card-footer"><button type="submit" class="btn btn-block text-white" value="Guardar" style="background-color: #005792"><h3><strong>Agregar</strong></h3></button></div>
         </form>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card"><div class="card-header text-center text-white" style="background-color: #275DAD "><h1><strong>Productos</strong></h1></div>
-        <div style="overflow-x:auto;"> 
-          <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-            <thead class="text-center text-white" style="background-color: #5B616A">
-              <tr ng-repeat="controlService in $data">
-                <th scope="col">Producto</th>
-                <th scope="col">Categoria</th>
-              </tr>
-            </thead>
-          </table>
-      <form class="card-body scroll">
-        
-          
-            <table ng-table="tableEntradas" show-filter='true' class="table table-light">  
-              <tbody class="text-left table-secondary" *ngFor="let productoService of listadoProductos | async "  >   
-                
-                <td>{{productoService.Nombre}}</td>
-                  <td>{{productoService.Categoria}}</td> 
-                
-              </tbody>
-            
-            </table>
-      </form>
-        
-      </div>
+  <br>
+
+<!--Muestra listado de Productos - permite la eliminacion del producto de la BD-->
+<div class="col-sm-auto">
+    <div class="card">
+      <div class="card-header text-center text-white" style="background-color: #005792 "><h4><strong>Listado Productos</strong></h4></div>
+      <ngx-datatable
+      class="material text-center"
+      [headerHeight]="50"
+      [columnMode]="'force'"
+      [rowHeight]="'auto'"
+      [footerHeight]="50"
+      [count]="true"
+      [limit]="2"
+      [rows]="rows"
+      width="469"
+  > 
+  <ngx-datatable-column name="Codigo">
+      <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Producto/Descripcion">
+      <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Unidad">
+      <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Categoria">
+      <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+      </ng-template>
+  </ngx-datatable-column>
+<!-- Boton para eliminar producto -->
+  <ngx-datatable-column name="Eliminar">
+      <ng-template ngx-datatable-cell-template>
+          <div class="formGroup">
+            <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+          </div>
+      </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
     </div>
   </div>
-</div>
 
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
-import { faDolly } from '@fortawesome/free-solid-svg-icons';
+import { faDolly, faBoxes, faTruckLoading, faCheck, faShareSquare, faTimes, faBuilding, faWarehouse, faHandHolding } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { RegistroInterface } from 'src/app/Models/registro';
 import { take } from 'rxjs/operators';
@@ -13,13 +13,24 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./asign.component.css']
 })
 export class AsignComponent implements OnInit {
+
+  // Iconos
+  faBuilding = faBuilding;
+  faDolly = faDolly;
+  faBoxes = faBoxes;
+  faTruckLoading = faTruckLoading;
+  faCheck = faCheck;
+  faShareSquare = faShareSquare;
+  faTimes = faTimes;
+  faWarehouse = faWarehouse;
+  faHandHolding = faHandHolding;
+
   constructor(
     private afs: AngularFirestore,
     public authService: AuthService
     ) {
   }
 
-  faDolly = faDolly;
   rows: any;
   columns: any;
 

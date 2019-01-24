@@ -16,10 +16,12 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class HomePageComponent implements OnInit {
 
+  //  Iconoes
   faTruckLoading = faTruckLoading;
   faAsignaciones = faBoxes;
   faIngresa = faInbox;
   faBox = faBox;
+  faBoxOpen = faBoxOpen;
 
   rows1: any;
   rows2: any;

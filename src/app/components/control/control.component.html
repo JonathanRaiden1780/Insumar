@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row mt-3">
 <!-- Captura de entradas-->
     <div class="col-sm-7">
         <div class="card">
             <form #formGuardar="ngForm" (ngSubmit)="onGuardarEntrada(formGuardar)">
-                    <div class="card-header form-inline text-white" style="background-color: #1a3263"><h1><strong>Ingresar Suministros</strong></h1><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon></div>
+                    <div class="card-header form-inline text-white" style="background-color: #1a3263"><h1><strong>Provisionar Inventario</strong></h1><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon></div>
                         <div class="card-body" style="overflow-x:auto;"> 
                             <table class="table table-light ">
                                 <thead>
@@ -36,21 +36,21 @@
                                                 <input type="number" class="form-control" placeholder="Cantidad del Producto" id="cantidad" name="cantidad" [(ngModel)]="cantprod" #cantidad="ngModel" >
                                             </div> 
                                         </td>
-    <!-- Codigo - PK para los productos- habilitar para que al ingreso llene los demas campos (unidad y nombre)-->
+    <!-- Codigo - PK para los productos- habilitar para que al ingreso llene los demas campos (unidad y nombre producto)-->
                                         <td> 
                                             <div class="form-group">
                                                 <input type="number" class="form-control" placeholder="PH0001" id="CodProducto" name="CodProducto">
                                             </div> 
                                         </td>
+        <!-- Unidad -->
                                         <td>
-                                            <div class="form-group" >
-                                                <select name="pieza" class="form-control" placeholder="pieza" [(ngModel)]="piezasu" #piezas="ngModel"  >
-                                                    <option [ngValue]="piezas.Nombre"  *ngFor="let piezas of listadoPiezas | async">{{piezas.Nombre}} </option>
-                                                </select>
-                                            </div>  
+                                            <div class="form-group">
+                                                <input type="string" class="form-control" placeholder="" id="Unidad" name="Unidad" readonly>
+                                            </div>   
                                         </td>
+        <!-- Producto -->
                                         <td>
-                                            <div class="form-group" >   
+                                            <div class="form-group">   
                                                 <select aria-valuetext="producto" name="producto" class="form-control" placeholder="Producto" [(ngModel)]="query" #producto="ngModel" >
                                                     <option [ngValue]="productos"  *ngFor="let productos of listadoProductos | async">{{productos.Nombre}} </option>
                                                 </select>
@@ -68,7 +68,11 @@
                                     </tr>
                                 </tbody>
                             </table> 
-                            <button type="submit" style="background-color: #1a3263" class="btn btn-block text-white" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Ingresar</strong></h3></button>
+                            <button type="submit" style="background-color: #1a3263" class="btn btn-block text-white" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Provisionar</strong></h3></button>
+                            <div class="text-right">
+                                <span><small>*Puede agregar productos nuevos en la pestaña <strong>(+Producto)</strong></small></span><br>
+                                <span><small>**Puede agregar nuevos centro de trabajo en la pestaña <strong>(+Centro de Trabajo)</strong></small></span>
+                            </div>
                         </div>
             </form>
         </div>
@@ -76,7 +80,7 @@
 
 <!-- Inventario general consulta - Debe tener opcion de filtrado para poder revisar existencias -  la tabla es nada mas de consulta - la parte de abajo botones de llamada a los demas metodos de captura (+productos, +sucursal) -->    
     <div class="col-sm-5 mt-3">
-        <div class="card">
+        <div class="card"><!--Aqui esta tu metodo anterior XD-->
             <!--             <div class="card-body">
                     <form>
                         <div style="overflow-x:auto;"> 
@@ -130,7 +134,7 @@
                         {{value}}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Stock">
+                <ngx-datatable-column name="Inventario">
                     <ng-template ngx-datatable-cell-template let-value="value">
                         {{value}}
                     </ng-template>
@@ -140,19 +144,17 @@
 <!-- Botones para agregar nuevo contenido -->
             <div class="btn-group mx-auto" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-dark" (click)="Agrega('producto')"><fa-icon [icon]="faPlus"></fa-icon> Producto</button>
-                <button type="button" class="btn btn-dark" (click)="Agrega('sucursal')"><fa-icon [icon]="faPlus"></fa-icon> Sucursal</button>
-            </div>
+                <button type="button" class="btn btn-dark" (click)="Agrega('sucursal')"><fa-icon [icon]="faPlus"></fa-icon> Centro de Trabajo</button>
+            </div><br>
         </div>
-        <div *ngIf="select">
+        <br>
+        <div *ngIf="select"> <!-- Ingresar nuevo Producto-->
             <app-start></app-start>
         </div>
-        <div *ngIf="!select">
+        <div *ngIf="!select"> <!-- Ingresar nueva Sucursal-->
             <app-alimentador></app-alimentador>
         </div>
     </div>   
 
 </div>
-
-
-<!--<app-modalupdate [userUid]="userUid"></app-modalupdate> -->
-<!-- https://www.youtube.com/watch?v=6u3UhlOaq4E -->
+<br><br>

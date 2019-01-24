@@ -1,10 +1,10 @@
-<br>
-<div class="row mr-1 ml-1">
+<div class="row mr-1 ml-1 mt-2">
     <div class="col-sm-6">
         <div class="card text-white text-center" style="background-color: #2a206f">
-            <h3><strong>Inventario Central </strong></h3> <!-- Inventario Central-->
-        </div><br>
-    <div class="card"><br>
+<!-- Inventario Central-->
+            <h3><fa-icon [icon]="faBuilding"></fa-icon><strong> Inventario Central</strong></h3> 
+        </div>
+    <div class="card"><!-- Desplegar inventario MASTER-->
         <ngx-datatable
             class="material text-center"
             [headerHeight]="50"
@@ -36,21 +36,22 @@
     </div>
     <div class="col-sm-6">
             <div class="card text-white text-center" style="background-color: #2a206f">
-                    <h3><strong>Inventario Sucursales </strong></h3> <!-- Inventario Sucursales-->
-                  </div><br>
-      <div class="card"><br>
-        <!-- Botones susucursales -->
+<!-- Inventario Sucursales-->
+                <h3><fa-icon [icon]="faWarehouse"></fa-icon><strong> Inventario Sucursales </strong></h3>
+            </div>
+      <div class="card">
+<!-- Botones susucursales solicitudes - se deben de mostrar solo el boton de la sucursal que haya echos pedidos, de lo contrario mostrar solamente la leyenda "no hay pedidos" -->
             <div class="btn-group mx-auto" role="group" aria-label="Sucursales">
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('centenario')">Centenario</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('coorporativo')">Coorporativo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('patriotismo')">Patriotismo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('tlalpan')">Tlalpan</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('chapultepec')">Chapultepec</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('laviga')">La Viga</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('torre')">Torre</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('tlalnepantla')">Tlalnepantla</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal('coacalco')">Coacalco</button>
-            </div><br>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('centenario')">Centenario</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('coorporativo')">Coorporativo</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('patriotismo')">Patriotismo</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('tlalpan')">Tlalpan</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('chapultepec')">Chapultepec</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('laviga')">La Viga</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('torre')">Torre</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('tlalnepantla')">Tlalnepantla</button>
+                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('coacalco')">Coacalco</button>
+            </div>
         <ngx-datatable
         class="material text-center"
         [headerHeight]="50"
@@ -87,24 +88,26 @@
     </div>
 </div>
 <br>
-<div class="card text-white text-left mr-1 ml-1" style="background-color: #2a206f">
-    <h2><strong> Requisiciones</strong></h2> <!-- Requisiciones -->
+<div class="card text-white text-center mr-1 ml-1" style="background-color: #2a206f">
+<!-- Solicitudes de Insumos -->
+    <h2><strong>Solicitudes de Insumos </strong><fa-icon [icon]="faBoxes"></fa-icon></h2>
 </div><br>
 <div class="row mr-1 ml-1">
-    <!-- Selector de sucursal / Pedidos -->
-    <div class="col-sm-6">
-        <div class="card"><br>
+<!-- Selector de sucursal / Pedidos -->
+    <div class="col-sm-7">
+        <div class="card">
+<!-- Grupo de botones - solo se debe de mostrar el boton de la sucursal que tenga soliciutes de insumos - dejar bandera en BD -->
             <div class="btn-group mx-auto" role="group" aria-label="Sucursales">
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('centenario')">Centenario</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('coorporativo')">Coorporativo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('patriotismo')">Patriotismo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('tlalpan')">Tlalpan</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('chapultepec')">Chapultepec</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('laviga')">La Viga</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('torre')">Torre</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('tlalnepantla')">Tlalnepantla</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('coacalco')">Coacalco</button>
-            </div><br>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('centenario')">Centenario</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('coorporativo')">Coorporativo</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('patriotismo')">Patriotismo</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('tlalpan')">Tlalpan</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('chapultepec')">Chapultepec</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('laviga')">La Viga</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('torre')">Torre</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('tlalnepantla')">Tlalnepantla</button>
+                <button type="button" class="btn btn-outline-success" onclick="getSucursal2('coacalco')">Coacalco</button>
+            </div>
             <ngx-datatable
                 class="material text-center"
                 [headerHeight]="50"
@@ -126,47 +129,79 @@
                     {{value}}
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Cantidad">
+            <ngx-datatable-column name="Unidad">
                 <ng-template ngx-datatable-cell-template let-value="value">
                     {{value}}
                 </ng-template>
             </ngx-datatable-column>
+            <ngx-datatable-column name="Solicitud">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="En inventario">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
             <ngx-datatable-column name="Enviar">
                 <ng-template ngx-datatable-cell-template>
+                        <button class="btn btn-outline-success"><fa-icon [icon]="faCheck"></fa-icon></button>
+                        <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Otra cantidad">
+                <ng-template ngx-datatable-cell-template>
                     <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-success" type="button" id="button-addon1">Completo</button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Otra Cantidad" aria-label="Otra Cantidad" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="button" id="button-addon2">Enviar</button>
-                        </div>
+                        <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="OtraCantidad">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="button" id="OtraCantidad"><fa-icon [icon]="faShareSquare"></fa-icon></button>
+                            </div>
                     </div>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>
         </div>
     </div>
-    <!-- Checa pedidos -->
-    <div class="col-sm-6">
-      <div class="card"><br>
-        <div class="btn-group mx-auto" role="group" aria-label="Sucursales">
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('centenario')">Centenario</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('coorporativo')">Coorporativo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('patriotismo')">Patriotismo</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('tlalpan')">Tlalpan</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('chapultepec')">Chapultepec</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('laviga')">La Viga</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('torre')">Torre</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('tlalnepantla')">Tlalnepantla</button>
-                <button type="button" class="btn btn-outline-warning" onclick="getSucursal2('coacalco')">Coacalco</button>
-            </div><br>
-        <div class="card-header text-center text-white" style="background-color: #2a206f"><h4><strong>Requisición actual (Sucursal)</strong></h4></div>
-        <div class="card-body">
-
-        </div>
+<!-- Checa solicitud -->
+    <div class="col-sm-5">
+      <div class="card">
+        <div class="card-header text-center text-white" style="background-color: #2a206f"><h4><strong>Enviar a (Sucursal)</strong></h4></div><!-- Mostrar nombre de sucursal a la que se esta generando el surtido-->
+            <ngx-datatable
+            class="material text-center"
+            [headerHeight]="50"
+            [columnMode]="'force'"
+            [rowHeight]="'auto'"
+            [footerHeight]="50"
+            [count]="true"
+            [limit]="5"
+            [rows]="rows"
+            width="469"
+        > 
+            <ngx-datatable-column name="Idprov">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Unidad">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Enviando">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                    {{value}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Quitar">
+                <ng-template ngx-datatable-cell-template>
+                    <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
         <div class="card-footer">
-                <button type="button" class="btn btn-success btn-block" style="font-size: 1rem"><strong> Enviar</strong></button>
+            <!-- Boton debe de enviar el registro a la BD asiganarla a la sucursal y generar pdf con el pedido aiuuuuudaaaaa-->
+                <button type="button" class="btn btn-success btn-block" style="font-size: 1rem"><fa-icon [icon]="faBoxes"></fa-icon> <fa-icon [icon]="faTruckLoading"></fa-icon><strong> Surtir Sucursal</strong></button>
         </div>
       </div>
     </div>
