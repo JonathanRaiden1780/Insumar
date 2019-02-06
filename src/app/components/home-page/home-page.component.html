@@ -42,41 +42,20 @@
                     </div>
 <!--Desplegar si las sucursales tiene solicitudes de insumos-->
                     <div class="col">     
-                        <div class="card mt-1 mb-1">
-                                    <div class="card-header text-white" style="background-color: #f5564e"><fa-icon [icon]="faAsignaciones" class="fa-1x"></fa-icon><h4>Asignaciones</h4></div>
-                                        <div class="">
-                                        <ngx-datatable
-                                            class="material"
-                                            [headerHeight]="35"
-                                            [columnMode]="'force'"
-                                            [rowHeight]="'auto'"
-                                            [footerHeight]="30"
-                                            [count]="true"
-                                            [limit]="3"
-                                            [rows]="rows2"
-                                            >
-                                            <ngx-datatable-column name="fecha">
-                                                <ng-template ngx-datatable-cell-template let-value="value">
-                                                    {{value | date: 'dd-MM-yy' }}
-                                                </ng-template>
-                                            </ngx-datatable-column>
-                                            <ngx-datatable-column name="cantidad">
-                                                <ng-template ngx-datatable-cell-template let-value="value">
-                                                    {{value}}
-                                                </ng-template>
-                                            </ngx-datatable-column>
-                                            <ngx-datatable-column name="producto">
-                                                <ng-template ngx-datatable-cell-template let-value="value">
-                                                    {{value}}
-                                                </ng-template>
-                                            </ngx-datatable-column>
-                                            <ngx-datatable-column name="sucursal">
-                                                <ng-template ngx-datatable-cell-template let-value="value">
-                                                    {{value}}
-                                                </ng-template>
-                                            </ngx-datatable-column>
-                                        </ngx-datatable>
+                        <div class="card" style="outline-color: transparent">
+                            <div class="car-header text-center text-white" style="background-color: #2a206f"><h4><strong>Pedidos Recientes</strong></h4></div>
+                            <div class="card-columns">
+                                    <div *ngFor="let sucursales of _sucursalData">
+                                        <div class="card mt-1" *ngIf="sucursales.pedido">
+                                            <div class="card-body">
+                                                <span class="fa-layers fa-fw fa-5x">
+                                                    <fa-icon [icon]="faWarehouse" style="color: #4e9525"></fa-icon>
+                                                </span>
+                                            </div>
+                                            <div class="card-footer"><small><strong>{{sucursales.sucursalname}}</strong></small></div>
+                                        </div>
                                     </div>
+                                </div>
                         </div>
                     </div>
                 </div>

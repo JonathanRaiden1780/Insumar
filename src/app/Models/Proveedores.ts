@@ -1,6 +1,6 @@
-export interface ProveedoresInterface{
-    
-    idprov?:string;
-    Nombre?:string;
-    
+export interface ProveedoresInterface {
+
+    idprov?: string;
+    Nombre?: string;
+
 }

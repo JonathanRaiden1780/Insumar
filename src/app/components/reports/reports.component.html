@@ -2,57 +2,106 @@
 <div class="card-header col-sm-1 text-center text-white mt-1 ml-1" style="background-color: #2a206f"><h2><fa-icon [icon]="faChartLine"></fa-icon><strong> Reportes:</strong></h2></div>
 
 <!-- Status General-->
+
+<div class="row mt-1">
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-header text-center text-white ml-1" style="background-color: #2a206f"><h4><strong>Inventario Central</strong></h4></div>
+                <div class="card">
+                    <ngx-datatable
+                        class="material text-center"
+                        [headerHeight]="50"
+                        [columnMode]="'force'"
+                        [rowHeight]="'auto'"
+                        [footerHeight]="50"
+                        [count]="true"
+                        [limit]="15"
+                        [rows]="rows"
+                        width="469"
+                        > 
+                        <ngx-datatable-column name="Codigo">
+                            <ng-template ngx-datatable-cell-template let-value="value">
+                                {{value}}
+                            </ng-template>
+                            </ngx-datatable-column>
+                        <ngx-datatable-column name="Idprov">
+                            <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Cantidad">
+                            <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="sucursal">
+                            <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                    <button type="button" class="btn btn-success btn-lg btn-block" (click)="downloadPDF()"><strong>Imprime Inventario</strong></button>
+                </div>
+            </div>
+        </div>
+</div><br><br>
 <div class="row mt-1">
     <div class="col-sm-9">
         <div class="card">
-          <div class="card-header text-center text-white ml-1" style="background-color: #2a206f"><h4><strong>Inventarios Sucursales</strong></h4></div>
-          <ngx-datatable
-              class="material text-center"
-              [headerHeight]="50"
-              [columnMode]="'force'"
-              [rowHeight]="'auto'"
-              [footerHeight]="50"
-              [count]="true"
-              [limit]="5"
-              [rows]="rows"
-              width="469"
-          > 
-          <ngx-datatable-column name="Codigo">
-              <ng-template ngx-datatable-cell-template let-value="value">
-                  {{value}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Idprov">
-              <ng-template ngx-datatable-cell-template let-value="value">
-                  {{value}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Stock">
-              <ng-template ngx-datatable-cell-template let-value="value">
-                  {{value}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Asignado a:">
-              <ng-template ngx-datatable-cell-template let-value="value">
-                  {{value}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Ultimo surtido:">
-              <ng-template ngx-datatable-cell-template let-value="value">
-                  {{value}}
-              </ng-template>
-          </ngx-datatable-column>
-      </ngx-datatable>
-      </div>
+            <div class="card-header text-center text-white ml-1" style="background-color: #2a206f"><h4><strong>Inventario Sucursales</strong></h4></div>
+            <div class="card">
+                <div class="btn-group left" role="group" aria-label="Sucursales">
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('centenario')">Centenario</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('coorporativo')">Coorporativo</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('patriotismo')">Patriotismo</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('tlalpan')">Tlalpan</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('chapultepec')">Chapultepec</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('laviga')">La Viga</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('torre')">Torre</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('tlalnepantla')">Tlalnepantla</button>
+                                <button type="button" class="btn btn-outline-dark" onclick="getSucursal('coacalco')">Coacalco</button>
+                </div>
+                <ngx-datatable
+                            class="material text-center"
+                            [headerHeight]="50"
+                            [columnMode]="'force'"
+                            [rowHeight]="'auto'"
+                            [footerHeight]="50"
+                            [count]="true"
+                            [limit]="15"
+                            [rows]="rows"
+                            width="469"
+                            > 
+                            <ngx-datatable-column name="Codigo">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                    {{value}}
+                                </ng-template>
+                                </ngx-datatable-column>
+                            <ngx-datatable-column name="Idprov">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                {{value}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Cantidad">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                {{value}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="sucursal">
+                                <ng-template ngx-datatable-cell-template let-value="value">
+                                {{value}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                </ngx-datatable>
+                <button type="button" class="btn btn-success btn-lg btn-block" (click)="downloadPDF()"><strong>Imprime Inventario</strong></button>
+            </div>
+        </div>
     </div>
     <div class="col-sm-3">
-        <div class="card mt-3 mb-3 mr-3">
-            <div class="card-header text-center text-white" style="background-color: #2a206f"><h4><strong>Imprime reportes</strong></h4></div>
-              <div class="card-body">
-                  <button type="button" class="btn btn-success btn-lg btn-block"><strong>Reporte Filtrado</strong></button>
-                  <button type="button" class="btn btn-success btn-lg btn-block" (click)="downloadPDF()"><strong>Imprime Inventario</strong></button>
-              </div>
-          </div>
+
     </div>
-  </div>
+</div>
+<br><br><br><br>
+
+
 

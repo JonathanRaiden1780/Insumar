@@ -6,10 +6,10 @@
 </button>
 
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02"> 
-  <!-- Pagina Principal -->
+  <!-- Pagina Principal Adminsitracion -->
     <ul class="navbar-nav mr-auto">
         <li class="navbar-nav nav-item" *ngIf="isLogin">
-            <a class="nav-link" [routerLink]="['/homeADMIN']" routerLinkActive="router-link-active" >
+            <a class="nav-link" [routerLink]="['/homeADMIN']" routerLinkActive="router-link-active">
                 <fa-icon [icon]="faTruckLoading" class="fa-2x"></fa-icon>
                 <strong> Administración</strong>
             </a>
@@ -37,27 +37,18 @@
             </div>
           </li>
           <!-- Centro de Trabajo -->
-          <li class="nav-item dropdown" *ngIf="isLogin">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <fa-icon [icon]="faWarehouse" class="fa-2x"></fa-icon>
-              <strong> Centro de Trabajo</strong>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/entradasCT">
-                <fa-icon [icon]="faBox" class="fa-2x"></fa-icon>
-                <strong> Inventario</strong>
+          <li class="navbar-nav nav-item" *ngIf="isLogin">
+              <a class="nav-link" [routerLink]="['/entradasCT']" routerLinkActive="router-link-active" >
+                  <fa-icon [icon]="faWarehouse" class="fa-2x"></fa-icon>
+                  <strong> Centro de Trabajo</strong>
               </a>
-              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/salidasCT">
-                <fa-icon [icon]="faBoxOpen" class="fa-2x"></fa-icon>
-                <strong> Salidas</strong>
+            </li>
+            <li class="navbar-nav nav-item" *ngIf="isLogin">
+              <a class="nav-link" [routerLink]="['/salidasCT']" routerLinkActive="router-link-active" >
+                  <fa-icon [icon]="faBoxes" class="fa-2x"></fa-icon>
+                  <strong> Asignaciones </strong>
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" routerLinkActive="active-link" routerLink="/pedidosCT">
-                <fa-icon [icon]="faChartArea" class="fa-2x"></fa-icon>
-                <strong> Pedidos</strong>
-              </a>
-            </div>
-          </li>
+            </li>
     </ul>
     <ul class="navbar-bar form-inline my-2 my-lg-0">
         <li class="navbar-nav nav-item" *ngIf="!isLogin">

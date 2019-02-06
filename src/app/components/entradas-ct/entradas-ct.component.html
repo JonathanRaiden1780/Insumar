@@ -1,10 +1,10 @@
 <div class="card col-md-3 mx-auto mt-3 text-white text-center" style="background-color: #2a206f">
-  <h1><strong>Inventario {{sucursals}}</strong></h1>
+  <h1><strong>{{ sucursals }}</strong></h1>
 </div>
 
 <div class="text-center mt-3 col-md-6 mx-auto mb-3" style="width: 469">
   <ngx-datatable
-    class="dark"
+    class="material"
     [headerHeight]="50"
     [columnMode]="'force'"
     [rowHeight]="'auto'"
@@ -29,11 +29,6 @@
         {{value}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="Sucursal">
-      <ng-template ngx-datatable-cell-template let-value="value">
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
     <ngx-datatable-column name="Asignado">
       <ng-template ngx-datatable-cell-template let-value="value">
         {{value}}
@@ -41,5 +36,146 @@
     </ngx-datatable-column>
   </ngx-datatable>
 </div>
-<!--https://tphangout.com/angular-5-data-tables-revisited/   https://stackoverflow.com/questions/46661305/is-it-possible-to-change-the-ngx-datatable-column-name-->
-
+<br>
+<div class="row">
+  <div class="col-lg-9">
+    <div class="card">
+      <div class="card-header text-center text-white" style="background-color: #2a206f"><h3><strong> Pedidos en camino </strong></h3></div>
+      <div class="card-body">
+        <ngx-datatable
+        class="material"
+        [headerHeight]="50"
+        [columnMode]="'force'"
+        [rowHeight]="'auto'"
+        [footerHeight]="50"
+        [count]="true"
+        [limit]="10"
+        [rows]="rows"
+        width="469"
+      > 
+    <ngx-datatable-column name="Fecha">
+    <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Idprov">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Cantidad">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Estatus">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+      </div>
+      <div class="card-footer text-right">
+        <button class="btn btn-outline-primary" [routerLink]="['/salidasCT']" routerLinkActive="router-link-active" ><fa-icon [icon]="faBoxes"></fa-icon> Asignar Insumos</button>
+        <button class="btn btn-outline-primary" (click)="show = !show"><fa-icon [icon]="faBoxes"></fa-icon> Check In - Solicitudes</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="card">
+      <div class="card-header text-center text-white" style="background-color: #2a206f"><h3><strong> Inventario Bajo </strong></h3></div>
+      <div class="card-body">
+          <ngx-datatable
+          class="material"
+          [headerHeight]="50"
+          [columnMode]="'force'"
+          [rowHeight]="'auto'"
+          [footerHeight]="50"
+          [count]="true"
+          [limit]="5"
+          [rows]="rows"
+          width="469"
+        > 
+      <ngx-datatable-column name="Idprov">
+        <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Cantidad">
+        <ng-template ngx-datatable-cell-template let-value="value">
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+      </div>
+      <div class="card-footer text-right">
+        <button class="btn btn-outline-primary"  (click)="show2 = !show2"><fa-icon [icon]="faRequest"></fa-icon> Generar Solicitud</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="card mr-2 ml-2" *ngIf="show">
+  <div class="card-header text-center text-white" style="background-color: #2a206f"><h3><strong> Check-In Insumos </strong></h3></div>
+  <div class="card-body">
+      <ngx-datatable
+    class="material"
+    [headerHeight]="50"
+    [columnMode]="'force'"
+    [rowHeight]="'auto'"
+    [footerHeight]="50"
+    [count]="true"
+    [limit]="10"
+    [rows]="rows"
+    width="469"
+  > 
+    <ngx-datatable-column name="Fecha">
+    <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Idprov">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Cantidad">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Solicitud">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Comentario">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Enviar">
+        <ng-template ngx-datatable-cell-template>
+                <button class="btn btn-outline-success"><fa-icon [icon]="faCheck"></fa-icon></button>
+                <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Otra cantidad">
+        <ng-template ngx-datatable-cell-template>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="OtraCantidad">
+                  <div class="input-group-append">
+                      <button class="btn btn-outline-success" type="button" id="OtraCantidad"><fa-icon [icon]="faShareSquare"></fa-icon></button>
+                  </div>
+            </div>
+        </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  </div>
+</div>
+<div class="card mr-2 ml-2" *ngIf="show2">
+    <div class="card-header text-center text-white" style="background-color: #2a206f"><h3><strong> Solicitud de Insumos </strong></h3></div>
+    <div class="card-body">
+<!-- Combo box para llenar de pedidos, ya me dio hueva de aqui a que llegas a qui xD-->
+    </div>
+  </div>

@@ -2,7 +2,7 @@
     <!-- Captura de Salidas-->
     <div class="card bg-light mt-3">
         <form #formGuardar="ngForm" (ngSubmit)="onGuardarSalida(formGuardar)">
-            <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Salidas</strong></h1></div>
+            <div class="card-header form-inline text-white" style="background-color: #900C3F"><fa-icon [icon]="faDolly" class="fa-2x"></fa-icon><h1><strong> Asignaciones</strong></h1></div>
                 <div class="card-body" style="overflow-x:auto;"> 
                     <table class="table table-light">
                         <thead>
@@ -42,12 +42,12 @@
                         </tbody>
                     </table> 
                 </div>
-            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" (click)="onChange($event.target.value)" value="Guardar" ><h3><strong>Registrar</strong></h3></button></div>
+            <div class="card-footer"><button type="submit" class="btn btn-warning  btn-block" (click)="onChange($event.target.value)" value="Guardar" ><h3><strong>Asignar</strong></h3></button></div>
         </form>
     </div>
      <!-- Mostrar registro de Salidas-->       
     <div class="card bg-light mt-3">
-        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Registros</strong></h1></div>
+        <div class="card-header form-inline text-center text-white" style="background-color: #005670"><fa-icon [icon]="faArchive" class="fa-2x"></fa-icon><h1><strong> Asignados </strong></h1></div>
             <div class="card-body">
                 <form  >
                     <div style="overflow-x:auto;"> 

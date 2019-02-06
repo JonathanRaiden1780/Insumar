@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SalidasService } from 'src/app/servicios/salidas.service';
 import { ControlService } from 'src/app/servicios/control.service';
-import { faTruckLoading, faBoxOpen, faBoxes, faInbox, faBox } from '@fortawesome/free-solid-svg-icons';
+import { GetSucursalService, Sucursalinfo } from 'src/app/servicios/get-sucursal.service';
+
+import { faTruckLoading, faBoxOpen, faBoxes, faInbox, faBox, faWarehouse } from '@fortawesome/free-solid-svg-icons';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -22,7 +25,9 @@ export class HomePageComponent implements OnInit {
   faIngresa = faInbox;
   faBox = faBox;
   faBoxOpen = faBoxOpen;
+  faWarehouse = faWarehouse;
 
+  // Variables
   rows1: any;
   rows2: any;
   rows3: any;
@@ -31,6 +36,12 @@ export class HomePageComponent implements OnInit {
   listadoProductos: any;
   listadoControlen: any;
   listadoControlsa: any;
+
+  _sucursalData: Sucursalinfo[] = [];
+
+  _sucursalNames: any[] = [];
+  _sucursalId: string;
+  _sucusalrequest: boolean;
 
   @ViewChildren(DataTableDirective)
   dtElement: DataTableDirective;
@@ -41,6 +52,7 @@ export class HomePageComponent implements OnInit {
   constructor(
     private productos: ProductoService,
     private salidas: SalidasService,
+    private _getSucursal: GetSucursalService,
     private entradas: ControlService,
     private afs: AngularFirestore
   ) {
@@ -53,8 +65,18 @@ export class HomePageComponent implements OnInit {
     this.getData1();
     this.getData2();
     this.getData3();
+    this.getSucursalData();
+    console.log( this._sucursalData );
+    this.getSucursalNames();
+    console.log( this._sucursalNames);
   }
 
+  getSucursalData() {
+    this._sucursalData = this._getSucursal.getDataSucursal();
+  }
+  getSucursalNames() {
+    this._sucursalNames = this._getSucursal._sucursalNames;
+  }
   getAllentrada() {
     this.entradas.getAllCoentrada();
   }
@@ -70,7 +92,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getData2() {
-    this.afs.collection('Cosalidas/Centenario/salidas').valueChanges().subscribe((salidas) => { // falla en la coleccion REVISAR
+    this.afs.collection('Cosalidas/Centenario/salidas').valueChanges().subscribe((salidas) => {
       this.rows2 = salidas;
     });
   }
