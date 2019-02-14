@@ -1,6 +1,6 @@
 export interface SucursalInterface{
     
-    idsucu?:string;
-    Sucursal?:string;
-    
+    Id?:string;
+    sucursal?:string;
+    Rol?:string;
 }

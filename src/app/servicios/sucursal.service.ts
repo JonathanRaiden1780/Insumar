@@ -21,17 +21,17 @@ export class SucursalService {
      }
   
     deleteSucursal(Sucursal: SucursalInterface){
-      this.SucursalDoc = this.afs.doc('Sucursales/' + Sucursal.idsucu);
+      this.SucursalDoc = this.afs.doc('Sucursales/' + Sucursal.Id);
       this.SucursalDoc.delete();
     }
      updateSucursal(Sucursal: SucursalInterface){
-        this.SucursalDoc=this.afs.doc('Sucursales/' + Sucursal.idsucu);
+        this.SucursalDoc=this.afs.doc('Sucursales/' + Sucursal.Id);
         this.SucursalDoc.update(Sucursal);
       }
   
     addSucursal(Sucursal: SucursalInterface){
       //this.SucursalCollection.add(Sucursal);
-      this.SucursalCollection.doc(Sucursal.Sucursal).set(Sucursal);
+      this.SucursalCollection.doc(Sucursal.sucursal).set(Sucursal);
     }
     getOneSucursal(idsucu: string){
       this.SucursalDoc = this.afs.doc<SucursalInterface>('Sucursales/${idsucu}');
@@ -40,7 +40,7 @@ export class SucursalService {
           return null;
         }else{
           const data = action.payload.data() as SucursalInterface;
-          data.idsucu = action.payload.id;
+          data.Id = action.payload.id;
   
         }
       }));
@@ -50,7 +50,7 @@ export class SucursalService {
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as SucursalInterface;
-          data.idsucu = action.payload.doc.id;
+          data.Id = action.payload.doc.id;
           return data;
         });
       }));

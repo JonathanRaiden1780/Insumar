@@ -136,7 +136,7 @@ arrass2(x: ControlSalidaInterface): string {
 
       });
     }));
-    return this.Cosalidas;
+    return this.Cosalidas; 
 
   }
   getalllistadolocal(): Observable<ControlSalidaInterface[]> {

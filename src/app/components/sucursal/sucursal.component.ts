@@ -124,8 +124,8 @@ controlsalidas: ControlSalidaInterface = {
   
     if(this.cantprod <= this.query.cantidad)
     { 
-        value.idsucu = this.controlsalidas.sucursal;
-        value.Sucursal = this.controlsalidas.sucursal;
+        value.Id = this.controlsalidas.sucursal;
+        value.sucursal = this.controlsalidas.sucursal;
         this.sucursal.updateSucursal(value);
       
     }

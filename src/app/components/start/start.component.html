@@ -18,29 +18,31 @@
 <!--Captura de Codigo-->
                     <td>
                       <div class="form-group text-center"> 
-                        <input type="text" class="form-control" placeholder="PH0101">
+                        <input type="text" class="form-control" placeholder="PH0101" name="codigo" [(ngModel)]="codigo" #codigos="ngModel">
                       </div>
                     </td>
 <!--Captura de Nombre/Descripcion-->
                     <td>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre" id="Papel Higienico Grande" name="Nombre" [(ngModel)]="Producto.Nombre" #descripcion="ngModel">
+                        <input type="text" class="form-control" placeholder="Nombre" id="Papel Higienico Grande" name="producto" [(ngModel)]="producto" #descripcion="ngModel">
                       </div> 
                     </td>
 <!--Captura de Unidad-->
                     <td>
                       <div class="form-group text-center">
-                          <select class="form-control" id="CaptUnidad">
-                            <option>Pza.</option>
-                            <option>Paq.</option>
-                            <option>Lt.</option>
+                          <select class="form-control" id="CaptUnidad" (change)="onChange($event.target.value)">
+                            <option >Selecciona...</option>
+                            <option [ngValue]="tipo" >pieza</option>
+                            <option [ngValue]="tipo" >litro</option>
+                            <option [ngValue]="tipo" >paquete</option>
+
                           </select>
                         </div>
                     </td>
 <!--Captura de Categoria-->
                     <td>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="Producto.categoria" #categoria="ngModel">
+                        <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="categoria" #categorias="ngModel">
                       </div> 
                     </td>
                   </tr>
@@ -70,11 +72,11 @@
       width="469"
   > 
   <ngx-datatable-column name="Codigo">
-      <ng-template ngx-datatable-cell-template let-value="value">
+      <ng-template ngx-datatable-cell-template let-value="value" >
           {{value}}
       </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Producto/Descripcion">
+  <ngx-datatable-column name="Producto/Descripcion" >
       <ng-template ngx-datatable-cell-template let-value="value">
           {{value}}
       </ng-template>
@@ -93,7 +95,7 @@
   <ngx-datatable-column name="Eliminar">
       <ng-template ngx-datatable-cell-template>
           <div class="formGroup">
-            <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+            <button class="btn btn-outline-danger" (click)="DeleteProd(rowsi);" value="Guardar"><fa-icon [icon]="faTimes"></fa-icon></button>
           </div>
       </ng-template>
   </ngx-datatable-column>

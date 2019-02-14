@@ -20,7 +20,7 @@ import { stringify } from '@angular/core/src/util';
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css']
 })
-export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ControlComponent implements OnInit {
 
   faDolly = faDolly;
   faPlus = faPlus;
@@ -41,22 +41,14 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ) {
 
-    this.listadoProveedores = this.proveedores.getAllProveedor();
+   
     this.listadoProductos = this.productos.getAllProducto();
-    this.listadoControl = this.controlService.getAllCoentrada();
-    this.listadoPiezas = this.controlService.gettipo();
+   
     const today = new Date();
     this.model.fecha = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 
 
   }
-
-  @ViewChildren(DataTableDirective)
-  dtElements: DataTableDirective;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  getall = [];
-  cantidadregistrada: number;
 
   model: any = {};
   query: any;
@@ -76,11 +68,11 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
     nombreprod: '',
     inventprod: 0
   };
-  Producto: ProductosInterface = {
+ /* Producto: ProductosInterface = {
 
     idprov: '',
     cantidad: 0
-  };
+ };*/
   controlentradas: ControlEntradaInterface = {
 
   id: '',
@@ -93,25 +85,22 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
   inventario: 0
   };
   nombre: string;
-
+rows:any;
   public userUid: string = null;
   public isAdmin: any = null;
   idup: string;
 
   ngOnInit() {
     this.model.tipo = 'entrada';
-    this.getCurrentUser();
+//    this.getCurrentUser();
 
-    this.getAllCoentrada();
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 2,
-      processing: true,
-      scrollY: '100px',
-      paging: true,
-      search: true,
-      scrollCollapse: true
-    };
+this.getData();
+
+  }
+  getData() {
+    this.afs.collection('Coentradas').valueChanges().subscribe((Sucursal) => {
+      this.rows = Sucursal;
+    });
   }
 
   getAllCoentrada() {
@@ -119,14 +108,14 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-  eliminar(id: string, x: string) {
+ /* eliminar(id: string, x: string) {
     const confirma = confirm('Esta seguro?');
     this.nombre = x;
     if (confirma) {
     console.log('eliminar registro ', id , x);
    this.controlService.deleteCoentrada( id );
   }
-}
+}*/
 
   onChange(value) {
     this.invent = this.query.cantidad;
@@ -146,14 +135,9 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
 
-  ngOnDestroy() {
-    this.dtTrigger.unsubscribe();
-  }
-  ngAfterViewInit(): void {
-    this.dtTrigger.next();
-  }
+ 
 
-  onGuardarEntrada({value}: {value: ControlEntradaInterface}) {
+ /* onGuardarEntrada({value}: {value: ControlEntradaInterface}) {
 
     value.cantidad = this.cantprod;
     value.producto = this.query.Nombre;
@@ -186,7 +170,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
     value.cantidad = this.cantprods;
     value.inventario = this.cantprods;
     this.productos.updateProducto(value);
-  }
+  } 
   getforupdate(x: ControlEntradaInterface) {
 
     console.log(x);
@@ -204,6 +188,7 @@ export class ControlComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
   }
+  */
   Agrega( type: string ) {
     if ( type === 'producto') {
       this.select = true;

@@ -21,8 +21,8 @@ Producto: Observable<ProductosInterface>;
       
      }
 
-    deleteProducto(Producto: ProductosInterface){
-      this.ProductosDoc = this.afs.doc('Productos/' + Producto.idprov);
+    deleteProducto(Producto: string){
+      this.ProductosDoc = this.afs.doc('Productos/' + Producto);
       this.ProductosDoc.delete();
     }
      updateProducto(Producto: ProductosInterface){

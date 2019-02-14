@@ -18,21 +18,21 @@
                     <tr class="table">
                       <td>        
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="TORRECONTROL" id="ID" name="ID" [(ngModel)]="Sucursal.idsucu" #id="ngModel">
+                        <input type="text" class="form-control" placeholder="TORRECONTROL" name="Id" [(ngModel)]="Sucursal.Id" #Id="ngModel">
                         </div> 
                       </td>
                       <td>
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Torre de Control" id="Sucursal" name="Sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
+                        <input type="text" class="form-control" placeholder="Torre de Control" name="sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
                         </div> 
                       </td>
                       <td>
                         <div class="form-group">
-                            <select class="form-control" id="CTtype">
-                              <option>Selecciona...</option>
-                              <option>Sucursal</option>
-                              <option>Oficina</option>
-                              <option>Taller</option>
+                            <select class="form-control" id="CTtype" (change)="onChange($event.target.value)">
+                              <option >Selecciona...</option>
+                              <option [ngValue]="tipo">Sucursal</option>
+                              <option [ngValue]="tipo">Oficina</option>
+                              <option [ngValue]="tipo">Taller</option>
                             </select>
                           </div>
                       </td>
@@ -61,12 +61,12 @@
               [rows]="rows"
               width="469"
           > 
-          <ngx-datatable-column name="ID">
+          <ngx-datatable-column name="Id" >
               <ng-template ngx-datatable-cell-template let-value="value">
                   {{value}}
               </ng-template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Descripcion">
+          <ngx-datatable-column name="sucursal">
               <ng-template ngx-datatable-cell-template let-value="value">
                   {{value}}
               </ng-template>
