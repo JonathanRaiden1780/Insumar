@@ -49,6 +49,22 @@ export class ControlComponent implements OnInit {
 
 
   }
+  //variables
+idfacturas: string;
+cantidades: number;
+bandera:boolean;
+codigo: string;
+carrito:any = {
+  idfact: '',
+  cant:0,
+  codigo:0,
+  product:''
+
+};
+carritofinal= []; 
+todolista:any;
+contador:number;
+//
 
   model: any = {};
   query: any;
@@ -93,7 +109,9 @@ rows:any;
   ngOnInit() {
     this.model.tipo = 'entrada';
 //    this.getCurrentUser();
-
+//this.carritofinal='';
+this.contador=0;
+this.bandera=true;
 this.getData();
 
   }
@@ -120,7 +138,7 @@ this.getData();
   onChange(value) {
     this.invent = this.query.cantidad;
 
-    this.cantprods = sum(this.invent, this.cantprod);
+    this.cantprods = sum(this.invent, this.cantidades);
 
 
     console.log(this.query.cantidad );
@@ -135,7 +153,20 @@ this.getData();
     // this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
 
- 
+ onAgregar({value}: {value: ControlEntradaInterface}) {
+   this.carrito.codigo= this.codigo;
+   this.carrito.idfact= this.idfacturas;
+   this.carrito.cant = this.cantidades;
+   this.carrito.product = this.query;
+
+  // while(this.bandera=false){
+    this.carritofinal[this.contador] = this.carrito;
+    this.todolista=this.carritofinal;
+ //  }
+  
+   this.contador++;
+  console.log(this.carritofinal);
+}
 
  /* onGuardarEntrada({value}: {value: ControlEntradaInterface}) {
 
