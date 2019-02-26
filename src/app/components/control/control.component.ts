@@ -15,6 +15,7 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { stringify } from '@angular/core/src/util';
 
+
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -49,18 +50,19 @@ export class ControlComponent implements OnInit {
 
 
   }
-  //variables
+  //variables 
 idfacturas: string;
 cantidades: number;
 bandera:boolean;
 codigo: string;
-carrito:any = {
-  idfact: '',
-  cant:0,
-  codigo:0,
-  product:''
+carrito: any = {
+  idfactura: '',
+  cantidad:0,
+  codigo:'',
+  producto:''
 
 };
+produc:string;
 carritofinal= []; 
 todolista:any;
 contador:number;
@@ -93,11 +95,10 @@ contador:number;
 
   id: '',
   cantidad: 0,
-  pieza: '',
+  unidad: '',
   producto: '',
   fecha: '',
-  precio: '',
-  proveedor: '',
+  factura: '',
   inventario: 0
   };
   nombre: string;
@@ -121,11 +122,11 @@ this.getData();
     });
   }
 
-  getAllCoentrada() {
+ /* getAllCoentrada() {
     this.controlService.getAllCoentrada();
 
   }
-
+*/
  /* eliminar(id: string, x: string) {
     const confirma = confirm('Esta seguro?');
     this.nombre = x;
@@ -135,10 +136,10 @@ this.getData();
   }
 }*/
 
-  onChange(value) {
+  onChange(value:number) {
     this.invent = this.query.cantidad;
 
-    this.cantprods = sum(this.invent, this.cantidades);
+    this.cantprods = sum(this.invent, value);
 
 
     console.log(this.query.cantidad );
@@ -154,29 +155,51 @@ this.getData();
   }
 
  onAgregar({value}: {value: ControlEntradaInterface}) {
-   this.carrito.codigo= this.codigo;
-   this.carrito.idfact= this.idfacturas;
-   this.carrito.cant = this.cantidades;
-   this.carrito.product = this.query;
+  this.contador =this.carritofinal.length
 
+   this.carrito.fecha = this.model.fecha;
+   this.carrito.codigo= this.codigo;
+   this.carrito.factura= this.idfacturas;
+   this.carrito.cantidad = this.cantidades;
+   this.carrito.producto = this.query.Nombre;
+   this.carrito.numero= this.contador;
+   
   // while(this.bandera=false){
-    this.carritofinal[this.contador] = this.carrito;
-    this.todolista=this.carritofinal;
+    this.carritofinal.push(this.carrito);
+   this.todolista=this.carritofinal;
+   
  //  }
-  
+  this.carrito = {};
    this.contador++;
   console.log(this.carritofinal);
 }
+eliminar(num:number){
+  
+  this.carritofinal.splice(num,1);
+  this.carritofinal.map(function(dato){
+    if(dato.numero != 0 ){
+      dato.numero = 0;
+    }
+    return dato;
+  });
+  
+}
 
- /* onGuardarEntrada({value}: {value: ControlEntradaInterface}) {
+ onGuardarEntrada() {
 
-    value.cantidad = this.cantprod;
-    value.producto = this.query.Nombre;
-    value.inventario = this.cantprods;
-    value.pieza = this.piezasu;
-    this.controlService.addCoentrada(value);
-    this.stock(value);
+    //this.onChange(this.todolista.cantidad);
+    
+    for(var i=0; i<=this.contador ; i++ ){
+      this.carrito = this.carritofinal[i];
+      this.controlService.addCoentrada(this.carrito);
+      this.onChange(this.carrito.cantidad);
+     // this.stock(p);
+      this.carrito = {};
+    }
+    
+    
   }
+  /*
   getCurrentUser() {
     this.authService.getAuth().subscribe(auth => {
       if (auth) {
@@ -195,13 +218,15 @@ this.getData();
     value.inventario = this.cantprodres;
     this.productos.updateProducto(value);
   }
-  stock(value: ProductosInterface) {
+  
+ stock(value: ProductosInterface) {
     value.Nombre = this.query.Nombre;
     value.idprov = this.query.Nombre;
     value.cantidad = this.cantprods;
     value.inventario = this.cantprods;
     this.productos.updateProducto(value);
   } 
+  
   getforupdate(x: ControlEntradaInterface) {
 
     console.log(x);

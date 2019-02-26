@@ -8,26 +8,21 @@
                             <table class="table table-light ">
                                 <thead>
                                     <tr class="table text-center">
-                                        <th scope="col" style="background-color: #e8e2db"><strong>Fecha Captura</strong></th>
                                         <th scope="col" style="background-color: #f5564e"><strong>ID Factura</strong></th>
                                         <th scope="col" style="background-color: #fab95b"><strong>Cantidad</strong></th>
                                         <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Codigo</strong></th>
                                         <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Unidad</strong></th>
                                         <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Producto</strong></th>
-                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Agregar/Quitar</strong></th>
+                                        <th scope="col" class="text-white" style="background-color: #1a3263"><strong>Agregar</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="table" >   
-                                        <td>
-                                            <div class="form-group"><!-- Poner la fecha de sistema - no puede capturar una fecha diferente ya que es solo fecha de captura-->
-                                                <input type="date" class="form-control"  id="fecha" name="fecha" [(ngModel)]="controlentradas.fecha" #fecha="ngModel" >        
-                                            </div>     
-                                        </td>
+                                        
     <!-- #Factura - en vez de proveedor para poder filtrar por factura los ingresos a sistema y a donde se asignaron los insumos-->             
                                         <td>
                                             <div class="form-group">
-                                                <input type="string" class="form-control" placeholder="PET0001" id="IdFactura" name="IdFactura" [(ngModel)]="idfacturas">
+                                                <input type="string" class="form-control" placeholder="PET0001"  name="factura" [(ngModel)]="idfacturas">
                                             </div>  
                                         </td>
     <!-- Cantidad de Producto -->
@@ -39,7 +34,7 @@
     <!-- Codigo - PK para los productos- habilitar para que al ingreso llene los demas campos (unidad y nombre producto)-->
                                         <td> 
                                             <div class="form-group">
-                                                <input type="number" class="form-control" placeholder="PH0001" id="CodProducto" name="CodProducto" [(ngModel)]="codigo">
+                                                <input type="string" class="form-control" placeholder="PH0001" id="CodProducto" name="CodProducto" [(ngModel)]="codigo">
                                             </div> 
                                         </td>
         <!-- Unidad -->
@@ -61,7 +56,6 @@
                                             <div class="form-group">
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <button type="submit" class="btn btn-success" value="Guardar"><fa-icon [icon]="faPlus"></fa-icon></button>
-                                                    <button type="button" class="btn btn-danger"><fa-icon [icon]="faMinus"></fa-icon></button>
                                                 </div>
                                                 
                                             </div> 
@@ -74,36 +68,39 @@
                             <thead class="table-warning text-center">
                                 <tr ng-repeat="controlService in $data">
                                     <th scope="col">Fecha</th>
+                                    <th scope="col">Codigo</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col">Producto</th>
-                                    <th scope="col">Asignado a</th>
+                                    <th scope="col">Factura</th>
                                     <th scope="col">Eliminar</th>
                                 </tr>
                             </thead>
                     
                             <tbody class="text-center table-secondary" > 
-                                <tr > 
-                                    <td>{{carritofinal.codigo | number}}</td>
-                                    <td>{{carritofinal.cant | number}}</td>
-                                    <td>{{this.carritofinal.product}}</td>
-                                    <td>{{carritofinal.idfact}}</td>
+                                <tr *ngFor="let controlService of todolista  "> 
+                                    <td>{{controlService.fecha}}</td>
+                                    <td>{{controlService.codigo }}</td>
+                                    <td>{{controlService.cantidad | number}}</td>
+                                    <td>{{controlService.producto}}</td>
+                                    <td>{{controlService.factura}}</td>
                                     <td>
-                                        <!--<button class="btn" style="color: white; background-color: red" (click)="eliminar(controlService.id, controlService.sucursal); getcantidad(controlService.cantidad)" value="Guardar"><fa-icon [icon]="faTimes" class="fa-1x"></fa-icon></button>-->
+                                    <button type="button" class="btn btn-danger" (click)="eliminar(controlService.numero);"><fa-icon [icon]="faMinus"></fa-icon></button>
                                     </td>
                                 </tr>
                                 
                             </tbody>    
                         </table>
-                            
-                            <button type="submit" style="background-color: #1a3263" class="btn btn-block text-white" value="Guardar" (click)="onChange($event.target.value)"><h3><strong>Provisionar</strong></h3></button>
+                    
+                    
+                        <button type="button" style="background-color: #1a3263" class="btn btn-block text-white" value="Guardar" (click)="onGuardarEntrada()" ><h3><strong>Provisionar</strong></h3></button> <!---->
                             <div class="text-right">
                                 <span><small>*Puede agregar productos nuevos en la pestaña <strong>(+Producto)</strong></small></span><br>
                                 <span><small>**Puede agregar nuevos centro de trabajo en la pestaña <strong>(+Centro de Trabajo)</strong></small></span>
                             </div>
-                        </div>
-            </form>
-        </div>
+                    </div>
+                </form>
     </div>
+</div>
 
 <!-- Inventario general consulta - Debe tener opcion de filtrado para poder revisar existencias -  la tabla es nada mas de consulta - la parte de abajo botones de llamada a los demas metodos de captura (+productos, +sucursal) -->    
     <div class="col-sm-5 mt-3">
@@ -151,7 +148,7 @@
                     [rows]="rows"
                     width="469"
                 > 
-                <ngx-datatable-column name="Codigo">
+                <ngx-datatable-column name="Factura">
                     <ng-template ngx-datatable-cell-template let-value="value">
                         {{value}}
                     </ng-template>
@@ -161,7 +158,17 @@
                         {{value}}
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column name="Inventario">
+                <ngx-datatable-column name="Codigo">
+                    <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Cantidad">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                            {{value}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Fecha">
                     <ng-template ngx-datatable-cell-template let-value="value">
                         {{value}}
                     </ng-template>

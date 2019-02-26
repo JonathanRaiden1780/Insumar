@@ -2,10 +2,9 @@ export interface ControlEntradaInterface{
     
     id?:string;
     cantidad?:number;
-    pieza?:string;
+    unidad?:string;
     producto?:string;
     fecha?:string;
-    precio?:string;
-    proveedor?:string;
+    factura?:string;
     inventario?:number;
 }
