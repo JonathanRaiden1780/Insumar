@@ -42,7 +42,7 @@
 <!--Captura de Categoria-->
                     <td>
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="Categoria" [(ngModel)]="categoria" #categorias="ngModel">
+                        <input type="text" class="form-control" placeholder="Papeleria/Cafeteria/Oficina/etc.." id="Categoria" name="categoria" [(ngModel)]="categoria" #categorias="ngModel">
                       </div> 
                     </td>
                   </tr>
@@ -76,7 +76,7 @@
           {{value}}
       </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Producto/Descripcion" >
+  <ngx-datatable-column name="Producto" >
       <ng-template ngx-datatable-cell-template let-value="value">
           {{value}}
       </ng-template>
@@ -92,10 +92,10 @@
       </ng-template>
   </ngx-datatable-column>
 <!-- Boton para eliminar producto -->
-  <ngx-datatable-column name="Eliminar">
-      <ng-template ngx-datatable-cell-template>
+  <ngx-datatable-column name="Eliminar" prop="codigo">
+      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
           <div class="formGroup">
-            <button class="btn btn-outline-danger" (click)="DeleteProd(rowsi);" value="Guardar"><fa-icon [icon]="faTimes"></fa-icon></button>
+            <button class="btn btn-outline-danger" (click)="DeleteProd(value);" value="Guardar"><fa-icon [icon]="faTimes"></fa-icon></button>
           </div>
       </ng-template>
   </ngx-datatable-column>

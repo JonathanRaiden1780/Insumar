@@ -26,12 +26,12 @@ Producto: Observable<ProductosInterface>;
       this.ProductosDoc.delete();
     }
      updateProducto(Producto: ProductosInterface){
-        this.ProductosDoc=this.afs.doc('Productos/' + Producto.idprov);
+        this.ProductosDoc=this.afs.doc('Productos/' + Producto.codigo);
         this.ProductosDoc.update(Producto);
       }
 
     addProducto(Producto: ProductosInterface){
-      this.ProductosCollection.doc(Producto.Nombre).set(Producto);
+      this.ProductosCollection.doc(Producto.codigo).set(Producto);
       //this.ProductosCollection.add(Producto);
     }
    
@@ -42,7 +42,7 @@ Producto: Observable<ProductosInterface>;
           return null;
         }else{
           const data = action.payload.data() as ProductosInterface;
-          data.idprov = action.payload.id;
+          data.codigo = action.payload.id;
 
         }
       }));
@@ -59,7 +59,7 @@ Producto: Observable<ProductosInterface>;
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as ProductosInterface;
-          data.idprov = action.payload.doc.id;
+          data.codigo = action.payload.doc.id;
           return data;
         });
       }));

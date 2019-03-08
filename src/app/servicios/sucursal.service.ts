@@ -20,12 +20,12 @@ export class SucursalService {
       this.SucursalCollection = this.afs.collection('Sucursales', ref => ref);
      }
   
-    deleteSucursal(Sucursal: SucursalInterface){
-      this.SucursalDoc = this.afs.doc('Sucursales/' + Sucursal.Id);
+    deleteSucursal(Sucursal: string){
+      this.SucursalDoc = this.afs.doc('Sucursales/' + Sucursal);
       this.SucursalDoc.delete();
     }
      updateSucursal(Sucursal: SucursalInterface){
-        this.SucursalDoc=this.afs.doc('Sucursales/' + Sucursal.Id);
+        this.SucursalDoc=this.afs.doc('Sucursales/' + Sucursal.id);
         this.SucursalDoc.update(Sucursal);
       }
   
@@ -40,7 +40,7 @@ export class SucursalService {
           return null;
         }else{
           const data = action.payload.data() as SucursalInterface;
-          data.Id = action.payload.id;
+          data.id = action.payload.id;
   
         }
       }));
@@ -50,7 +50,7 @@ export class SucursalService {
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as SucursalInterface;
-          data.Id = action.payload.doc.id;
+          data.id = action.payload.doc.id;
           return data;
         });
       }));

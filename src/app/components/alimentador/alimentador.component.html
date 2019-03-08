@@ -18,12 +18,12 @@
                     <tr class="table">
                       <td>        
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="TORRECONTROL" name="Id" [(ngModel)]="Sucursal.Id" #Id="ngModel">
+                        <input type="text" class="form-control" placeholder="TORRECONTROL" name="id" [(ngModel)]="Sucursal.id" #Id="ngModel">
                         </div> 
                       </td>
                       <td>
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Torre de Control" name="sucursal" [(ngModel)]="Sucursal.Sucursal" #descripcion="ngModel">
+                        <input type="text" class="form-control" placeholder="Torre de Control" name="sucursal" [(ngModel)]="Sucursal.sucursal" #descripcion="ngModel">
                         </div> 
                       </td>
                       <td>
@@ -69,7 +69,7 @@
           <ngx-datatable-column name="Sucursal">
               <ng-template ngx-datatable-cell-template let-value="value">
                   {{value}}
-              </ng-template>
+              </ng-template> 
           </ngx-datatable-column>
           <ngx-datatable-column name="Rol">
               <ng-template ngx-datatable-cell-template let-value="value">
@@ -77,10 +77,10 @@
               </ng-template>
           </ngx-datatable-column>
         <!-- Boton para eliminar Sucursal -->
-          <ngx-datatable-column name="Eliminar">
-              <ng-template ngx-datatable-cell-template>
+          <ngx-datatable-column name="Eliminar" prop="sucursal">
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
                   <div class="formGroup">
-                    <button class="btn btn-outline-danger"><fa-icon [icon]="faTimes"></fa-icon></button>
+                    <button class="btn btn-outline-danger" (click)="DeleteSucu(value);"><fa-icon [icon]="faTimes"></fa-icon></button>
                   </div>
               </ng-template>
           </ngx-datatable-column>

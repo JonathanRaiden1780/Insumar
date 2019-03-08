@@ -56,7 +56,6 @@ cantidades: number;
 bandera:boolean;
 codigo: string;
 carrito: any = {
-  idfactura: '',
   cantidad:0,
   codigo:'',
   producto:''
@@ -66,6 +65,14 @@ produc:string;
 carritofinal= []; 
 todolista:any;
 contador:number;
+
+
+  Producto: ProductosInterface = {
+
+    codigo: '',
+    cantidad: 0
+ };
+
 //
 
   model: any = {};
@@ -86,12 +93,8 @@ contador:number;
     nombreprod: '',
     inventprod: 0
   };
- /* Producto: ProductosInterface = {
 
-    idprov: '',
-    cantidad: 0
- };*/
-  controlentradas: ControlEntradaInterface = {
+  carrito2: ControlEntradaInterface = {
 
   id: '',
   cantidad: 0,
@@ -99,7 +102,7 @@ contador:number;
   producto: '',
   fecha: '',
   factura: '',
-  inventario: 0
+  
   };
   nombre: string;
 rows:any;
@@ -150,7 +153,10 @@ this.getData();
 
       return a + b;
     }
+   // this.Producto.codigo = this.query.Nombre;
+    this.Producto.cantidad = this.cantprods;
 
+    this.stock(this.Producto);
     // this.cantprods = this.selecprod.inventprod + this.cantprod;
   }
 
@@ -163,6 +169,7 @@ this.getData();
    this.carrito.cantidad = this.cantidades;
    this.carrito.producto = this.query.Nombre;
    this.carrito.numero= this.contador;
+   this.carrito.id = this.model.fecha+this.idfacturas;
    
   // while(this.bandera=false){
     this.carritofinal.push(this.carrito);
@@ -184,20 +191,46 @@ eliminar(num:number){
   });
   
 }
-
+stock(value: ProductosInterface) {
+  value.Nombre = this.query.Nombre;
+  value.cantidad = this.cantprods;
+  value.inventario = this.cantprods;
+  value.codigo = this.codigo;
+  this.productos.updateProducto(value);
+} 
  onGuardarEntrada() {
 
     //this.onChange(this.todolista.cantidad);
-    
-    for(var i=0; i<=this.contador ; i++ ){
+    var vals;
+    vals = this.carritofinal.length - 1;
+
+    for(var i=0 ; i<=vals ; i++ ){
       this.carrito = this.carritofinal[i];
-      this.controlService.addCoentrada(this.carrito);
+      this.carrito2 = this.carrito
+      
+      console.log(this.carrito)
+      console.log(this.carrito2)
+      this.controlService.addCoentrada(this.carrito2);
       this.onChange(this.carrito.cantidad);
-     // this.stock(p);
-      this.carrito = {};
+      
+      if(i==vals){
+        this.elim2(true)
+        this.carrito = {};
+      }
     }
     
     
+    
+    
+  }
+  elim2(n:boolean){
+    if(true){
+      this.carritofinal.splice(0,this.carritofinal.length);
+      console.log(this.carritofinal);
+      console.log(this.todolista);
+    }
+    
+
   }
   /*
   getCurrentUser() {
@@ -219,13 +252,7 @@ eliminar(num:number){
     this.productos.updateProducto(value);
   }
   
- stock(value: ProductosInterface) {
-    value.Nombre = this.query.Nombre;
-    value.idprov = this.query.Nombre;
-    value.cantidad = this.cantprods;
-    value.inventario = this.cantprods;
-    this.productos.updateProducto(value);
-  } 
+ 
   
   getforupdate(x: ControlEntradaInterface) {
 

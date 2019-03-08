@@ -19,9 +19,9 @@ export class AlimentadorComponent implements OnInit {
   listadoSucursal: any;
   Sucursal: SucursalInterface = {
 
-    Id: '',
+    id: '',
     sucursal: '',
-    Rol: ''
+    rol: ''
 
   };
   tipo:string;
@@ -42,10 +42,13 @@ export class AlimentadorComponent implements OnInit {
     this.getData();
   }
   onGuardarSucursal({value}: {value: SucursalInterface}) {
-   value.Rol = this.tipo;
+   value.rol = this.tipo;
    console.log(value);
     this.sucursalService.addSucursal(value);
-
+    
+  }
+  DeleteSucu(id: string){
+    this.sucursalService.deleteSucursal(id);
   }
   onChange(value:string){
     this.tipo = value;

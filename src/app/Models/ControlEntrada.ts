@@ -6,5 +6,5 @@ export interface ControlEntradaInterface{
     producto?:string;
     fecha?:string;
     factura?:string;
-    inventario?:number;
+    
 }

@@ -68,13 +68,13 @@ export class ModalupdateComponent implements OnInit {
    ids(x: UpdateInterface): string {
     this.id = x.id;
     this.afs.collection('Coentradas').doc(this.id).valueChanges().pipe(take(1)).subscribe(res => {this.number(res)} );
-    this.idup.id= this.id;
+    //this.idup.id= this.id;
     console.log(this.id);
     return this.id;
     
    }
    number(x: ControlEntradaInterface): number {
-    this.invent = x.inventario;
+    this.invent = x.cantidad;
 
     this.cantprodres =res(this.invent, this.cantres);
     
@@ -119,9 +119,9 @@ export class ModalupdateComponent implements OnInit {
     //this.idup.cantidad=this.cantprodsum;
     
     this.idup.cantidad = this.cantprodsum;
-    this.idup.proveedor = this.proveedor;
-    this.idup.precio = this.precio;
-    this.idup.pieza = this.unidad;
+    //this.idup.proveedor = this.proveedor;
+    //this.idup.precio = this.precio;
+    this.idup.unidad = this.unidad;
 
      console.log(this.idup);
    }

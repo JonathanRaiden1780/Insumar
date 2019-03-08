@@ -1,6 +1,6 @@
 export interface ProductosInterface{
     
-    idprov?:string;
+    codigo?:string;
     unidad?:string;
     Nombre?:string;
     categoria?:string;

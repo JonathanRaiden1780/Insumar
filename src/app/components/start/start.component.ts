@@ -57,18 +57,19 @@ export class StartComponent implements OnInit {
     //this.tipos= {};
   }
   onGuardarProducto({value}: {value: ProductosInterface}) {
+   
     value.cantidad = 0;
-    value.idprov = this.producto;
     value.unidad = this.tipo;
     value.Nombre = this.producto;
     //value.categoria = this.categoria;
     console.log(value);
     this.productoService.addProducto(value);
-
+ 
   }
   DeleteProd(id: string){
-    console.log(id);
-    //this.productoService.deleteProducto(id);
+    
+    this.productoService.deleteProducto(id);
+
   }
   onChange(value:string){
     this.tipo = value;

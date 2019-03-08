@@ -45,6 +45,7 @@ public coentra: ControlEntradaInterface ;
       }
 
     addCoentrada(Coentrada: ControlEntradaInterface){
+      //this.CoentradasCollection.doc(Coentrada.id).set(Coentrada);
       this.CoentradasCollection.add(Coentrada);
     }
     getOneCoentrada(id: string){
@@ -82,7 +83,7 @@ public coentra: ControlEntradaInterface ;
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as ControlEntradaInterface;
-          data.id = action.payload.doc.id;
+          //data.id = action.payload.doc.id;
           return data;
         });
       }));
@@ -93,7 +94,7 @@ public coentra: ControlEntradaInterface ;
       .pipe(map(changes => {
         return changes.map(action => {
           const data = action.payload.doc.data() as TipoInterface;
-          //data.id = action.payload.doc.id;
+          data.id = action.payload.doc.id;
           return data;
         });
       }));
